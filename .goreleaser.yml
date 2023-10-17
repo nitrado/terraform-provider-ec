@@ -6,7 +6,7 @@ env:
 
 builds:
   - id: terraform-provider-ec
-    binary: "terraform-provider-ec_{{ .Version }}"
+    binary: "{{ .ProjectName }}_v{{ .Version }}"
     flags:
       - -trimpath
     ldflags:
@@ -49,14 +49,8 @@ release:
 
 signs:
   - artifacts: checksum
-    stdin: '{{ .Env.GPG_PASSWORD }}'
     args:
       - "--batch"
-      - "--no-tty"
-      - "--pinentry-mode"
-      - "loopback"
-      - "--passphrase"
-      - '{{ .Env.GPG_PASSWORD }}'
       - "--local-user"
       - "{{ .Env.GPG_FINGERPRINT }}"
       - "--output"

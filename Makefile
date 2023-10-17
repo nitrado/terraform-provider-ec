@@ -21,7 +21,7 @@ lint:
 #Build
 
 build:
-	@goreleaser release --clean --snapshot
+	@goreleaser release --clean --snapshot --skip=sign
 .PHONY: build
 
 # Schema Generation
