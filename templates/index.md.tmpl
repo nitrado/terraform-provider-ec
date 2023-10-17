@@ -9,10 +9,8 @@ description: |-
 
 Use the Enterprise Console provider to interact with Nitrado Enterprise Console.
 
-{{ if .HasExample -}}
 ## Example Usage
 
-{{ printf "{{tffile %q}}" .ExampleFile }}
-{{- end }}
+{{tffile "examples/provider/provider.tf"}}
 
 {{ .SchemaMarkdown | trimspace }}
