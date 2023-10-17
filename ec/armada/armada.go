@@ -9,7 +9,7 @@ import (
 func resolveClientSet(m any) (clientset.Interface, error) {
 	clientSet, ok := m.(clientset.Interface)
 	if !ok {
-		return nil, errors.New("invliad clientset")
+		return nil, errors.New("invalid clientset")
 	}
 	return clientSet, nil
 }
