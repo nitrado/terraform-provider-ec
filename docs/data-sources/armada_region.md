@@ -3,12 +3,12 @@
 page_title: "ec_armada_region Data Source - terraform-provider-ec"
 subcategory: ""
 description: |-
-  
+  Use this data source to access information about an existing Region.
 ---
 
 # ec_armada_region (Data Source)
 
-
+Use this data source to access information about an existing Region.
 
 
 

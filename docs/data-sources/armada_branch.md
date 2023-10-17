@@ -3,12 +3,12 @@
 page_title: "ec_armada_branch Data Source - terraform-provider-ec"
 subcategory: ""
 description: |-
-  
+  Use this data source to access information about an existing Branch.
 ---
 
 # ec_armada_branch (Data Source)
 
-
+Use this data source to access information about an existing Branch.
 
 
 

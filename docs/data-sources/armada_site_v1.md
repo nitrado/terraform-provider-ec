@@ -3,12 +3,12 @@
 page_title: "ec_armada_site_v1 Data Source - terraform-provider-ec"
 subcategory: ""
 description: |-
-  
+  Use this data source to access information about an existing Site.
 ---
 
 # ec_armada_site_v1 (Data Source)
 
-
+Use this data source to access information about an existing Site.
 
 
 

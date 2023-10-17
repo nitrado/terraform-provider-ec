@@ -10,6 +10,7 @@ import (
 // DataSourceArmadaSite returns the data source resource for a Site.
 func DataSourceArmadaSite() *schema.Resource {
 	return &schema.Resource{
+		Description: "Use this data source to access information about an existing Site.",
 		ReadContext: dataSourceArmadaSiteRead,
 		Schema:      siteSchema(),
 	}

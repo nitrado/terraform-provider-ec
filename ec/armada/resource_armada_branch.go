@@ -14,6 +14,7 @@ import (
 // ResourceArmadaBranch returns the resource for a Branch.
 func ResourceArmadaBranch() *schema.Resource {
 	return &schema.Resource{
+		Description:   "A Branch groups container Images.",
 		ReadContext:   resourceArmadaBranchRead,
 		CreateContext: resourceArmadaBranchCreate,
 		UpdateContext: resourceArmadaBranchUpdate,

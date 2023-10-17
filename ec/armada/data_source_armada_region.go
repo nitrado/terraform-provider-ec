@@ -10,6 +10,7 @@ import (
 // DataSourceArmadaRegion returns the data source resource for a Region.
 func DataSourceArmadaRegion() *schema.Resource {
 	return &schema.Resource{
+		Description: "Use this data source to access information about an existing Region.",
 		ReadContext: dataSourceArmadaRegionRead,
 		Schema:      regionSchema(),
 	}

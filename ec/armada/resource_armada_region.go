@@ -14,6 +14,7 @@ import (
 // ResourceArmadaRegion returns the resource for a Region.
 func ResourceArmadaRegion() *schema.Resource {
 	return &schema.Resource{
+		Description:   "A Region determines how Armadas are distributed across Sites.",
 		ReadContext:   resourceArmadaRegionRead,
 		CreateContext: resourceArmadaRegionCreate,
 		UpdateContext: resourceArmadaRegionUpdate,

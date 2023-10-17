@@ -14,6 +14,7 @@ import (
 // ResourceArmadaArmadaSet returns the resource for an ArmadaSet.
 func ResourceArmadaArmadaSet() *schema.Resource {
 	return &schema.Resource{
+		Description:   "An ArmadaSet manages Armadas across multiple Regions, while sharing a common specification.",
 		ReadContext:   resourceArmadaArmadaSetRead,
 		CreateContext: resourceArmadaArmadaSetCreate,
 		UpdateContext: resourceArmadaArmadaSetUpdate,

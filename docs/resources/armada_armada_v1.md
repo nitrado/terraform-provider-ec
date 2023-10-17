@@ -3,12 +3,12 @@
 page_title: "ec_armada_armada_v1 Resource - terraform-provider-ec"
 subcategory: ""
 description: |-
-  
+  An Armada distributes a specified number of Game Servers across a Region.
 ---
 
 # ec_armada_armada_v1 (Resource)
 
-
+An Armada distributes a specified number of Game Servers across a Region.
 
 
 
