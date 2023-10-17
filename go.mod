@@ -1,6 +1,6 @@
 module github.com/nitrado/terraform-provider-ec
 
-go 1.21.1
+go 1.21
 
 toolchain go1.21.3
 
