@@ -1,6 +1,6 @@
-# Armada Terraform Provider
+# Enterprise Console Terraform Provider
 
-Armada Terraform provider allowing to interact with Enterprise Console Armada via Terraform.
+Enterprise Console Terraform provider allowing to interact with Enterprise Console via Terraform.
 
 ## Usage
 
