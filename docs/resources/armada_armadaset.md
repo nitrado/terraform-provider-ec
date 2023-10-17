@@ -3,12 +3,12 @@
 page_title: "ec_armada_armadaset Resource - terraform-provider-ec"
 subcategory: ""
 description: |-
-  
+  An ArmadaSet manages Armadas across multiple Regions, while sharing a common specification.
 ---
 
 # ec_armada_armadaset (Resource)
 
-
+An ArmadaSet manages Armadas across multiple Regions, while sharing a common specification.
 
 
 

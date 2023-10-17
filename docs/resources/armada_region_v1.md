@@ -3,12 +3,12 @@
 page_title: "ec_armada_region_v1 Resource - terraform-provider-ec"
 subcategory: ""
 description: |-
-  
+  A Region determines how Armadas are distributed across Sites.
 ---
 
 # ec_armada_region_v1 (Resource)
 
-
+A Region determines how Armadas are distributed across Sites.
 
 
 

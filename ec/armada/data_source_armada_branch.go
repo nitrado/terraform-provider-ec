@@ -10,6 +10,7 @@ import (
 // DataSourceArmadaBranch returns the data source resource for a Branch.
 func DataSourceArmadaBranch() *schema.Resource {
 	return &schema.Resource{
+		Description: "Use this data source to access information about an existing Branch.",
 		ReadContext: dataSourceArmadaBranchRead,
 		Schema:      branchSchema(),
 	}

@@ -14,6 +14,7 @@ import (
 // ResourceArmadaArmada returns the resource for an Armada.
 func ResourceArmadaArmada() *schema.Resource {
 	return &schema.Resource{
+		Description:   "An Armada distributes a specified number of Game Servers across a Region.",
 		ReadContext:   resourceArmadaArmadaRead,
 		CreateContext: resourceArmadaArmadaCreate,
 		UpdateContext: resourceArmadaArmadaUpdate,

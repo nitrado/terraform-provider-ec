@@ -14,6 +14,7 @@ import (
 // ResourceArmadaSite returns the resource for a Site.
 func ResourceArmadaSite() *schema.Resource {
 	return &schema.Resource{
+		Description:   "A Site provides a connection to deployment capacity.",
 		ReadContext:   resourceArmadaSiteRead,
 		CreateContext: resourceArmadaSiteCreate,
 		UpdateContext: resourceArmadaSiteUpdate,

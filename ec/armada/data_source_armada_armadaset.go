@@ -10,6 +10,7 @@ import (
 // DataSourceArmadaArmadaSet returns the data source resource for an ArmadaSet.
 func DataSourceArmadaArmadaSet() *schema.Resource {
 	return &schema.Resource{
+		Description: "Use this data source to access information about an existing ArmadaSet.",
 		ReadContext: dataSourceArmadaArmadaSetRead,
 		Schema:      armadaSetSchema(),
 	}

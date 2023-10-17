@@ -3,12 +3,12 @@
 page_title: "ec_armada_armada Data Source - terraform-provider-ec"
 subcategory: ""
 description: |-
-  
+  Use this data source to access information about an existing Armada.
 ---
 
 # ec_armada_armada (Data Source)
 
-
+Use this data source to access information about an existing Armada.
 
 
 

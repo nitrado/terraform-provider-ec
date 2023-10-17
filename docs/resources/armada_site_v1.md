@@ -3,12 +3,12 @@
 page_title: "ec_armada_site_v1 Resource - terraform-provider-ec"
 subcategory: ""
 description: |-
-  
+  A Site provides a connection to deployment capacity.
 ---
 
 # ec_armada_site_v1 (Resource)
 
-
+A Site provides a connection to deployment capacity.
 
 ## Example Usage
 
