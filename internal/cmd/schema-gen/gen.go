@@ -9,7 +9,7 @@ import (
 	"text/template"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
-	"github.com/nitrado/terraform-provider-ec/internal/terra/schemagen"
+	"github.com/nitrado/tfconv/schemagen"
 )
 
 // Generator is a struct Terraform schema generator. It converts structs

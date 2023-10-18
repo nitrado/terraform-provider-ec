@@ -1,12 +1,12 @@
 package armada
 
 import (
-	"github.com/nitrado/terraform-provider-ec/internal/terra"
+	"github.com/nitrado/tfconv"
 	"k8s.io/apimachinery/pkg/api/resource"
 )
 
-func converter() *terra.Converter {
-	c := terra.New()
+func converter() *tfconv.Converter {
+	c := tfconv.New("json")
 	c.Register(resource.Quantity{}, expandQuantity, flattenQuantity)
 	return c
 }
