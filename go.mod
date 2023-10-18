@@ -1,6 +1,8 @@
 module github.com/nitrado/terraform-provider-ec
 
-go 1.21
+go 1.21.1
+
+toolchain go1.21.3
 
 require (
 	github.com/ettle/strcase v0.1.1

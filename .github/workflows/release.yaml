@@ -8,6 +8,7 @@ jobs:
   Release:
     runs-on: ubuntu-latest
     env:
+      GO_VERSION: "1.21"
       GOPRIVATE: gitlab.com/nitrado/*
 
     steps:
