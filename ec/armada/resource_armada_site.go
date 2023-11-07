@@ -5,10 +5,11 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
-	armadav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/armada/v1"
-	metav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/meta/v1"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/api/errors"
+	"gitlab.com/nitrado/b2b/ec/apicore/api/errors"
+	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
+	armadav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/armada/v1"
 )
 
 // ResourceArmadaSite returns the resource for a Site.
@@ -27,7 +28,7 @@ func ResourceArmadaSite() *schema.Resource {
 }
 
 func resourceArmadaSiteRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := resolveClientSet(m)
+	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -45,7 +46,7 @@ func resourceArmadaSiteRead(ctx context.Context, d *schema.ResourceData, m any) 
 		}
 	}
 
-	data, err := converter().Flatten(obj, siteSchema())
+	data, err := ec.Converter().Flatten(obj, siteSchema())
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -57,7 +58,7 @@ func resourceArmadaSiteRead(ctx context.Context, d *schema.ResourceData, m any) 
 }
 
 func resourceArmadaSiteCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := resolveClientSet(m)
+	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -65,10 +66,10 @@ func resourceArmadaSiteCreate(ctx context.Context, d *schema.ResourceData, m any
 	obj := &armadav1.Site{
 		TypeMeta: metav1.TypeMeta{APIVersion: armadav1.GroupVersion.String(), Kind: "Site"},
 	}
-	if err = converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
+	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
-	if err = converter().Expand(d.Get("spec").([]any), &obj.Spec); err != nil {
+	if err = ec.Converter().Expand(d.Get("spec").([]any), &obj.Spec); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -82,7 +83,7 @@ func resourceArmadaSiteCreate(ctx context.Context, d *schema.ResourceData, m any
 }
 
 func resourceArmadaSiteUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := resolveClientSet(m)
+	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -90,10 +91,10 @@ func resourceArmadaSiteUpdate(ctx context.Context, d *schema.ResourceData, m any
 	obj := &armadav1.Site{
 		TypeMeta: metav1.TypeMeta{APIVersion: armadav1.GroupVersion.String(), Kind: "Site"},
 	}
-	if err = converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
+	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
-	if err = converter().Expand(d.Get("spec").([]any), &obj.Spec); err != nil {
+	if err = ec.Converter().Expand(d.Get("spec").([]any), &obj.Spec); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -107,7 +108,7 @@ func resourceArmadaSiteUpdate(ctx context.Context, d *schema.ResourceData, m any
 }
 
 func resourceArmadaSiteDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := resolveClientSet(m)
+	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}

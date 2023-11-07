@@ -1,4 +1,4 @@
-package armada
+package container
 
 import (
 	"context"
@@ -7,18 +7,18 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-// DataSourceArmadaBranch returns the data source resource for a Branch.
-func DataSourceArmadaBranch() *schema.Resource {
+// DataSourceContainerBranch returns the data source resource for a Branch.
+func DataSourceContainerBranch() *schema.Resource {
 	return &schema.Resource{
 		Description: "Use this data source to access information about an existing Branch.",
-		ReadContext: dataSourceArmadaBranchRead,
+		ReadContext: dataSourceContainerBranchRead,
 		Schema:      branchSchema(),
 	}
 }
 
-func dataSourceArmadaBranchRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func dataSourceContainerBranchRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	name := d.Get("metadata.0.name").(string)
 	d.SetId(name)
 
-	return resourceArmadaBranchRead(ctx, d, m)
+	return resourceContainerBranchRead(ctx, d, m)
 }

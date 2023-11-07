@@ -3,17 +3,19 @@ package armada_test
 import (
 	"context"
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
-	metav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/meta/v1"
+	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
 )
 
 func TestArmadaResourceRegions(t *testing.T) {
 	name := "my-region"
+	env := "dflt"
 	pf, cs := providertest.SetupProviderFactories(t)
 
 	resource.Test(t, resource.TestCase{
@@ -22,9 +24,10 @@ func TestArmadaResourceRegions(t *testing.T) {
 		CheckDestroy:      testCheckArmadaRegionDestroy(cs),
 		Steps: []resource.TestStep{
 			{
-				Config: testArmadasResourceRegionsConfigBasic(name),
+				Config: testArmadasResourceRegionsConfigBasic(env, name),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("ec_armada_region.test", "metadata.0.name", name),
+					resource.TestCheckResourceAttr("ec_armada_region.test", "metadata.0.environment", env),
 					resource.TestCheckResourceAttr("ec_armada_region.test", "spec.#", "1"),
 					resource.TestCheckResourceAttr("ec_armada_region.test", "spec.0.description", "My Region"),
 					resource.TestCheckResourceAttr("ec_armada_region.test", "spec.0.types.#", "1"),
@@ -35,9 +38,10 @@ func TestArmadaResourceRegions(t *testing.T) {
 				),
 			},
 			{
-				Config: testArmadasResourceRegionsConfigBasicWithEnv(name),
+				Config: testArmadasResourceRegionsConfigBasicWithEnv(env, name),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("ec_armada_region.test", "metadata.0.name", name),
+					resource.TestCheckResourceAttr("ec_armada_region.test", "metadata.0.environment", env),
 					resource.TestCheckResourceAttr("ec_armada_region.test", "spec.#", "1"),
 					resource.TestCheckResourceAttr("ec_armada_region.test", "spec.0.description", "My Region"),
 					resource.TestCheckResourceAttr("ec_armada_region.test", "spec.0.types.#", "1"),
@@ -61,10 +65,11 @@ func TestArmadaResourceRegions(t *testing.T) {
 	})
 }
 
-func testArmadasResourceRegionsConfigBasic(name string) string {
+func testArmadasResourceRegionsConfigBasic(env, name string) string {
 	return fmt.Sprintf(`resource "ec_armada_region" "test" {
   metadata {
     name = "%s"
+    environment = "%s"
   }
   spec {
     description = "My Region"
@@ -73,13 +78,14 @@ func testArmadasResourceRegionsConfigBasic(name string) string {
       sites = ["test-site-1", "test-site-2"]
     }
   }
-}`, name)
+}`, name, env)
 }
 
-func testArmadasResourceRegionsConfigBasicWithEnv(name string) string {
+func testArmadasResourceRegionsConfigBasicWithEnv(env, name string) string {
 	return fmt.Sprintf(`resource "ec_armada_region" "test" {
   metadata {
     name = "%s"
+    environment = "%s"
   }
   spec {
     description = "My Region"
@@ -102,7 +108,7 @@ func testArmadasResourceRegionsConfigBasicWithEnv(name string) string {
 		}
     }
   }
-}`, name)
+}`, name, env)
 }
 
 func testCheckArmadaRegionDestroy(cs clientset.Interface) func(s *terraform.State) error {
@@ -112,8 +118,8 @@ func testCheckArmadaRegionDestroy(cs clientset.Interface) func(s *terraform.Stat
 				continue
 			}
 
-			name := rs.Primary.ID
-			resp, err := cs.ArmadaV1().Regions().Get(context.Background(), name, metav1.GetOptions{})
+			env, name, _ := strings.Cut(rs.Primary.ID, "/")
+			resp, err := cs.ArmadaV1().Regions(env).Get(context.Background(), name, metav1.GetOptions{})
 			if err == nil {
 				if resp.Name == rs.Primary.ID {
 					return fmt.Errorf("region still exists: %s", rs.Primary.ID)

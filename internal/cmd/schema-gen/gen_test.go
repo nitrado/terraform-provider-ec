@@ -7,7 +7,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	metav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/meta/v1"
+	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 )
 

@@ -8,7 +8,8 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.29.0
 	github.com/nitrado/tfconv v1.0.0
 	github.com/stretchr/testify v1.8.4
-	gitlab.com/nitrado/b2b/ec/armada v0.1.8
+	gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20231102154508-b98085b3c03c
+	gitlab.com/nitrado/b2b/ec/armada v0.1.9-0.20231107080235-6d707c42ead5
 	golang.org/x/oauth2 v0.13.0
 	k8s.io/apimachinery v0.28.2
 )
@@ -106,7 +107,7 @@ require (
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20231016165738-49dd2c1f3d0b // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20231016165738-49dd2c1f3d0b // indirect
-	google.golang.org/grpc v1.58.3 // indirect
+	google.golang.org/grpc v1.59.0 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect

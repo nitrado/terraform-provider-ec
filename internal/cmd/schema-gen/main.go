@@ -5,11 +5,13 @@ import (
 	"io"
 	"os"
 
-	armadav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/armada/v1"
-	containerv1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/container/v1"
+	armadav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/armada/v1"
+	containerv1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/container/v1"
+	corev1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/core/v1"
 )
 
 type objInfo struct {
+	Pkg      string
 	Obj      any
 	Filename string
 	FuncName string
@@ -17,39 +19,52 @@ type objInfo struct {
 
 var objs = []objInfo{
 	{
+		Pkg:      "armada",
 		Obj:      armadav1.Resources{},
 		Filename: "ec/armada/schema_resources.go",
 		FuncName: "resourcesSchema",
 	},
 	{
+		Pkg:      "armada",
 		Obj:      armadav1.EnvVar{},
 		Filename: "ec/armada/schema_env.go",
 		FuncName: "envSchema",
 	},
 	{
+		Pkg:      "armada",
 		Obj:      &armadav1.Site{},
 		Filename: "ec/armada/schema_site.go",
 		FuncName: "siteSchema",
 	},
 	{
+		Pkg:      "armada",
 		Obj:      &armadav1.Region{},
 		Filename: "ec/armada/schema_region.go",
 		FuncName: "regionSchema",
 	},
 	{
+		Pkg:      "armada",
 		Obj:      &armadav1.Armada{},
 		Filename: "ec/armada/schema_armada.go",
 		FuncName: "armadaSchema",
 	},
 	{
+		Pkg:      "armada",
 		Obj:      &armadav1.ArmadaSet{},
 		Filename: "ec/armada/schema_armadaset.go",
 		FuncName: "armadaSetSchema",
 	},
 	{
+		Pkg:      "container",
 		Obj:      &containerv1.Branch{},
-		Filename: "ec/armada/schema_branch.go",
+		Filename: "ec/container/schema_branch.go",
 		FuncName: "branchSchema",
+	},
+	{
+		Pkg:      "core",
+		Obj:      &corev1.Environment{},
+		Filename: "ec/core/schema_environment.go",
+		FuncName: "environmentSchema",
 	},
 }
 
@@ -66,7 +81,7 @@ func realMain(out io.Writer) int {
 			_ = os.Remove(info.Filename)
 		}
 
-		b, err := gen.Generate(info.Obj, "armada", info.FuncName)
+		b, err := gen.Generate(info.Obj, info.Pkg, info.FuncName)
 		if err != nil {
 			_, _ = fmt.Fprintln(out, err.Error())
 			continue

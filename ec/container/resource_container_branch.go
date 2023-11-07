@@ -1,24 +1,25 @@
-package armada
+package container
 
 import (
 	"context"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
-	containerv1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/container/v1"
-	metav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/meta/v1"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/api/errors"
+	"gitlab.com/nitrado/b2b/ec/apicore/api/errors"
+	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
+	containerv1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/container/v1"
 )
 
-// ResourceArmadaBranch returns the resource for a Branch.
-func ResourceArmadaBranch() *schema.Resource {
+// ResourceContainerBranch returns the resource for a Branch.
+func ResourceContainerBranch() *schema.Resource {
 	return &schema.Resource{
 		Description:   "A Branch groups container Images.",
-		ReadContext:   resourceArmadaBranchRead,
-		CreateContext: resourceArmadaBranchCreate,
-		UpdateContext: resourceArmadaBranchUpdate,
-		DeleteContext: resourceArmadaBranchDelete,
+		ReadContext:   resourceContainerBranchRead,
+		CreateContext: resourceContainerBranchCreate,
+		UpdateContext: resourceContainerBranchUpdate,
+		DeleteContext: resourceContainerBranchDelete,
 		Importer: &schema.ResourceImporter{
 			StateContext: schema.ImportStatePassthroughContext,
 		},
@@ -26,8 +27,8 @@ func ResourceArmadaBranch() *schema.Resource {
 	}
 }
 
-func resourceArmadaBranchRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := resolveClientSet(m)
+func resourceContainerBranchRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -45,7 +46,7 @@ func resourceArmadaBranchRead(ctx context.Context, d *schema.ResourceData, m any
 		}
 	}
 
-	data, err := converter().Flatten(obj, branchSchema())
+	data, err := ec.Converter().Flatten(obj, branchSchema())
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -56,8 +57,8 @@ func resourceArmadaBranchRead(ctx context.Context, d *schema.ResourceData, m any
 	return nil
 }
 
-func resourceArmadaBranchCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := resolveClientSet(m)
+func resourceContainerBranchCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -65,10 +66,10 @@ func resourceArmadaBranchCreate(ctx context.Context, d *schema.ResourceData, m a
 	obj := &containerv1.Branch{
 		TypeMeta: metav1.TypeMeta{APIVersion: containerv1.GroupVersion.String(), Kind: "Branch"},
 	}
-	if err = converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
+	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
-	if err = converter().Expand(d.Get("spec").([]any), &obj.Spec); err != nil {
+	if err = ec.Converter().Expand(d.Get("spec").([]any), &obj.Spec); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -78,11 +79,11 @@ func resourceArmadaBranchCreate(ctx context.Context, d *schema.ResourceData, m a
 	}
 
 	d.SetId(out.Name)
-	return resourceArmadaBranchRead(ctx, d, m)
+	return resourceContainerBranchRead(ctx, d, m)
 }
 
-func resourceArmadaBranchUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := resolveClientSet(m)
+func resourceContainerBranchUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -90,10 +91,10 @@ func resourceArmadaBranchUpdate(ctx context.Context, d *schema.ResourceData, m a
 	obj := &containerv1.Branch{
 		TypeMeta: metav1.TypeMeta{APIVersion: containerv1.GroupVersion.String(), Kind: "Branch"},
 	}
-	if err = converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
+	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
-	if err = converter().Expand(d.Get("spec").([]any), &obj.Spec); err != nil {
+	if err = ec.Converter().Expand(d.Get("spec").([]any), &obj.Spec); err != nil {
 		return diag.FromErr(err)
 	}
 
@@ -103,11 +104,11 @@ func resourceArmadaBranchUpdate(ctx context.Context, d *schema.ResourceData, m a
 	}
 
 	d.SetId(out.Name)
-	return resourceArmadaBranchRead(ctx, d, m)
+	return resourceContainerBranchRead(ctx, d, m)
 }
 
-func resourceArmadaBranchDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := resolveClientSet(m)
+func resourceContainerBranchDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}

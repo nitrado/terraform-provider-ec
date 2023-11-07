@@ -3,17 +3,19 @@ package armada_test
 import (
 	"context"
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
-	metav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/meta/v1"
+	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
 )
 
 func TestArmadaResourceArmadas(t *testing.T) {
 	name := "my-armada"
+	env := "dflt"
 	pf, cs := providertest.SetupProviderFactories(t)
 
 	resource.Test(t, resource.TestCase{
@@ -22,9 +24,10 @@ func TestArmadaResourceArmadas(t *testing.T) {
 		CheckDestroy:      testCheckArmadaArmadasDestroy(cs),
 		Steps: []resource.TestStep{
 			{
-				Config: testArmadasResourceArmadasConfigBasic(name),
+				Config: testArmadasResourceArmadasConfigBasic(env, name),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "metadata.0.name", name),
+					resource.TestCheckResourceAttr("ec_armada_armada.test", "metadata.0.environment", env),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.#", "1"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.description", "My Armada"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.region", "eu"),
@@ -40,9 +43,10 @@ func TestArmadaResourceArmadas(t *testing.T) {
 				),
 			},
 			{
-				Config: testArmadasResourceArmadasConfigBasicWithEnv(name),
+				Config: testArmadasResourceArmadasConfigBasicWithEnv(env, name),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "metadata.0.name", name),
+					resource.TestCheckResourceAttr("ec_armada_armada.test", "metadata.0.environment", env),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.#", "1"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.description", "My Armada"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.region", "eu"),
@@ -71,10 +75,11 @@ func TestArmadaResourceArmadas(t *testing.T) {
 	})
 }
 
-func testArmadasResourceArmadasConfigBasic(name string) string {
+func testArmadasResourceArmadasConfigBasic(env, name string) string {
 	return fmt.Sprintf(`resource "ec_armada_armada" "test" {
   metadata {
     name = "%s"
+    environment = "%s"
   }
   spec {
     description = "My Armada"
@@ -100,13 +105,14 @@ func testArmadasResourceArmadasConfigBasic(name string) string {
       }
     }
   }
-}`, name)
+}`, name, env)
 }
 
-func testArmadasResourceArmadasConfigBasicWithEnv(name string) string {
+func testArmadasResourceArmadasConfigBasicWithEnv(env, name string) string {
 	return fmt.Sprintf(`resource "ec_armada_armada" "test" {
   metadata {
     name = "%s"
+    environment = "%s"
   }
   spec {
     description = "My Armada"
@@ -144,7 +150,7 @@ func testArmadasResourceArmadasConfigBasicWithEnv(name string) string {
       }
     }
   }
-}`, name)
+}`, name, env)
 }
 
 func testCheckArmadaArmadasDestroy(cs clientset.Interface) func(s *terraform.State) error {
@@ -154,8 +160,8 @@ func testCheckArmadaArmadasDestroy(cs clientset.Interface) func(s *terraform.Sta
 				continue
 			}
 
-			name := rs.Primary.ID
-			resp, err := cs.ArmadaV1().Armadas().Get(context.Background(), name, metav1.GetOptions{})
+			env, name, _ := strings.Cut(rs.Primary.ID, "/")
+			resp, err := cs.ArmadaV1().Armadas(env).Get(context.Background(), name, metav1.GetOptions{})
 			if err == nil {
 				if resp.Name == rs.Primary.ID {
 					return fmt.Errorf("armada still exists: %s", rs.Primary.ID)

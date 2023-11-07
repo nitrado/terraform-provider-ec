@@ -1,4 +1,4 @@
-resource "ec_armada_branch" "test" {
+resource "ec_container_branch_v1" "test" {
   metadata {
     name = "test"
   }
