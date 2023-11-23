@@ -15,7 +15,7 @@ import (
 // ResourceCoreEnvironment returns the resource for an Environment.
 func ResourceCoreEnvironment() *schema.Resource {
 	return &schema.Resource{
-		Description:   "An Environment provides a connection to deployment capacity.",
+		Description:   "An Environment provides a mechanism to isolate groups of resources.",
 		ReadContext:   resourceCoreEnvironmentRead,
 		CreateContext: resourceCoreEnvironmentCreate,
 		UpdateContext: resourceCoreEnvironmentUpdate,

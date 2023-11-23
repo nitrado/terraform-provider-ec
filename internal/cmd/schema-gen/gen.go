@@ -138,7 +138,7 @@ var fileTmpl = template.Must(template.New("code").Parse(`package {{.PkgName}}
 
 {{ if .NeedsMeta }}
 import (
-	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+    "github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
     "github.com/nitrado/terraform-provider-ec/ec/meta"
 )
 {{- else }}

@@ -21,21 +21,19 @@ var (
 func validateName(value any, path cty.Path) (diags diag.Diagnostics) {
 	v := value.(string)
 
-	if !nameRegexp.MatchString(v) {
-		diags = append(diags, diag.Diagnostic{
-			Severity:      diag.Error,
-			Summary:       `"` + v + `" is not a valid name`,
-			AttributePath: path,
-		},
-		)
-	}
 	if len(v) > maxNameLength {
 		diags = append(diags, diag.Diagnostic{
 			Severity:      diag.Error,
 			Summary:       fmt.Sprintf("%q must be no more than %d characters", v, maxNameLength),
 			AttributePath: path,
-		},
-		)
+		})
+	}
+	if !nameRegexp.MatchString(v) {
+		diags = append(diags, diag.Diagnostic{
+			Severity:      diag.Error,
+			Summary:       `"` + v + `" is not a valid name`,
+			AttributePath: path,
+		})
 	}
 	return diags
 }
@@ -43,21 +41,19 @@ func validateName(value any, path cty.Path) (diags diag.Diagnostics) {
 func validateEnvironment(value any, path cty.Path) (diags diag.Diagnostics) {
 	v := value.(string)
 
-	if !environmentRegexp.MatchString(v) {
-		diags = append(diags, diag.Diagnostic{
-			Severity:      diag.Error,
-			Summary:       `"` + v + `" is not a valid environment`,
-			AttributePath: path,
-		},
-		)
-	}
 	if len(v) > maxEnvironmentLength {
 		diags = append(diags, diag.Diagnostic{
 			Severity:      diag.Error,
 			Summary:       fmt.Sprintf("%q must be no more than %d characters", v, maxNameLength),
 			AttributePath: path,
-		},
-		)
+		})
+	}
+	if !environmentRegexp.MatchString(v) {
+		diags = append(diags, diag.Diagnostic{
+			Severity:      diag.Error,
+			Summary:       `"` + v + `" is not a valid environment`,
+			AttributePath: path,
+		})
 	}
 	return diags
 }
