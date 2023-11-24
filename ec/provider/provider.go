@@ -8,6 +8,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec/armada"
+	"github.com/nitrado/terraform-provider-ec/ec/container"
+	"github.com/nitrado/terraform-provider-ec/ec/core"
 	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
 	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/rest"
 	"golang.org/x/oauth2"
@@ -64,8 +66,10 @@ func Provider() *schema.Provider {
 			"ec_armada_armada_v1":    armada.DataSourceArmadaArmada(),
 			"ec_armada_armadaset":    armada.DataSourceArmadaArmadaSet(),
 			"ec_armada_armadaset_v1": armada.DataSourceArmadaArmadaSet(),
-			"ec_armada_branch":       armada.DataSourceArmadaBranch(),
-			"ec_armada_branch_v1":    armada.DataSourceArmadaBranch(),
+			"ec_container_branch":    container.DataSourceContainerBranch(),
+			"ec_container_branch_v1": container.DataSourceContainerBranch(),
+			"ec_core_environment":    core.DataSourceCoreEnvironment(),
+			"ec_core_environment_v1": core.DataSourceCoreEnvironment(),
 		},
 		ResourcesMap: map[string]*schema.Resource{
 			"ec_armada_site":         armada.ResourceArmadaSite(),
@@ -76,8 +80,10 @@ func Provider() *schema.Provider {
 			"ec_armada_armada_v1":    armada.ResourceArmadaArmada(),
 			"ec_armada_armadaset":    armada.ResourceArmadaArmadaSet(),
 			"ec_armada_armadaset_v1": armada.ResourceArmadaArmadaSet(),
-			"ec_armada_branch":       armada.ResourceArmadaBranch(),
-			"ec_armada_branch_v1":    armada.ResourceArmadaBranch(),
+			"ec_container_branch":    container.ResourceContainerBranch(),
+			"ec_container_branch_v1": container.ResourceContainerBranch(),
+			"ec_core_environment":    core.ResourceCoreEnvironment(),
+			"ec_core_environment_v1": core.ResourceCoreEnvironment(),
 		},
 	}
 

@@ -48,6 +48,7 @@ resource "ec_armada_site" "test" {
 Optional:
 
 - `annotations` (Map of String) An unstructured map of keys and values stored on an object.
+- `environment` (String) The name of the environment the object belongs to.
 - `labels` (Map of String) A map of keys and values that can be used to organize and categorize objects.
 - `name` (String) The unique object name within its scope.
 

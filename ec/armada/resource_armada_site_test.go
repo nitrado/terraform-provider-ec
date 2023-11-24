@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
-	metav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/apis/meta/v1"
+	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
 )
 

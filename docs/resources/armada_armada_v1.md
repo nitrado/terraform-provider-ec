@@ -30,6 +30,7 @@ An Armada distributes a specified number of Game Servers across a Region.
 Optional:
 
 - `annotations` (Map of String) An unstructured map of keys and values stored on an object.
+- `environment` (String) The name of the environment the object belongs to.
 - `labels` (Map of String) A map of keys and values that can be used to organize and categorize objects.
 - `name` (String) The unique object name within its scope.
 
@@ -50,6 +51,7 @@ Required:
 
 Optional:
 
+- `autoscaling` (Block List, Max: 1) AutoscalingInterval defines the autoscaling strategy. (see [below for nested schema](#nestedblock--spec--autoscaling))
 - `description` (String) Description is the optional description of the armada.
 
 <a id="nestedblock--spec--distribution"></a>
@@ -77,6 +79,7 @@ Optional:
 Optional:
 
 - `annotations` (Map of String) An unstructured map of keys and values stored on an object.
+- `environment` (String) The name of the environment the object belongs to.
 - `labels` (Map of String) A map of keys and values that can be used to organize and categorize objects.
 - `name` (String) The unique object name within its scope.
 
@@ -397,3 +400,22 @@ Optional:
 - `int_val` (Number)
 - `str_val` (String)
 - `type` (Number)
+
+
+
+
+
+
+<a id="nestedblock--spec--autoscaling"></a>
+### Nested Schema for `spec.autoscaling`
+
+Optional:
+
+- `fixed_interval` (Block List, Max: 1) FixedInterval defines a fixed interval autoscaling strategy. (see [below for nested schema](#nestedblock--spec--autoscaling--fixed_interval))
+
+<a id="nestedblock--spec--autoscaling--fixed_interval"></a>
+### Nested Schema for `spec.autoscaling.fixed_interval`
+
+Optional:
+
+- `seconds` (Number) Seconds defines how often the auto-scaler will re-evaluate the number of game servers.

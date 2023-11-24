@@ -8,7 +8,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec/provider"
 	"github.com/stretchr/testify/require"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/api/runtime"
+	"gitlab.com/nitrado/b2b/ec/apicore/runtime"
 	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
 	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/fake"
 )

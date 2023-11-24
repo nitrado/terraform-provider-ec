@@ -1,4 +1,4 @@
-package armada
+package core
 
 import (
 	"context"
@@ -9,33 +9,33 @@ import (
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
 	"gitlab.com/nitrado/b2b/ec/apicore/api/errors"
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	armadav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/armada/v1"
+	corev1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/core/v1"
 )
 
-// ResourceArmadaArmada returns the resource for an Armada.
-func ResourceArmadaArmada() *schema.Resource {
+// ResourceCoreEnvironment returns the resource for an Environment.
+func ResourceCoreEnvironment() *schema.Resource {
 	return &schema.Resource{
-		Description:   "An Armada distributes a specified number of Game Servers across a Region.",
-		ReadContext:   resourceArmadaArmadaRead,
-		CreateContext: resourceArmadaArmadaCreate,
-		UpdateContext: resourceArmadaArmadaUpdate,
-		DeleteContext: resourceArmadaArmadaDelete,
+		Description:   "An Environment provides a mechanism to isolate groups of resources.",
+		ReadContext:   resourceCoreEnvironmentRead,
+		CreateContext: resourceCoreEnvironmentCreate,
+		UpdateContext: resourceCoreEnvironmentUpdate,
+		DeleteContext: resourceCoreEnvironmentDelete,
 		Importer: &schema.ResourceImporter{
 			StateContext: schema.ImportStatePassthroughContext,
 		},
-		Schema: armadaSchema(),
+		Schema: environmentSchema(),
 	}
 }
 
-func resourceArmadaArmadaRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceCoreEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	env, name := ec.SplitName(d.Id())
+	name := d.Id()
 
-	obj, err := clientSet.ArmadaV1().Armadas(env).Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.CoreV1().Environments().Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		switch {
 		case errors.IsNotFound(err):
@@ -46,7 +46,7 @@ func resourceArmadaArmadaRead(ctx context.Context, d *schema.ResourceData, m any
 		}
 	}
 
-	data, err := ec.Converter().Flatten(obj, armadaSchema())
+	data, err := ec.Converter().Flatten(obj, environmentSchema())
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -57,15 +57,13 @@ func resourceArmadaArmadaRead(ctx context.Context, d *schema.ResourceData, m any
 	return nil
 }
 
-func resourceArmadaArmadaCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceCoreEnvironmentCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	obj := &armadav1.Armada{
-		TypeMeta: metav1.TypeMeta{APIVersion: armadav1.GroupVersion.String(), Kind: "Armada"},
-	}
+	obj := &corev1.Environment{}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -73,24 +71,22 @@ func resourceArmadaArmadaCreate(ctx context.Context, d *schema.ResourceData, m a
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.ArmadaV1().Armadas(obj.Environment).Create(ctx, obj, metav1.CreateOptions{})
+	out, err := clientSet.CoreV1().Environments().Create(ctx, obj, metav1.CreateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	d.SetId(ec.ScopedName(out.Environment, out.Name))
-	return resourceArmadaArmadaRead(ctx, d, m)
+	d.SetId(out.Name)
+	return resourceCoreEnvironmentRead(ctx, d, m)
 }
 
-func resourceArmadaArmadaUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceCoreEnvironmentUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	obj := &armadav1.Armada{
-		TypeMeta: metav1.TypeMeta{APIVersion: armadav1.GroupVersion.String(), Kind: "Armada"},
-	}
+	obj := &corev1.Environment{}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -98,24 +94,24 @@ func resourceArmadaArmadaUpdate(ctx context.Context, d *schema.ResourceData, m a
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.ArmadaV1().Armadas(obj.Environment).Update(ctx, obj, metav1.UpdateOptions{})
+	out, err := clientSet.CoreV1().Environments().Update(ctx, obj, metav1.UpdateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	d.SetId(ec.ScopedName(out.Environment, out.Name))
-	return resourceArmadaArmadaRead(ctx, d, m)
+	d.SetId(out.Name)
+	return resourceCoreEnvironmentRead(ctx, d, m)
 }
 
-func resourceArmadaArmadaDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceCoreEnvironmentDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	env, name := ec.SplitName(d.Id())
+	name := d.Id()
 
-	if err = clientSet.ArmadaV1().Armadas(env).Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
+	if err = clientSet.CoreV1().Environments().Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
 		switch {
 		case errors.IsNotFound(err):
 			// We will consider this a successful delete.

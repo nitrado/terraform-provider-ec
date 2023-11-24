@@ -1,10 +1,11 @@
-package armada
+package meta
 
 import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 )
 
-func metadataSchema() map[string]*schema.Schema {
+// Schema is the common object metadata schema.
+func Schema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
 		"annotations": {
 			Type:        schema.TypeMap,
@@ -25,6 +26,14 @@ func metadataSchema() map[string]*schema.Schema {
 			ForceNew:         true,
 			Computed:         true,
 			ValidateDiagFunc: validateName,
+		},
+		"environment": {
+			Type:             schema.TypeString,
+			Description:      "The name of the environment the object belongs to.",
+			Optional:         true,
+			ForceNew:         true,
+			Computed:         true,
+			ValidateDiagFunc: validateEnvironment,
 		},
 		"revision": {
 			Type:        schema.TypeString,
