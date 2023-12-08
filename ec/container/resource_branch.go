@@ -1,4 +1,4 @@
-package core
+package container
 
 import (
 	"context"
@@ -9,25 +9,25 @@ import (
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
 	"gitlab.com/nitrado/b2b/ec/apicore/api/errors"
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	corev1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/core/v1"
+	containerv1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/container/v1"
 )
 
-// ResourceEnvironment returns the resource for an Environment.
-func ResourceEnvironment() *schema.Resource {
+// ResourceBranch returns the resource for a Branch.
+func ResourceBranch() *schema.Resource {
 	return &schema.Resource{
-		Description:   "An Environment provides a mechanism to isolate groups of resources.",
-		ReadContext:   resourceEnvironmentRead,
-		CreateContext: resourceEnvironmentCreate,
-		UpdateContext: resourceEnvironmentUpdate,
-		DeleteContext: resourceEnvironmentDelete,
+		Description:   "A Branch groups container Images.",
+		ReadContext:   resourceBranchRead,
+		CreateContext: resourceBranchCreate,
+		UpdateContext: resourceBranchUpdate,
+		DeleteContext: resourceBranchDelete,
 		Importer: &schema.ResourceImporter{
 			StateContext: schema.ImportStatePassthroughContext,
 		},
-		Schema: environmentSchema(),
+		Schema: branchSchema(),
 	}
 }
 
-func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceBranchRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
@@ -35,7 +35,7 @@ func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any)
 
 	name := d.Id()
 
-	obj, err := clientSet.CoreV1().Environments().Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.ContainerV1().Branches().Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		switch {
 		case errors.IsNotFound(err):
@@ -46,7 +46,7 @@ func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any)
 		}
 	}
 
-	data, err := ec.Converter().Flatten(obj, environmentSchema())
+	data, err := ec.Converter().Flatten(obj, branchSchema())
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -57,13 +57,15 @@ func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any)
 	return nil
 }
 
-func resourceEnvironmentCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceBranchCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	obj := &corev1.Environment{}
+	obj := &containerv1.Branch{
+		TypeMeta: metav1.TypeMeta{APIVersion: containerv1.GroupVersion.String(), Kind: "Branch"},
+	}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -71,22 +73,24 @@ func resourceEnvironmentCreate(ctx context.Context, d *schema.ResourceData, m an
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.CoreV1().Environments().Create(ctx, obj, metav1.CreateOptions{})
+	out, err := clientSet.ContainerV1().Branches().Create(ctx, obj, metav1.CreateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
 	d.SetId(out.Name)
-	return resourceEnvironmentRead(ctx, d, m)
+	return resourceBranchRead(ctx, d, m)
 }
 
-func resourceEnvironmentUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceBranchUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	obj := &corev1.Environment{}
+	obj := &containerv1.Branch{
+		TypeMeta: metav1.TypeMeta{APIVersion: containerv1.GroupVersion.String(), Kind: "Branch"},
+	}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -94,16 +98,16 @@ func resourceEnvironmentUpdate(ctx context.Context, d *schema.ResourceData, m an
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.CoreV1().Environments().Update(ctx, obj, metav1.UpdateOptions{})
+	out, err := clientSet.ContainerV1().Branches().Update(ctx, obj, metav1.UpdateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
 	d.SetId(out.Name)
-	return resourceEnvironmentRead(ctx, d, m)
+	return resourceBranchRead(ctx, d, m)
 }
 
-func resourceEnvironmentDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceBranchDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
@@ -111,7 +115,7 @@ func resourceEnvironmentDelete(ctx context.Context, d *schema.ResourceData, m an
 
 	name := d.Id()
 
-	if err = clientSet.CoreV1().Environments().Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
+	if err = clientSet.ContainerV1().Branches().Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
 		switch {
 		case errors.IsNotFound(err):
 			// We will consider this a successful delete.

@@ -20,27 +20,9 @@ type objInfo struct {
 var objs = []objInfo{
 	{
 		Pkg:      "armada",
-		Obj:      armadav1.Resources{},
-		Filename: "ec/armada/schema_resources.go",
-		FuncName: "resourcesSchema",
-	},
-	{
-		Pkg:      "armada",
-		Obj:      armadav1.EnvVar{},
+		Obj:      corev1.EnvVar{},
 		Filename: "ec/armada/schema_env.go",
 		FuncName: "envSchema",
-	},
-	{
-		Pkg:      "armada",
-		Obj:      &armadav1.Site{},
-		Filename: "ec/armada/schema_site.go",
-		FuncName: "siteSchema",
-	},
-	{
-		Pkg:      "armada",
-		Obj:      &armadav1.Region{},
-		Filename: "ec/armada/schema_region.go",
-		FuncName: "regionSchema",
 	},
 	{
 		Pkg:      "armada",
@@ -62,9 +44,33 @@ var objs = []objInfo{
 	},
 	{
 		Pkg:      "core",
+		Obj:      corev1.Resources{},
+		Filename: "ec/core/schema_resources.go",
+		FuncName: "resourcesSchema",
+	},
+	{
+		Pkg:      "core",
+		Obj:      corev1.EnvVar{},
+		Filename: "ec/core/schema_env.go",
+		FuncName: "envSchema",
+	},
+	{
+		Pkg:      "core",
 		Obj:      &corev1.Environment{},
 		Filename: "ec/core/schema_environment.go",
 		FuncName: "environmentSchema",
+	},
+	{
+		Pkg:      "core",
+		Obj:      &corev1.Region{},
+		Filename: "ec/core/schema_region.go",
+		FuncName: "regionSchema",
+	},
+	{
+		Pkg:      "core",
+		Obj:      &corev1.Site{},
+		Filename: "ec/core/schema_site.go",
+		FuncName: "siteSchema",
 	},
 }
 

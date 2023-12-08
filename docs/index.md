@@ -26,7 +26,7 @@ provider "ec" {
   host = "<your armada host url>"
 }
 
-resource "ec_armada_site" "test" {
+resource "ec_core_site" "test" {
   metadata {
     name = "test"
   }

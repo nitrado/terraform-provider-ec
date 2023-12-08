@@ -12,17 +12,17 @@ import (
 	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
 )
 
-func TestCoreResourceEnvironments(t *testing.T) {
+func TestResourceEnvironments(t *testing.T) {
 	name := "dflt"
 	pf, cs := providertest.SetupProviderFactories(t)
 
 	resource.Test(t, resource.TestCase{
 		IsUnitTest:        true,
 		ProviderFactories: pf,
-		CheckDestroy:      testCheckCoreEnvironmentDestroy(cs),
+		CheckDestroy:      testCheckEnvironmentDestroy(cs),
 		Steps: []resource.TestStep{
 			{
-				Config: testCoreResourceEnvironmentConfigBasic(name),
+				Config: testResourceEnvironmentConfigBasic(name),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("ec_core_environment.test", "metadata.0.name", name),
 					resource.TestCheckResourceAttr("ec_core_environment.test", "spec.#", "1"),
@@ -39,7 +39,7 @@ func TestCoreResourceEnvironments(t *testing.T) {
 	})
 }
 
-func testCoreResourceEnvironmentConfigBasic(name string) string {
+func testResourceEnvironmentConfigBasic(name string) string {
 	return fmt.Sprintf(`resource "ec_core_environment" "test" {
   metadata {
     name = "%s"
@@ -51,7 +51,7 @@ func testCoreResourceEnvironmentConfigBasic(name string) string {
 }`, name)
 }
 
-func testCheckCoreEnvironmentDestroy(cs clientset.Interface) func(s *terraform.State) error {
+func testCheckEnvironmentDestroy(cs clientset.Interface) func(s *terraform.State) error {
 	return func(s *terraform.State) error {
 		for _, rs := range s.RootModule().Resources {
 			if rs.Type != "ec_core_environment" {
