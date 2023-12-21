@@ -5,9 +5,9 @@ import (
 	"io"
 	"os"
 
-	armadav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/armada/v1"
-	containerv1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/container/v1"
-	corev1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/core/v1"
+	armadav1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/armada/v1"
+	containerv1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/container/v1"
+	corev1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/core/v1"
 )
 
 type objInfo struct {

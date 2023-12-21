@@ -10,8 +10,8 @@ import (
 	"github.com/nitrado/terraform-provider-ec/ec/armada"
 	"github.com/nitrado/terraform-provider-ec/ec/container"
 	"github.com/nitrado/terraform-provider-ec/ec/core"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/rest"
+	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
+	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/rest"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )

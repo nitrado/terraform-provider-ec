@@ -9,8 +9,8 @@ import (
 	"github.com/nitrado/terraform-provider-ec/ec/provider"
 	"github.com/stretchr/testify/require"
 	"gitlab.com/nitrado/b2b/ec/apicore/runtime"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/fake"
+	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
+	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/fake"
 )
 
 // SetupProviderFactories returns a configured test terraform provider.

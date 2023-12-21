@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/nitrado/tfconv"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
+	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
 	"k8s.io/apimachinery/pkg/api/resource"
 )
 

@@ -10,7 +10,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
+	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
 )
 
 func TestResourceRegions(t *testing.T) {

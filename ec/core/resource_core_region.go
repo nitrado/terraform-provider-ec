@@ -9,7 +9,7 @@ import (
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
 	"gitlab.com/nitrado/b2b/ec/apicore/api/errors"
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	corev1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/core/v1"
+	corev1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/core/v1"
 )
 
 // ResourceRegion returns the resource for a Region.

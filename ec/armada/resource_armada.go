@@ -9,7 +9,7 @@ import (
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
 	"gitlab.com/nitrado/b2b/ec/apicore/api/errors"
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	armadav1 "gitlab.com/nitrado/b2b/ec/armada/pkg/api/armada/v1"
+	armadav1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/armada/v1"
 )
 
 // ResourceArmada returns the resource for an Armada.
