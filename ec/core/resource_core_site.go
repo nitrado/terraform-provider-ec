@@ -12,22 +12,22 @@ import (
 	corev1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/core/v1"
 )
 
-// ResourceEnvironment returns the resource for an Environment.
-func ResourceEnvironment() *schema.Resource {
+// ResourceSite returns the resource for a Site.
+func ResourceSite() *schema.Resource {
 	return &schema.Resource{
-		Description:   "An Environment provides a mechanism to isolate groups of resources.",
-		ReadContext:   resourceEnvironmentRead,
-		CreateContext: resourceEnvironmentCreate,
-		UpdateContext: resourceEnvironmentUpdate,
-		DeleteContext: resourceEnvironmentDelete,
+		Description:   "A Site provides a connection to deployment capacity.",
+		ReadContext:   resourceSiteRead,
+		CreateContext: resourceSiteCreate,
+		UpdateContext: resourceSiteUpdate,
+		DeleteContext: resourceSiteDelete,
 		Importer: &schema.ResourceImporter{
 			StateContext: schema.ImportStatePassthroughContext,
 		},
-		Schema: environmentSchema(),
+		Schema: siteSchema(),
 	}
 }
 
-func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceSiteRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
@@ -35,7 +35,7 @@ func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any)
 
 	name := d.Id()
 
-	obj, err := clientSet.CoreV1().Environments().Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.CoreV1().Sites().Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		switch {
 		case errors.IsNotFound(err):
@@ -46,7 +46,7 @@ func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any)
 		}
 	}
 
-	data, err := ec.Converter().Flatten(obj, environmentSchema())
+	data, err := ec.Converter().Flatten(obj, siteSchema())
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -57,13 +57,15 @@ func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any)
 	return nil
 }
 
-func resourceEnvironmentCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceSiteCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	obj := &corev1.Environment{}
+	obj := &corev1.Site{
+		TypeMeta: metav1.TypeMeta{APIVersion: corev1.GroupVersion.String(), Kind: "Site"},
+	}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -71,22 +73,24 @@ func resourceEnvironmentCreate(ctx context.Context, d *schema.ResourceData, m an
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.CoreV1().Environments().Create(ctx, obj, metav1.CreateOptions{})
+	out, err := clientSet.CoreV1().Sites().Create(ctx, obj, metav1.CreateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
 	d.SetId(out.Name)
-	return resourceEnvironmentRead(ctx, d, m)
+	return resourceSiteRead(ctx, d, m)
 }
 
-func resourceEnvironmentUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceSiteUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	obj := &corev1.Environment{}
+	obj := &corev1.Site{
+		TypeMeta: metav1.TypeMeta{APIVersion: corev1.GroupVersion.String(), Kind: "Site"},
+	}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -94,16 +98,16 @@ func resourceEnvironmentUpdate(ctx context.Context, d *schema.ResourceData, m an
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.CoreV1().Environments().Update(ctx, obj, metav1.UpdateOptions{})
+	out, err := clientSet.CoreV1().Sites().Update(ctx, obj, metav1.UpdateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
 	d.SetId(out.Name)
-	return resourceEnvironmentRead(ctx, d, m)
+	return resourceSiteRead(ctx, d, m)
 }
 
-func resourceEnvironmentDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func resourceSiteDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	clientSet, err := ec.ResolveClientSet(m)
 	if err != nil {
 		return diag.FromErr(err)
@@ -111,7 +115,7 @@ func resourceEnvironmentDelete(ctx context.Context, d *schema.ResourceData, m an
 
 	name := d.Id()
 
-	if err = clientSet.CoreV1().Environments().Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
+	if err = clientSet.CoreV1().Sites().Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
 		switch {
 		case errors.IsNotFound(err):
 			// We will consider this a successful delete.

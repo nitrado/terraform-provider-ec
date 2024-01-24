@@ -8,7 +8,7 @@ import (
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
 )
 
-func TestCoreDataSourceEnvironments(t *testing.T) {
+func TestDataSourceEnvironments(t *testing.T) {
 	name := "dflt"
 	pf, _ := providertest.SetupProviderFactories(t)
 
@@ -17,7 +17,7 @@ func TestCoreDataSourceEnvironments(t *testing.T) {
 		ProviderFactories: pf,
 		Steps: []resource.TestStep{
 			{
-				Config: testCoreRDataSourceEnvironmentConfigBasic(name),
+				Config: testDataSourceEnvironmentConfigBasic(name),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("ec_core_environment.test", "metadata.0.name", name),
 					resource.TestCheckResourceAttr("ec_core_environment.test", "spec.#", "1"),
@@ -26,8 +26,8 @@ func TestCoreDataSourceEnvironments(t *testing.T) {
 				),
 			},
 			{
-				Config: testCoreRDataSourceEnvironmentConfigBasic(name) +
-					testArmadaDataSourceSiteConfigRead(),
+				Config: testDataSourceEnvironmentConfigBasic(name) +
+					testDataSourceEnvironmentConfigRead(),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("data.ec_core_environment.test", "metadata.0.name", name),
 					resource.TestCheckResourceAttr("data.ec_core_environment.test", "spec.#", "1"),
@@ -39,7 +39,7 @@ func TestCoreDataSourceEnvironments(t *testing.T) {
 	})
 }
 
-func testCoreRDataSourceEnvironmentConfigBasic(name string) string {
+func testDataSourceEnvironmentConfigBasic(name string) string {
 	return fmt.Sprintf(`resource "ec_core_environment" "test" {
   metadata {
     name = "%s"
@@ -52,7 +52,7 @@ func testCoreRDataSourceEnvironmentConfigBasic(name string) string {
 `, name)
 }
 
-func testArmadaDataSourceSiteConfigRead() string {
+func testDataSourceEnvironmentConfigRead() string {
 	return `data "ec_core_environment" "test" {
   metadata {
     name      = "${ec_core_environment.test.metadata.0.name}"

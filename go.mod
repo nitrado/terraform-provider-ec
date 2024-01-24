@@ -8,8 +8,8 @@ require (
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.29.0
 	github.com/nitrado/tfconv v1.0.0
 	github.com/stretchr/testify v1.8.4
-	gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20231111140503-06bb4562d8df
-	gitlab.com/nitrado/b2b/ec/armada v0.2.0
+	gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20240109095055-4a251dfe8b18
+	gitlab.com/nitrado/b2b/ec/core v0.3.0-rc1
 	golang.org/x/oauth2 v0.14.0
 	k8s.io/apimachinery v0.28.4
 )

@@ -10,8 +10,8 @@ import (
 	"github.com/nitrado/terraform-provider-ec/ec/armada"
 	"github.com/nitrado/terraform-provider-ec/ec/container"
 	"github.com/nitrado/terraform-provider-ec/ec/core"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/clientset"
-	"gitlab.com/nitrado/b2b/ec/armada/pkg/apiclient/rest"
+	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
+	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/rest"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
@@ -58,32 +58,32 @@ func Provider() *schema.Provider {
 			},
 		},
 		DataSourcesMap: map[string]*schema.Resource{
-			"ec_armada_site":         armada.DataSourceArmadaSite(),
-			"ec_armada_site_v1":      armada.DataSourceArmadaSite(),
-			"ec_armada_region":       armada.DataSourceArmadaRegion(),
-			"ec_armada_region_v1":    armada.DataSourceArmadaRegion(),
-			"ec_armada_armada":       armada.DataSourceArmadaArmada(),
-			"ec_armada_armada_v1":    armada.DataSourceArmadaArmada(),
-			"ec_armada_armadaset":    armada.DataSourceArmadaArmadaSet(),
-			"ec_armada_armadaset_v1": armada.DataSourceArmadaArmadaSet(),
-			"ec_container_branch":    container.DataSourceContainerBranch(),
-			"ec_container_branch_v1": container.DataSourceContainerBranch(),
-			"ec_core_environment":    core.DataSourceCoreEnvironment(),
-			"ec_core_environment_v1": core.DataSourceCoreEnvironment(),
+			"ec_armada_armada":       armada.DataSourceArmada(),
+			"ec_armada_armada_v1":    armada.DataSourceArmada(),
+			"ec_armada_armadaset":    armada.DataSourceArmadaSet(),
+			"ec_armada_armadaset_v1": armada.DataSourceArmadaSet(),
+			"ec_container_branch":    container.DataSourceBranch(),
+			"ec_container_branch_v1": container.DataSourceBranch(),
+			"ec_core_environment":    core.DataSourceEnvironment(),
+			"ec_core_environment_v1": core.DataSourceEnvironment(),
+			"ec_core_site":           core.DataSourceSite(),
+			"ec_core_site_v1":        core.DataSourceSite(),
+			"ec_core_region":         core.DataSourceRegion(),
+			"ec_core_region_v1":      core.DataSourceRegion(),
 		},
 		ResourcesMap: map[string]*schema.Resource{
-			"ec_armada_site":         armada.ResourceArmadaSite(),
-			"ec_armada_site_v1":      armada.ResourceArmadaSite(),
-			"ec_armada_region":       armada.ResourceArmadaRegion(),
-			"ec_armada_region_v1":    armada.ResourceArmadaRegion(),
-			"ec_armada_armada":       armada.ResourceArmadaArmada(),
-			"ec_armada_armada_v1":    armada.ResourceArmadaArmada(),
-			"ec_armada_armadaset":    armada.ResourceArmadaArmadaSet(),
-			"ec_armada_armadaset_v1": armada.ResourceArmadaArmadaSet(),
-			"ec_container_branch":    container.ResourceContainerBranch(),
-			"ec_container_branch_v1": container.ResourceContainerBranch(),
-			"ec_core_environment":    core.ResourceCoreEnvironment(),
-			"ec_core_environment_v1": core.ResourceCoreEnvironment(),
+			"ec_armada_armada":       armada.ResourceArmada(),
+			"ec_armada_armada_v1":    armada.ResourceArmada(),
+			"ec_armada_armadaset":    armada.ResourceArmadaSet(),
+			"ec_armada_armadaset_v1": armada.ResourceArmadaSet(),
+			"ec_container_branch":    container.ResourceBranch(),
+			"ec_container_branch_v1": container.ResourceBranch(),
+			"ec_core_environment":    core.ResourceEnvironment(),
+			"ec_core_environment_v1": core.ResourceEnvironment(),
+			"ec_core_site":           core.ResourceSite(),
+			"ec_core_site_v1":        core.ResourceSite(),
+			"ec_core_region":         core.ResourceRegion(),
+			"ec_core_region_v1":      core.ResourceRegion(),
 		},
 	}
 

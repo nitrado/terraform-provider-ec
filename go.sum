@@ -394,10 +394,10 @@ github.com/yuin/goldmark v1.2.1/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9dec
 github.com/yuin/goldmark v1.4.13/go.mod h1:6yULJ656Px+3vBD8DxQVa3kxgyrAnzto9xy5taEt/CY=
 github.com/zclconf/go-cty v1.14.1 h1:t9fyA35fwjjUMcmL5hLER+e/rEPqrbCK1/OSE4SI9KA=
 github.com/zclconf/go-cty v1.14.1/go.mod h1:VvMs5i0vgZdhYawQNq5kePSpLAoz8u1xvZgrPIxfnZE=
-gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20231111140503-06bb4562d8df h1:HYxVX/txUwuAeNhKZyqK/9SQ+2bDlXGev6oGUdEWRSM=
-gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20231111140503-06bb4562d8df/go.mod h1:V0HMIH6/0eiT10nAaM+8NoL9W43Ne6S0SmaK+KV5qAg=
-gitlab.com/nitrado/b2b/ec/armada v0.2.0 h1:8OKVIj6/HyJYu6ZbHer9xHKRssEYfhQgfGTMiHhCZMQ=
-gitlab.com/nitrado/b2b/ec/armada v0.2.0/go.mod h1:pK/1F4yXSWxh2jszMHAOX027Yk8jMIMsZVoiDpSdc0M=
+gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20240109095055-4a251dfe8b18 h1:H8UJxTuLTQWMvCQjCHJrbaasKABBeED54FjLKMvQoMg=
+gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20240109095055-4a251dfe8b18/go.mod h1:V0HMIH6/0eiT10nAaM+8NoL9W43Ne6S0SmaK+KV5qAg=
+gitlab.com/nitrado/b2b/ec/core v0.3.0-rc1 h1:/Ba9r/zFwGAQRJU0Q1OPgSw8Rk1HlD5cHQBhTpKyJ5k=
+gitlab.com/nitrado/b2b/ec/core v0.3.0-rc1/go.mod h1:+29x7pqcvs83cTWZ28ZB1ocCWC6XUfpFvNri1U3fzxM=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=
 go.opencensus.io v0.22.0/go.mod h1:+kGneAE2xo2IficOXnaByMWTGM9T73dGwxeWcUqIpI8=
 go.opencensus.io v0.22.2/go.mod h1:yxeiOL68Rb0Xd1ddK5vPZ/oVn4vY4Ynel7k9FzqtOIw=

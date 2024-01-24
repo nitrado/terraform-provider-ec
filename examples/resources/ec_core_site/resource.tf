@@ -1,17 +1,3 @@
-terraform {
-  required_providers {
-    ec = {
-      source  = "nitrado/ec"
-      version = ">=1.0.0"
-    }
-  }
-  required_version = ">= 0.14"
-}
-
-provider "ec" {
-  host = "<your armada host url>"
-}
-
 resource "ec_core_site" "test" {
   metadata {
     name = "test"

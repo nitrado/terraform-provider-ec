@@ -3,12 +3,12 @@
 page_title: "ec_core_environment_v1 Resource - terraform-provider-ec"
 subcategory: ""
 description: |-
-  An Environment provides a connection to deployment capacity.
+  An Environment provides a mechanism to isolate groups of resources.
 ---
 
 # ec_core_environment_v1 (Resource)
 
-An Environment provides a connection to deployment capacity.
+An Environment provides a mechanism to isolate groups of resources.
 
 
 
