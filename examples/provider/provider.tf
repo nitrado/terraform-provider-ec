@@ -9,7 +9,11 @@ terraform {
 }
 
 provider "ec" {
-  host = "<your armada host url>"
+  host = "<your enterprise console host url>"
+  instances {
+    name = "my-other-instance"
+    host = "<your enterprise console host url>"
+  }
 }
 
 resource "ec_core_site" "test" {
@@ -19,6 +23,23 @@ resource "ec_core_site" "test" {
 
   spec {
     description = "My test"
+    credentials {
+      endpoint    = "<your endpoint>"
+      certificate = "<your cert>"
+      namespace   = "<your ns>"
+      token       = "<your token>"
+    }
+  }
+}
+
+resource "ec_core_site" "test2" {
+  instance = "my-other-instance"
+  metadata {
+    name = "test"
+  }
+
+  spec {
+    description = "My other test"
     credentials {
       endpoint    = "<your endpoint>"
       certificate = "<your cert>"

@@ -9,6 +9,11 @@ import (
 
 func testObjectSchema() map[string]*schema.Schema {
 	return map[string]*schema.Schema{
+		"instance": {
+			Type:        schema.TypeString,
+			Description: "Name is an instance name configured in the provider.",
+			Optional:    true,
+		},
 		"bool": {
 			Type:     schema.TypeBool,
 			Required: true,

@@ -35,6 +35,7 @@ resource "ec_core_site" "test" {
 
 ### Optional
 
+- `instance` (String) Name is an instance name configured in the provider.
 - `metadata` (Block List, Max: 1) Standard object's metadata. (see [below for nested schema](#nestedblock--metadata))
 - `spec` (Block List, Max: 1) Spec defines the desired site configuration. (see [below for nested schema](#nestedblock--spec))
 

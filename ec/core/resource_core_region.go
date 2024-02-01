@@ -28,7 +28,8 @@ func ResourceRegion() *schema.Resource {
 }
 
 func resourceRegionRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := ec.ResolveClientSet(m)
+	inst, _ := d.Get("instance").(string)
+	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -58,7 +59,8 @@ func resourceRegionRead(ctx context.Context, d *schema.ResourceData, m any) diag
 }
 
 func resourceRegionCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := ec.ResolveClientSet(m)
+	inst, _ := d.Get("instance").(string)
+	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -83,7 +85,8 @@ func resourceRegionCreate(ctx context.Context, d *schema.ResourceData, m any) di
 }
 
 func resourceRegionUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := ec.ResolveClientSet(m)
+	inst, _ := d.Get("instance").(string)
+	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -108,7 +111,8 @@ func resourceRegionUpdate(ctx context.Context, d *schema.ResourceData, m any) di
 }
 
 func resourceRegionDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := ec.ResolveClientSet(m)
+	inst, _ := d.Get("instance").(string)
+	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}
