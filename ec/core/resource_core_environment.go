@@ -28,7 +28,8 @@ func ResourceEnvironment() *schema.Resource {
 }
 
 func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := ec.ResolveClientSet(m)
+	inst, _ := d.Get("instance").(string)
+	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -58,7 +59,8 @@ func resourceEnvironmentRead(ctx context.Context, d *schema.ResourceData, m any)
 }
 
 func resourceEnvironmentCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := ec.ResolveClientSet(m)
+	inst, _ := d.Get("instance").(string)
+	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -81,7 +83,8 @@ func resourceEnvironmentCreate(ctx context.Context, d *schema.ResourceData, m an
 }
 
 func resourceEnvironmentUpdate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := ec.ResolveClientSet(m)
+	inst, _ := d.Get("instance").(string)
+	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -104,7 +107,8 @@ func resourceEnvironmentUpdate(ctx context.Context, d *schema.ResourceData, m an
 }
 
 func resourceEnvironmentDelete(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
-	clientSet, err := ec.ResolveClientSet(m)
+	inst, _ := d.Get("instance").(string)
+	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}

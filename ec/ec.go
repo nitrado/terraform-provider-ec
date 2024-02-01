@@ -2,6 +2,7 @@ package ec
 
 import (
 	"errors"
+	"fmt"
 	"strings"
 
 	"github.com/nitrado/tfconv"
@@ -9,13 +10,42 @@ import (
 	"k8s.io/apimachinery/pkg/api/resource"
 )
 
-// ResolveClientSet resolves the ClientSet from the given context.
-func ResolveClientSet(m any) (clientset.Interface, error) {
-	clientSet, ok := m.(clientset.Interface)
-	if !ok {
-		return nil, errors.New("invalid clientset")
+// ProviderContext contains connection context information.
+type ProviderContext struct {
+	defaultCS clientset.Interface
+	instances map[string]clientset.Interface
+}
+
+// NewProviderContext returns a provider context with the given default clientset and instances.
+func NewProviderContext(defCS clientset.Interface, instances map[string]clientset.Interface) ProviderContext {
+	if instances == nil {
+		instances = map[string]clientset.Interface{}
 	}
-	return clientSet, nil
+	return ProviderContext{
+		defaultCS: defCS,
+		instances: instances,
+	}
+}
+
+// ResolveClientSet resolves the ClientSet from the given context.
+func ResolveClientSet(m any, name string) (clientset.Interface, error) {
+	connCtx, ok := m.(ProviderContext)
+	if !ok {
+		return nil, errors.New("invalid connection context")
+	}
+
+	if name == "" {
+		if connCtx.defaultCS == nil {
+			return nil, errors.New("no default clientset found")
+		}
+		return connCtx.defaultCS, nil
+	}
+
+	cs, ok := connCtx.instances[name]
+	if !ok || cs == nil {
+		return nil, fmt.Errorf("instance %q clientset not found", name)
+	}
+	return cs, nil
 }
 
 // ScopedName returns the encoded name of an object.

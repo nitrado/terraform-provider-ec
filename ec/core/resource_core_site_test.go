@@ -24,6 +24,7 @@ func TestResourceSites(t *testing.T) {
 			{
 				Config: testResourceSitesConfigBasic(name),
 				Check: resource.ComposeAggregateTestCheckFunc(
+					resource.TestCheckResourceAttr("ec_core_site.test", "instance", "test"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "metadata.0.name", name),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.#", "1"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.description", "My Site"),
@@ -38,6 +39,7 @@ func TestResourceSites(t *testing.T) {
 			{
 				Config: testResourceSitesConfigBasic2(name),
 				Check: resource.ComposeAggregateTestCheckFunc(
+					resource.TestCheckResourceAttr("ec_core_site.test", "instance", "test"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "metadata.0.name", name),
 					resource.TestCheckResourceAttr("ec_core_site.test", "metadata.0.labels.foo", "bar"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.#", "1"),
@@ -53,6 +55,7 @@ func TestResourceSites(t *testing.T) {
 			{
 				Config: testResourceSitesConfigBasicWithEnv(name),
 				Check: resource.ComposeAggregateTestCheckFunc(
+					resource.TestCheckResourceAttr("ec_core_site.test", "instance", "test"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "metadata.0.name", name),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.#", "1"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.description", "My Other Site"),
@@ -72,9 +75,10 @@ func TestResourceSites(t *testing.T) {
 				),
 			},
 			{
-				ResourceName:      "ec_core_site.test",
-				ImportState:       true,
-				ImportStateVerify: true,
+				ResourceName:            "ec_core_site.test",
+				ImportState:             true,
+				ImportStateVerify:       true,
+				ImportStateVerifyIgnore: []string{"instance"},
 			},
 		},
 	})
@@ -82,6 +86,7 @@ func TestResourceSites(t *testing.T) {
 
 func testResourceSitesConfigBasic(name string) string {
 	return fmt.Sprintf(`resource "ec_core_site" "test" {
+  instance = "test"
   metadata {
     name = "%s"
   }
@@ -103,6 +108,7 @@ func testResourceSitesConfigBasic(name string) string {
 
 func testResourceSitesConfigBasic2(name string) string {
 	return fmt.Sprintf(`resource "ec_core_site" "test" {
+  instance = "test"
   metadata {
     name = "%s"
     labels = {
@@ -127,6 +133,7 @@ func testResourceSitesConfigBasic2(name string) string {
 
 func testResourceSitesConfigBasicWithEnv(name string) string {
 	return fmt.Sprintf(`resource "ec_core_site" "test" {
+  instance = "test"
   metadata {
     name = "%s"
   }
@@ -168,7 +175,7 @@ func testResourceSitesConfigBasicWithEnv(name string) string {
 func testCheckSiteDestroy(cs clientset.Interface) func(s *terraform.State) error {
 	return func(s *terraform.State) error {
 		for _, rs := range s.RootModule().Resources {
-			if rs.Type != "ec_armada_site" {
+			if rs.Type != "ec_core_site" {
 				continue
 			}
 
@@ -176,7 +183,7 @@ func testCheckSiteDestroy(cs clientset.Interface) func(s *terraform.State) error
 			resp, err := cs.CoreV1().Sites().Get(context.Background(), name, metav1.GetOptions{})
 			if err == nil {
 				if resp.Name == rs.Primary.ID {
-					return fmt.Errorf("Site still exists: %s", rs.Primary.ID)
+					return fmt.Errorf("site still exists: %s", rs.Primary.ID)
 				}
 			}
 		}

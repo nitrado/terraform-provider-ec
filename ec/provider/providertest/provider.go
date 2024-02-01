@@ -6,6 +6,7 @@ import (
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/ec/provider"
 	"github.com/stretchr/testify/require"
 	"gitlab.com/nitrado/b2b/ec/apicore/runtime"
@@ -25,7 +26,9 @@ func SetupProviderFactories(t *testing.T, objs ...runtime.Object) (map[string]fu
 		"ec": func() (*schema.Provider, error) {
 			p := provider.Provider()
 			p.ConfigureContextFunc = func(context.Context, *schema.ResourceData) (any, diag.Diagnostics) {
-				return cs, nil
+				return ec.NewProviderContext(cs, map[string]clientset.Interface{
+					"test": cs,
+				}), nil
 			}
 			return p, nil
 		},
