@@ -144,7 +144,7 @@ func providerConfigure(_ context.Context, d *schema.ResourceData, _ string) (any
 	var defaultClientSet clientset.Interface
 	if v, ok := d.Get("host").(string); ok && v != "" {
 		var err error
-		defaultClientSet, err = createClientSet("", collectConnData(d))
+		defaultClientSet, err = createClientSet("", collectConnData(d)) //nolint:contextcheck
 		if err != nil {
 			return nil, diag.FromErr(err)
 		}
@@ -157,7 +157,7 @@ func providerConfigure(_ context.Context, d *schema.ResourceData, _ string) (any
 			inst := v.(map[string]any)
 
 			name := inst["name"].(string)
-			cs, err := createClientSet(name, inst)
+			cs, err := createClientSet(name, inst) //nolint:contextcheck
 			if err != nil {
 				return nil, diag.FromErr(err)
 			}
@@ -188,7 +188,6 @@ func createClientSet(name string, m map[string]any) (clientset.Interface, error)
 		forInstance = `for instance "` + name + `"`
 	}
 
-	//nolint:contextcheck
 	tok, err := resolveToken(m)
 	if err != nil {
 		return nil, fmt.Errorf("retrieveing token %s: %w", forInstance, err)
@@ -275,18 +274,18 @@ func resolveTokenURL(m map[string]any) (string, error) {
 }
 
 type lazyTokenSource struct {
-	ts  oauth2.TokenSource
-	new func() (oauth2.TokenSource, error)
+	ts    oauth2.TokenSource
+	newFn func() (oauth2.TokenSource, error)
 }
 
-func newLazyTokenSource(new func() (oauth2.TokenSource, error)) *lazyTokenSource {
-	return &lazyTokenSource{new: new}
+func newLazyTokenSource(newFn func() (oauth2.TokenSource, error)) *lazyTokenSource {
+	return &lazyTokenSource{newFn: newFn}
 }
 
 func (s *lazyTokenSource) Token() (*oauth2.Token, error) {
 	if s.ts == nil {
 		var err error
-		s.ts, err = s.new()
+		s.ts, err = s.newFn()
 		if err != nil {
 			return nil, err
 		}

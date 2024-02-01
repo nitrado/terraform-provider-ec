@@ -39,7 +39,7 @@ func (g *Generator) Generate(obj any, pkgName, fnName string) ([]byte, error) {
 		return nil, err
 	}
 
-	var imports []string
+	imports := make([]string, 0, 1)
 	for _, s := range fields {
 		if !strings.Contains(s, "meta.") {
 			continue
