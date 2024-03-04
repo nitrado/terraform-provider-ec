@@ -24,7 +24,7 @@ jobs:
           fetch-depth: 0
 
       - name: Create .netrc
-        uses: extractions/netrc@v1
+        uses: extractions/netrc@v2
         with:
           machine: gitlab.com
           username: ${{ secrets.GITLAB_USERNAME }}
