@@ -52,6 +52,7 @@ Required:
 Optional:
 
 - `cordoned` (Boolean) Cordoned determines if a site can have fleets scheduled.
+- `cpu_ratio` (Number) CPURatio is the applied ratio for any subordinate game server CPU request or limit.  This facilitates the optimal utilization of various CPU generations for a game. The default is 1.0.
 - `description` (String) Description is the optional description of the site.
 - `template` (Block List, Max: 1) Template is the optional configuration to apply to all fleets on this site. (see [below for nested schema](#nestedblock--spec--template))
 

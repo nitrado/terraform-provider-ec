@@ -95,12 +95,13 @@ Read-Only:
 
 Required:
 
-- `containers` (Block List, Min: 1) Containers is a list of container belonging to the game server. (see [below for nested schema](#nestedblock--spec--template--spec--containers))
+- `containers` (Block List, Min: 1) Containers is a list of containers belonging to the game server. (see [below for nested schema](#nestedblock--spec--template--spec--containers))
 
 Optional:
 
 - `health` (Block List, Max: 1) Health is the health checking configuration for Agones game servers. (see [below for nested schema](#nestedblock--spec--template--spec--health))
 - `strategy` (Block List, Max: 1) Strategy is the deployment strategy. (see [below for nested schema](#nestedblock--spec--template--spec--strategy))
+- `volumes` (Block List) Volumes are pod volumes. (see [below for nested schema](#nestedblock--spec--template--spec--volumes))
 
 <a id="nestedblock--spec--template--spec--containers"></a>
 ### Nested Schema for `spec.template.spec.containers`
@@ -120,6 +121,7 @@ Optional:
 - `ports` (Block List) Ports are the ports to expose from the container. (see [below for nested schema](#nestedblock--spec--template--spec--containers--ports))
 - `resources` (Block List, Max: 1) Resources are the compute resources required by the container. (see [below for nested schema](#nestedblock--spec--template--spec--containers--resources))
 - `security_context` (Block List, Max: 1) SecurityContext defines the security options the container should be run with. (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context))
+- `volume_mounts` (Block List) VolumeMounts are the volumes to mount into the container's filesystem. (see [below for nested schema](#nestedblock--spec--template--spec--containers--volume_mounts))
 
 <a id="nestedblock--spec--template--spec--containers--config_files"></a>
 ### Nested Schema for `spec.template.spec.containers.config_files`
@@ -355,6 +357,27 @@ Required:
 
 
 
+<a id="nestedblock--spec--template--spec--containers--volume_mounts"></a>
+### Nested Schema for `spec.template.spec.containers.volume_mounts`
+
+Optional:
+
+- `mount_path` (String)
+- `mount_propagation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--volume_mounts--mount_propagation))
+- `name` (String)
+- `read_only` (Boolean)
+- `sub_path` (String)
+- `sub_path_expr` (String)
+
+<a id="nestedblock--spec--template--spec--containers--volume_mounts--mount_propagation"></a>
+### Nested Schema for `spec.template.spec.containers.volume_mounts.mount_propagation`
+
+Required:
+
+- `value` (String)
+
+
+
 
 <a id="nestedblock--spec--template--spec--health"></a>
 ### Nested Schema for `spec.template.spec.health`
@@ -402,6 +425,24 @@ Optional:
 - `str_val` (String)
 - `type` (Number)
 
+
+
+
+<a id="nestedblock--spec--template--spec--volumes"></a>
+### Nested Schema for `spec.template.spec.volumes`
+
+Optional:
+
+- `medium` (String) Medium is the storage medium type.
+- `name` (String) Name is the name of the volume mount.  openapi:required
+- `size_limit` (Block List, Max: 1) SizeLimit is the maximum size of the volume. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--size_limit))
+
+<a id="nestedblock--spec--template--spec--volumes--size_limit"></a>
+### Nested Schema for `spec.template.spec.volumes.size_limit`
+
+Required:
+
+- `value` (String) SizeLimit is the maximum size of the volume.
 
 
 

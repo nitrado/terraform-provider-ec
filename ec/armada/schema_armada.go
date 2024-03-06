@@ -115,7 +115,7 @@ func armadaSchema() map[string]*schema.Schema {
 										Schema: map[string]*schema.Schema{
 											"containers": {
 												Type:        schema.TypeList,
-												Description: "Containers is a list of container belonging to the game server.",
+												Description: "Containers is a list of containers belonging to the game server.",
 												Required:    true,
 												Elem: &schema.Resource{
 													Schema: map[string]*schema.Schema{
@@ -464,6 +464,48 @@ func armadaSchema() map[string]*schema.Schema {
 																},
 															},
 														},
+														"volume_mounts": {
+															Type:        schema.TypeList,
+															Description: "VolumeMounts are the volumes to mount into the container's filesystem.",
+															Optional:    true,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"mount_path": {
+																		Type:     schema.TypeString,
+																		Optional: true,
+																	},
+																	"mount_propagation": {
+																		Type:     schema.TypeList,
+																		Optional: true,
+																		MaxItems: 1,
+																		Elem: &schema.Resource{
+																			Schema: map[string]*schema.Schema{
+																				"value": {
+																					Type:     schema.TypeString,
+																					Required: true,
+																				},
+																			},
+																		},
+																	},
+																	"name": {
+																		Type:     schema.TypeString,
+																		Optional: true,
+																	},
+																	"read_only": {
+																		Type:     schema.TypeBool,
+																		Optional: true,
+																	},
+																	"sub_path": {
+																		Type:     schema.TypeString,
+																		Optional: true,
+																	},
+																	"sub_path_expr": {
+																		Type:     schema.TypeString,
+																		Optional: true,
+																	},
+																},
+															},
+														},
 													},
 												},
 											},
@@ -554,6 +596,40 @@ func armadaSchema() map[string]*schema.Schema {
 														"type": {
 															Type:     schema.TypeString,
 															Optional: true,
+														},
+													},
+												},
+											},
+											"volumes": {
+												Type:        schema.TypeList,
+												Description: "Volumes are pod volumes.",
+												Optional:    true,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"medium": {
+															Type:        schema.TypeString,
+															Description: "Medium is the storage medium type.",
+															Optional:    true,
+														},
+														"name": {
+															Type:        schema.TypeString,
+															Description: "Name is the name of the volume mount.  openapi:required",
+															Optional:    true,
+														},
+														"size_limit": {
+															Type:        schema.TypeList,
+															Description: "SizeLimit is the maximum size of the volume.",
+															Optional:    true,
+															MaxItems:    1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"value": {
+																		Type:        schema.TypeString,
+																		Description: "SizeLimit is the maximum size of the volume.",
+																		Required:    true,
+																	},
+																},
+															},
 														},
 													},
 												},

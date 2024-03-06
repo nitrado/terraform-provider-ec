@@ -33,6 +33,11 @@ func siteSchema() map[string]*schema.Schema {
 						Description: "Cordoned determines if a site can have fleets scheduled.",
 						Optional:    true,
 					},
+					"cpu_ratio": {
+						Type:        schema.TypeFloat,
+						Description: "CPURatio is the applied ratio for any subordinate game server CPU request or limit.  This facilitates the optimal utilization of various CPU generations for a game. The default is 1.0.",
+						Optional:    true,
+					},
 					"credentials": {
 						Type:        schema.TypeList,
 						Description: "Credentials are the credentials used to access the site.",
