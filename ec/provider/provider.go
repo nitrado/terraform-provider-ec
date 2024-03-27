@@ -5,6 +5,7 @@ import (
 	"errors"
 	"fmt"
 	"net/url"
+	"sync"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
@@ -268,12 +269,12 @@ func resolveTokenURL(m map[string]any) (string, error) {
 	if err != nil {
 		return "", fmt.Errorf("invalid host: %w", err)
 	}
-	u.Host = "auth-" + u.Host
-	u.Path = "/auth/realms/enterprise-console/protocol/openid-connect/token"
+	u.Path = "/auth/token"
 	return u.String(), nil
 }
 
 type lazyTokenSource struct {
+	mu    sync.Mutex
 	ts    oauth2.TokenSource
 	newFn func() (oauth2.TokenSource, error)
 }
@@ -283,6 +284,9 @@ func newLazyTokenSource(newFn func() (oauth2.TokenSource, error)) *lazyTokenSour
 }
 
 func (s *lazyTokenSource) Token() (*oauth2.Token, error) {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+
 	if s.ts == nil {
 		var err error
 		s.ts, err = s.newFn()
