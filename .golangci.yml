@@ -23,17 +23,17 @@ linters-settings:
 linters:
   enable-all: true
   disable:
-    - interfacer # deprecated
-    - scopelint # deprecated
-    - maligned # deprecated
-    - golint # deprecated
-    - gocyclo # duplicate of cyclop
-    - structcheck # deprecated
-    - ifshort # deprecated
-    - varcheck # deprecated
     - deadcode # deprecated
-    - nosnakecase # deprecated
     - exhaustivestruct # deprecated
+    - gocyclo # duplicate of cyclop
+    - golint # deprecated
+    - ifshort # deprecated
+    - interfacer # deprecated
+    - maligned # deprecated
+    - nosnakecase # deprecated
+    - scopelint # deprecated
+    - structcheck # deprecated
+    - varcheck # deprecated
     - depguard
     - dupl
     - exhaustive

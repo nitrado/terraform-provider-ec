@@ -10,9 +10,9 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      GO_VERSION: "1.21"
+      GO_VERSION: "1.22"
       GOPRIVATE: gitlab.com/nitrado/*
-      GOLANGCI_LINT_VERSION: v1.54.2
+      GOLANGCI_LINT_VERSION: v1.57.2
 
     steps:
       - name: Install Go
@@ -48,10 +48,15 @@ jobs:
         with:
           version: ${{ env.GOLANGCI_LINT_VERSION }}
           skip-pkg-cache: true
-          args: --go ${{ env.GO_VERSION }}
 
       - name: Run tests
-        run: go test -race ./...
+        run: go run gotest.tools/gotestsum@latest --junitfile tests.xml --format pkgname -- -cover -race ./...
+
+      - name: Test Summary
+        uses: test-summary/action@v2
+        with:
+          paths: "tests.xml"
+        if: always()
 
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
