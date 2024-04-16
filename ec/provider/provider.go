@@ -219,7 +219,7 @@ func resolveToken(m map[string]any) (oauth2.TokenSource, error) {
 
 	clientID, ok := m["client_id"].(string)
 	if !ok {
-		return nil, fmt.Errorf("client id is required")
+		return nil, errors.New("client id is required")
 	}
 
 	clientSecret, hasClientSecret := m["client_secret"].(string)
@@ -255,7 +255,7 @@ func resolveToken(m map[string]any) (oauth2.TokenSource, error) {
 			return cfg.TokenSource(context.Background()), nil
 		}), nil
 	default:
-		return nil, fmt.Errorf("either client_secret or username and password must be set")
+		return nil, errors.New("either client_secret or username and password must be set")
 	}
 }
 
