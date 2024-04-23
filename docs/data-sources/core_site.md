@@ -202,6 +202,8 @@ Optional:
 Optional:
 
 - `label_selector` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--affinity--pod_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -252,6 +254,8 @@ Optional:
 Optional:
 
 - `label_selector` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--affinity--pod_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -318,6 +322,8 @@ Optional:
 Optional:
 
 - `label_selector` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--affinity--pod_anti_affinity--preferred_during_scheduling_ignored_during_execution--pod_affinity_term--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)
@@ -368,6 +374,8 @@ Optional:
 Optional:
 
 - `label_selector` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--label_selector))
+- `match_label_keys` (List of String)
+- `mismatch_label_keys` (List of String)
 - `namespace_selector` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--affinity--pod_anti_affinity--required_during_scheduling_ignored_during_execution--namespace_selector))
 - `namespaces` (List of String)
 - `topology_key` (String)

@@ -277,6 +277,16 @@ func siteSchema() map[string]*schema.Schema {
 																						},
 																					},
 																				},
+																				"match_label_keys": {
+																					Type:     schema.TypeList,
+																					Optional: true,
+																					Elem:     &schema.Schema{Type: schema.TypeString},
+																				},
+																				"mismatch_label_keys": {
+																					Type:     schema.TypeList,
+																					Optional: true,
+																					Elem:     &schema.Schema{Type: schema.TypeString},
+																				},
 																				"namespace_selector": {
 																					Type:     schema.TypeList,
 																					Optional: true,
@@ -370,6 +380,16 @@ func siteSchema() map[string]*schema.Schema {
 																				},
 																			},
 																		},
+																	},
+																	"match_label_keys": {
+																		Type:     schema.TypeList,
+																		Optional: true,
+																		Elem:     &schema.Schema{Type: schema.TypeString},
+																	},
+																	"mismatch_label_keys": {
+																		Type:     schema.TypeList,
+																		Optional: true,
+																		Elem:     &schema.Schema{Type: schema.TypeString},
 																	},
 																	"namespace_selector": {
 																		Type:     schema.TypeList,
@@ -473,6 +493,16 @@ func siteSchema() map[string]*schema.Schema {
 																						},
 																					},
 																				},
+																				"match_label_keys": {
+																					Type:     schema.TypeList,
+																					Optional: true,
+																					Elem:     &schema.Schema{Type: schema.TypeString},
+																				},
+																				"mismatch_label_keys": {
+																					Type:     schema.TypeList,
+																					Optional: true,
+																					Elem:     &schema.Schema{Type: schema.TypeString},
+																				},
 																				"namespace_selector": {
 																					Type:     schema.TypeList,
 																					Optional: true,
@@ -566,6 +596,16 @@ func siteSchema() map[string]*schema.Schema {
 																				},
 																			},
 																		},
+																	},
+																	"match_label_keys": {
+																		Type:     schema.TypeList,
+																		Optional: true,
+																		Elem:     &schema.Schema{Type: schema.TypeString},
+																	},
+																	"mismatch_label_keys": {
+																		Type:     schema.TypeList,
+																		Optional: true,
+																		Elem:     &schema.Schema{Type: schema.TypeString},
 																	},
 																	"namespace_selector": {
 																		Type:     schema.TypeList,
