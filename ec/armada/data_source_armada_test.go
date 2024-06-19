@@ -10,6 +10,7 @@ import (
 
 func TestDataSourceArmadas(t *testing.T) {
 	name := "my-armada"
+	env := "dflt"
 	pf, _ := providertest.SetupProviderFactories(t)
 
 	resource.Test(t, resource.TestCase{
@@ -17,9 +18,10 @@ func TestDataSourceArmadas(t *testing.T) {
 		ProviderFactories: pf,
 		Steps: []resource.TestStep{
 			{
-				Config: testDataSourceArmadasConfigBasic(name),
+				Config: testDataSourceArmadasConfigBasic(name, env),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "metadata.0.name", name),
+					resource.TestCheckResourceAttr("ec_armada_armada.test", "metadata.0.environment", env),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.#", "1"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.description", "My Armada"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.region", "eu"),
@@ -35,10 +37,11 @@ func TestDataSourceArmadas(t *testing.T) {
 				),
 			},
 			{
-				Config: testDataSourceArmadasConfigBasic(name) +
+				Config: testDataSourceArmadasConfigBasic(name, env) +
 					testDataSourceArmadaConfigRead(),
 				Check: resource.ComposeAggregateTestCheckFunc(
 					resource.TestCheckResourceAttr("data.ec_armada_armada.test", "metadata.0.name", name),
+					resource.TestCheckResourceAttr("data.ec_armada_armada.test", "metadata.0.environment", env),
 					resource.TestCheckResourceAttr("data.ec_armada_armada.test", "spec.#", "1"),
 					resource.TestCheckResourceAttr("data.ec_armada_armada.test", "spec.0.description", "My Armada"),
 					resource.TestCheckResourceAttr("data.ec_armada_armada.test", "spec.0.region", "eu"),
@@ -57,10 +60,11 @@ func TestDataSourceArmadas(t *testing.T) {
 	})
 }
 
-func testDataSourceArmadasConfigBasic(name string) string {
+func testDataSourceArmadasConfigBasic(name, env string) string {
 	return fmt.Sprintf(`resource "ec_armada_armada" "test" {
   metadata {
     name = "%s"
+    environment = "%s"
   }
   spec {
     description = "My Armada"
@@ -87,13 +91,14 @@ func testDataSourceArmadasConfigBasic(name string) string {
     }
   }
 }
-`, name)
+`, name, env)
 }
 
 func testDataSourceArmadaConfigRead() string {
 	return `data "ec_armada_armada" "test" {
   metadata {
-    name      = "${ec_armada_armada.test.metadata.0.name}"
+    name = "${ec_armada_armada.test.metadata.0.name}"
+	environment = "${ec_armada_armada.test.metadata.0.environment}"
   }
 }
 `
