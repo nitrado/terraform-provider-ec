@@ -1,3 +1,4 @@
+version: 2
 project_name: terraform-provider-ec
 dist: dist
 
@@ -36,7 +37,7 @@ checksum:
   algorithm: sha256
 
 changelog:
-  skip: true
+  disable: true
 
 archives:
   - format: zip
