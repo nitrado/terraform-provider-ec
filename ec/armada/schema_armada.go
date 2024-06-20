@@ -613,8 +613,8 @@ func armadaSchema() map[string]*schema.Schema {
 														},
 														"name": {
 															Type:        schema.TypeString,
-															Description: "Name is the name of the volume mount.  openapi:required",
-															Optional:    true,
+															Description: "Name is the name of the volume mount.",
+															Required:    true,
 														},
 														"size_limit": {
 															Type:        schema.TypeList,
