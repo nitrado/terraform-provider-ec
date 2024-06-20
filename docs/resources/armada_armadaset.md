@@ -445,10 +445,13 @@ Optional:
 <a id="nestedblock--spec--template--spec--volumes"></a>
 ### Nested Schema for `spec.template.spec.volumes`
 
+Required:
+
+- `name` (String) Name is the name of the volume mount.
+
 Optional:
 
 - `medium` (String) Medium is the storage medium type.
-- `name` (String) Name is the name of the volume mount.  openapi:required
 - `size_limit` (Block List, Max: 1) SizeLimit is the maximum size of the volume. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--size_limit))
 
 <a id="nestedblock--spec--template--spec--volumes--size_limit"></a>
