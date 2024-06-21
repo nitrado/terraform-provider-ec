@@ -111,6 +111,8 @@ func Provider() *schema.Provider {
 			"ec_armada_armadaset_v1": armada.DataSourceArmadaSet(),
 			"ec_container_branch":    container.DataSourceBranch(),
 			"ec_container_branch_v1": container.DataSourceBranch(),
+			"ec_container_image":     container.DataSourceImage(),
+			"ec_container_image_v1":  container.DataSourceImage(),
 			"ec_core_environment":    core.DataSourceEnvironment(),
 			"ec_core_environment_v1": core.DataSourceEnvironment(),
 			"ec_core_site":           core.DataSourceSite(),
