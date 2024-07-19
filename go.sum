@@ -426,8 +426,8 @@ github.com/zclconf/go-cty-debug v0.0.0-20240509010212-0d6042c53940 h1:4r45xpDWB6
 github.com/zclconf/go-cty-debug v0.0.0-20240509010212-0d6042c53940/go.mod h1:CmBdvvj3nqzfzJ6nTCIwDTPZ56aVGvDrmztiO5g3qrM=
 gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20240509125453-e14a30436c3f h1:efEb7AvFcqw86wWKPeVSnU1M1j5nxwpNBk96gqCXlUc=
 gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20240509125453-e14a30436c3f/go.mod h1:uz5fRxpu71hJ/8LIrqsVB6bIdPAHWI1v0fNt7EjWCE0=
-gitlab.com/nitrado/b2b/ec/core v0.9.1-0.20240620093923-a10a29e03231 h1:i2HYQg3HlTo5s43UX6Ktye+dyvZarkYG0jla5ih4YPs=
-gitlab.com/nitrado/b2b/ec/core v0.9.1-0.20240620093923-a10a29e03231/go.mod h1:x+U+vEYMeSAZW0X7Da0ttOZpoJi2JyFhDyVFEinufqc=
+gitlab.com/nitrado/b2b/ec/core v0.10.1 h1:CcWuRl/hpdL3kklIoydkzOoU+h5h1JXuuuSaCS4su8g=
+gitlab.com/nitrado/b2b/ec/core v0.10.1/go.mod h1:cA3RJYl+jjIOs+FLI/BmKOJnQcn6uN/AU1zHWlbAISo=
 go.abhg.dev/goldmark/frontmatter v0.2.0 h1:P8kPG0YkL12+aYk2yU3xHv4tcXzeVnN+gU0tJ5JnxRw=
 go.abhg.dev/goldmark/frontmatter v0.2.0/go.mod h1:XqrEkZuM57djk7zrlRUB02x8I5J0px76YjkOzhB4YlU=
 go.opencensus.io v0.21.0/go.mod h1:mSImk1erAIZhrmZN+AvHh14ztQfjbGwt4TtuofqLduU=

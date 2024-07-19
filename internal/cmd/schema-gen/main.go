@@ -8,6 +8,7 @@ import (
 	armadav1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/armada/v1"
 	containerv1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/container/v1"
 	corev1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/core/v1"
+	formationv1beta1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/formation/v1beta1"
 )
 
 type objInfo struct {
@@ -71,6 +72,24 @@ var objs = []objInfo{
 		Obj:      &corev1.Site{},
 		Filename: "ec/core/schema_site.go",
 		FuncName: "siteSchema",
+	},
+	{
+		Pkg:      "formation",
+		Obj:      corev1.EnvVar{},
+		Filename: "ec/formation/schema_env.go",
+		FuncName: "envSchema",
+	},
+	{
+		Pkg:      "formation",
+		Obj:      &formationv1beta1.Formation{},
+		Filename: "ec/formation/schema_formation.go",
+		FuncName: "formationSchema",
+	},
+	{
+		Pkg:      "formation",
+		Obj:      &formationv1beta1.Vessel{},
+		Filename: "ec/formation/schema_vessel.go",
+		FuncName: "vesselSchema",
 	},
 }
 

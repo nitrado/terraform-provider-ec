@@ -11,7 +11,7 @@ require (
 	github.com/nitrado/tfconv v1.0.3
 	github.com/stretchr/testify v1.9.0
 	gitlab.com/nitrado/b2b/ec/apicore v1.1.1-0.20240509125453-e14a30436c3f
-	gitlab.com/nitrado/b2b/ec/core v0.9.1-0.20240620093923-a10a29e03231
+	gitlab.com/nitrado/b2b/ec/core v0.10.1
 	golang.org/x/oauth2 v0.20.0
 	k8s.io/apimachinery v0.29.5
 )
