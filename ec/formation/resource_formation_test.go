@@ -122,14 +122,14 @@ func testResourceFormationsConfigBasicWithEnv(env, name string) string {
            name = "foo"
            value = "bar"
           }
-		  env {
+          env {
             name = "baz"
             value_from {
               config_file_key_ref {
                 name = "bat"
-			  }
-			}
-		  }
+              }
+            }
+          }
         }
       }
     }

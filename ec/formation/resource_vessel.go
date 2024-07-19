@@ -15,7 +15,7 @@ import (
 // ResourceVessel returns the resource for a Vessel.
 func ResourceVessel() *schema.Resource {
 	return &schema.Resource{
-		Description:   "A Vessel is the specification of a game server to be deployed on a specific Region..",
+		Description:   "A Vessel is the specification of a game server to be deployed on a specific Region.",
 		ReadContext:   resourceVesselRead,
 		CreateContext: resourceVesselCreate,
 		UpdateContext: resourceVesselUpdate,
