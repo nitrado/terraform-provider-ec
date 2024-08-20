@@ -1,0 +1,1 @@
+terraform import ec_core_environment_v1.example {{environment}}
