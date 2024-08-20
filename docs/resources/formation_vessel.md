@@ -3,12 +3,12 @@
 page_title: "ec_formation_vessel Resource - terraform-provider-ec"
 subcategory: ""
 description: |-
-  A Vessel is the specification of a game server to be deployed on a specific Region..
+  A Vessel is the specification of a game server to be deployed on a specific Region.
 ---
 
 # ec_formation_vessel (Resource)
 
-A Vessel is the specification of a game server to be deployed on a specific Region..
+A Vessel is the specification of a game server to be deployed on a specific Region.
 
 
 
