@@ -1,0 +1,1 @@
+terraform import ec_core_region.example {{environment}}/{{region}}
