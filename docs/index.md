@@ -74,6 +74,7 @@ resource "ec_core_site" "test2" {
 - `host` (String) The hostname (in form of URI) of the Enterprise Console API.
 - `instances` (Block List) Named Enterprise Console instances. (see [below for nested schema](#nestedblock--instances))
 - `password` (String) The password to authenticate with.
+- `token` (String) The oAuth token to authenticate with.
 - `token_endpoint` (String) The URI to the token authentication endpoint.
 - `username` (String) The user to authenticate with.
 
@@ -90,5 +91,6 @@ Optional:
 
 - `client_secret` (String) The oAuth2 client secret to authenticate against.
 - `password` (String) The password to authenticate with.
+- `token` (String) The oAuth token to authenticate with.
 - `token_endpoint` (String) The URI to the token authentication endpoint.
 - `username` (String) The user to authenticate with.

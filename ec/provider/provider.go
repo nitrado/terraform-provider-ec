@@ -30,6 +30,12 @@ func Provider() *schema.Provider {
 				DefaultFunc: schema.EnvDefaultFunc("EC_HOST", ""),
 				Description: "The hostname (in form of URI) of the Enterprise Console API.",
 			},
+			"token": {
+				Type:        schema.TypeString,
+				Optional:    true,
+				DefaultFunc: schema.EnvDefaultFunc("EC_TOKEN", ""),
+				Description: "The oAuth token to authenticate with.",
+			},
 			"token_endpoint": {
 				Type:        schema.TypeString,
 				Optional:    true,
@@ -75,6 +81,12 @@ func Provider() *schema.Provider {
 							Type:        schema.TypeString,
 							Required:    true,
 							Description: "The hostname (in form of URI) of the Enterprise Console API.",
+						},
+						"token": {
+							Type:        schema.TypeString,
+							Optional:    true,
+							DefaultFunc: schema.EnvDefaultFunc("EC_TOKEN", ""),
+							Description: "The oAuth token to authenticate with.",
 						},
 						"token_endpoint": {
 							Type:        schema.TypeString,
@@ -191,6 +203,7 @@ func collectConnData(d *schema.ResourceData) map[string]any {
 		"client_secret":  d.Get("client_secret"),
 		"username":       d.Get("username"),
 		"password":       d.Get("password"),
+		"token":          d.Get("token"),
 	}
 }
 
@@ -223,6 +236,13 @@ func createRESTConfig(m map[string]any, tok oauth2.TokenSource) rest.Config {
 }
 
 func resolveToken(m map[string]any) (oauth2.TokenSource, error) {
+	if token, ok := m["token"].(string); ok && token != "" {
+		return oauth2.StaticTokenSource(&oauth2.Token{
+			AccessToken: token,
+			TokenType:   "Bearer",
+		}), nil
+	}
+
 	tokURL, err := resolveTokenURL(m)
 	if err != nil {
 		return nil, err
