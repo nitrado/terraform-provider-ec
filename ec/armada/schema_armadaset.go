@@ -237,6 +237,21 @@ func armadaSetSchema() map[string]*schema.Schema {
 																		Description: "Policy defines the policy for how the HostPort is populated.",
 																		Required:    true,
 																	},
+																	"protection_protocol": {
+																		Type:        schema.TypeList,
+																		Description: "ProtectionProtocol is the optional name of the protection protocol being used.",
+																		Optional:    true,
+																		MaxItems:    1,
+																		Elem: &schema.Resource{
+																			Schema: map[string]*schema.Schema{
+																				"value": {
+																					Type:        schema.TypeString,
+																					Description: "ProtectionProtocol is the optional name of the protection protocol being used.",
+																					Required:    true,
+																				},
+																			},
+																		},
+																	},
 																	"protocol": {
 																		Type:        schema.TypeString,
 																		Description: "Protocol is the network protocol being used. Defaults to UDP. TCP and TCPUDP are other options.",
@@ -293,6 +308,32 @@ func armadaSetSchema() map[string]*schema.Schema {
 																				"value": {
 																					Type:     schema.TypeBool,
 																					Required: true,
+																				},
+																			},
+																		},
+																	},
+																	"app_armor_profile": {
+																		Type:     schema.TypeList,
+																		Optional: true,
+																		MaxItems: 1,
+																		Elem: &schema.Resource{
+																			Schema: map[string]*schema.Schema{
+																				"localhost_profile": {
+																					Type:     schema.TypeList,
+																					Optional: true,
+																					MaxItems: 1,
+																					Elem: &schema.Resource{
+																						Schema: map[string]*schema.Schema{
+																							"value": {
+																								Type:     schema.TypeString,
+																								Required: true,
+																							},
+																						},
+																					},
+																				},
+																				"type": {
+																					Type:     schema.TypeString,
+																					Optional: true,
 																				},
 																			},
 																		},
@@ -540,6 +581,19 @@ func armadaSetSchema() map[string]*schema.Schema {
 																		Type:     schema.TypeBool,
 																		Optional: true,
 																	},
+																	"recursive_read_only": {
+																		Type:     schema.TypeList,
+																		Optional: true,
+																		MaxItems: 1,
+																		Elem: &schema.Resource{
+																			Schema: map[string]*schema.Schema{
+																				"value": {
+																					Type:     schema.TypeString,
+																					Required: true,
+																				},
+																			},
+																		},
+																	},
 																	"sub_path": {
 																		Type:     schema.TypeString,
 																		Optional: true,
@@ -553,6 +607,12 @@ func armadaSetSchema() map[string]*schema.Schema {
 														},
 													},
 												},
+											},
+											"gateway_policies": {
+												Type:        schema.TypeList,
+												Description: "GatewayPolicies are the gateway policy names applied to the game servers.",
+												Optional:    true,
+												Elem:        &schema.Schema{Type: schema.TypeString},
 											},
 											"health": {
 												Type:        schema.TypeList,

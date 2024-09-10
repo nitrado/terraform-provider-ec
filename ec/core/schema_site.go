@@ -692,6 +692,32 @@ func siteSchema() map[string]*schema.Schema {
 													},
 												},
 											},
+											"app_armor_profile": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"localhost_profile": {
+															Type:     schema.TypeList,
+															Optional: true,
+															MaxItems: 1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"value": {
+																		Type:     schema.TypeString,
+																		Required: true,
+																	},
+																},
+															},
+														},
+														"type": {
+															Type:     schema.TypeString,
+															Optional: true,
+														},
+													},
+												},
+											},
 											"capabilities": {
 												Type:     schema.TypeList,
 												Optional: true,

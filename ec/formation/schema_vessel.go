@@ -38,6 +38,21 @@ func vesselSchema() map[string]*schema.Schema {
 						Description: "Region defines the region the vessel is deployed to.",
 						Required:    true,
 					},
+					"suspend": {
+						Type:        schema.TypeList,
+						Description: "Suspend specifies whether the vessel should create a game server or not.",
+						Optional:    true,
+						MaxItems:    1,
+						Elem: &schema.Resource{
+							Schema: map[string]*schema.Schema{
+								"value": {
+									Type:        schema.TypeBool,
+									Description: "Suspend specifies whether the vessel should create a game server or not.",
+									Required:    true,
+								},
+							},
+						},
+					},
 					"template": {
 						Type:        schema.TypeList,
 						Description: "Template describes the game server that is created.",
@@ -138,6 +153,21 @@ func vesselSchema() map[string]*schema.Schema {
 																		Description: "Policy defines the policy for how the HostPort is populated.",
 																		Required:    true,
 																	},
+																	"protection_protocol": {
+																		Type:        schema.TypeList,
+																		Description: "ProtectionProtocol is the optional name of the protection protocol being used.",
+																		Optional:    true,
+																		MaxItems:    1,
+																		Elem: &schema.Resource{
+																			Schema: map[string]*schema.Schema{
+																				"value": {
+																					Type:        schema.TypeString,
+																					Description: "ProtectionProtocol is the optional name of the protection protocol being used.",
+																					Required:    true,
+																				},
+																			},
+																		},
+																	},
 																	"protocol": {
 																		Type:        schema.TypeString,
 																		Description: "Protocol is the network protocol being used. Defaults to UDP. TCP and TCPUDP are other options.",
@@ -194,6 +224,32 @@ func vesselSchema() map[string]*schema.Schema {
 																				"value": {
 																					Type:     schema.TypeBool,
 																					Required: true,
+																				},
+																			},
+																		},
+																	},
+																	"app_armor_profile": {
+																		Type:     schema.TypeList,
+																		Optional: true,
+																		MaxItems: 1,
+																		Elem: &schema.Resource{
+																			Schema: map[string]*schema.Schema{
+																				"localhost_profile": {
+																					Type:     schema.TypeList,
+																					Optional: true,
+																					MaxItems: 1,
+																					Elem: &schema.Resource{
+																						Schema: map[string]*schema.Schema{
+																							"value": {
+																								Type:     schema.TypeString,
+																								Required: true,
+																							},
+																						},
+																					},
+																				},
+																				"type": {
+																					Type:     schema.TypeString,
+																					Optional: true,
 																				},
 																			},
 																		},
@@ -441,6 +497,19 @@ func vesselSchema() map[string]*schema.Schema {
 																		Type:     schema.TypeBool,
 																		Optional: true,
 																	},
+																	"recursive_read_only": {
+																		Type:     schema.TypeList,
+																		Optional: true,
+																		MaxItems: 1,
+																		Elem: &schema.Resource{
+																			Schema: map[string]*schema.Schema{
+																				"value": {
+																					Type:     schema.TypeString,
+																					Required: true,
+																				},
+																			},
+																		},
+																	},
 																	"sub_path": {
 																		Type:     schema.TypeString,
 																		Optional: true,
@@ -454,6 +523,12 @@ func vesselSchema() map[string]*schema.Schema {
 														},
 													},
 												},
+											},
+											"gateway_policies": {
+												Type:        schema.TypeList,
+												Description: "GatewayPolicies are the gateway policy names applied to the game servers.",
+												Optional:    true,
+												Elem:        &schema.Schema{Type: schema.TypeString},
 											},
 											"health": {
 												Type:        schema.TypeList,
@@ -514,6 +589,61 @@ func vesselSchema() map[string]*schema.Schema {
 														},
 													},
 												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+					"termination_grace_periods": {
+						Type:        schema.TypeList,
+						Description: "TerminationGracePeriods are the optional durations that a game server has to terminate gracefully. If this value is nil, the default grace period for each situation will be used. These durations only apply when a game server is in use.",
+						Optional:    true,
+						MaxItems:    1,
+						Elem: &schema.Resource{
+							Schema: map[string]*schema.Schema{
+								"maintenance": {
+									Type:        schema.TypeList,
+									Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned.",
+									Optional:    true,
+									MaxItems:    1,
+									Elem: &schema.Resource{
+										Schema: map[string]*schema.Schema{
+											"value": {
+												Type:        schema.TypeInt,
+												Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned.",
+												Required:    true,
+											},
+										},
+									},
+								},
+								"spec_change": {
+									Type:        schema.TypeList,
+									Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected.",
+									Optional:    true,
+									MaxItems:    1,
+									Elem: &schema.Resource{
+										Schema: map[string]*schema.Schema{
+											"value": {
+												Type:        schema.TypeInt,
+												Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected.",
+												Required:    true,
+											},
+										},
+									},
+								},
+								"user_initiated": {
+									Type:        schema.TypeList,
+									Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.",
+									Optional:    true,
+									MaxItems:    1,
+									Elem: &schema.Resource{
+										Schema: map[string]*schema.Schema{
+											"value": {
+												Type:        schema.TypeInt,
+												Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.",
+												Required:    true,
 											},
 										},
 									},
