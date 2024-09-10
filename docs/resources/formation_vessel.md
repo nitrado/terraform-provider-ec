@@ -52,6 +52,8 @@ Required:
 Optional:
 
 - `description` (String) Description is the optional description of the vessel.
+- `suspend` (Block List, Max: 1) Suspend specifies whether the vessel should create a game server or not. (see [below for nested schema](#nestedblock--spec--suspend))
+- `termination_grace_periods` (Block List, Max: 1) TerminationGracePeriods are the optional durations that a game server has to terminate gracefully. If this value is nil, the default grace period for each situation will be used. These durations only apply when a game server is in use. (see [below for nested schema](#nestedblock--spec--termination_grace_periods))
 
 <a id="nestedblock--spec--template"></a>
 ### Nested Schema for `spec.template`
@@ -86,6 +88,7 @@ Required:
 
 Optional:
 
+- `gateway_policies` (List of String) GatewayPolicies are the gateway policy names applied to the game servers.
 - `health` (Block List, Max: 1) Health is the health checking configuration for Agones game servers. (see [below for nested schema](#nestedblock--spec--template--spec--health))
 - `volumes` (Block List) Volumes are pod volumes. (see [below for nested schema](#nestedblock--spec--template--spec--volumes))
 
@@ -168,7 +171,16 @@ Required:
 Optional:
 
 - `container_port` (Number) ContainerPort is the port that is being opened on the specified container's process.
+- `protection_protocol` (Block List, Max: 1) ProtectionProtocol is the optional name of the protection protocol being used. (see [below for nested schema](#nestedblock--spec--template--spec--containers--ports--protection_protocol))
 - `protocol` (String) Protocol is the network protocol being used. Defaults to UDP. TCP and TCPUDP are other options.
+
+<a id="nestedblock--spec--template--spec--containers--ports--protection_protocol"></a>
+### Nested Schema for `spec.template.spec.containers.ports.protection_protocol`
+
+Required:
+
+- `value` (String) ProtectionProtocol is the optional name of the protection protocol being used.
+
 
 
 <a id="nestedblock--spec--template--spec--containers--resources"></a>
@@ -195,6 +207,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--allow_privilege_escalation))
+- `app_armor_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--capabilities))
 - `privileged` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--privileged))
 - `proc_mount` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--proc_mount))
@@ -212,6 +225,23 @@ Optional:
 Required:
 
 - `value` (Boolean)
+
+
+<a id="nestedblock--spec--template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.template.spec.containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--app_armor_profile--localhost_profile))
+- `type` (String)
+
+<a id="nestedblock--spec--template--spec--containers--security_context--app_armor_profile--localhost_profile"></a>
+### Nested Schema for `spec.template.spec.containers.security_context.app_armor_profile.localhost_profile`
+
+Required:
+
+- `value` (String)
+
 
 
 <a id="nestedblock--spec--template--spec--containers--security_context--capabilities"></a>
@@ -352,11 +382,20 @@ Optional:
 - `mount_propagation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--volume_mounts--mount_propagation))
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--volume_mounts--recursive_read_only))
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
 <a id="nestedblock--spec--template--spec--containers--volume_mounts--mount_propagation"></a>
 ### Nested Schema for `spec.template.spec.containers.volume_mounts.mount_propagation`
+
+Required:
+
+- `value` (String)
+
+
+<a id="nestedblock--spec--template--spec--containers--volume_mounts--recursive_read_only"></a>
+### Nested Schema for `spec.template.spec.containers.volume_mounts.recursive_read_only`
 
 Required:
 
@@ -394,3 +433,47 @@ Optional:
 Required:
 
 - `value` (String) SizeLimit is the maximum size of the volume.
+
+
+
+
+
+<a id="nestedblock--spec--suspend"></a>
+### Nested Schema for `spec.suspend`
+
+Required:
+
+- `value` (Boolean) Suspend specifies whether the vessel should create a game server or not.
+
+
+<a id="nestedblock--spec--termination_grace_periods"></a>
+### Nested Schema for `spec.termination_grace_periods`
+
+Optional:
+
+- `maintenance` (Block List, Max: 1) Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned. (see [below for nested schema](#nestedblock--spec--termination_grace_periods--maintenance))
+- `spec_change` (Block List, Max: 1) SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected. (see [below for nested schema](#nestedblock--spec--termination_grace_periods--spec_change))
+- `user_initiated` (Block List, Max: 1) UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel. (see [below for nested schema](#nestedblock--spec--termination_grace_periods--user_initiated))
+
+<a id="nestedblock--spec--termination_grace_periods--maintenance"></a>
+### Nested Schema for `spec.termination_grace_periods.maintenance`
+
+Required:
+
+- `value` (Number) Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned.
+
+
+<a id="nestedblock--spec--termination_grace_periods--spec_change"></a>
+### Nested Schema for `spec.termination_grace_periods.spec_change`
+
+Required:
+
+- `value` (Number) SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected.
+
+
+<a id="nestedblock--spec--termination_grace_periods--user_initiated"></a>
+### Nested Schema for `spec.termination_grace_periods.user_initiated`
+
+Required:
+
+- `value` (Number) UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.
