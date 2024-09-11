@@ -99,6 +99,7 @@ Required:
 
 Optional:
 
+- `gateway_policies` (List of String) GatewayPolicies are the gateway policy names applied to the game servers.
 - `health` (Block List, Max: 1) Health is the health checking configuration for Agones game servers. (see [below for nested schema](#nestedblock--spec--template--spec--health))
 - `strategy` (Block List, Max: 1) Strategy is the deployment strategy. (see [below for nested schema](#nestedblock--spec--template--spec--strategy))
 - `volumes` (Block List) Volumes are pod volumes. (see [below for nested schema](#nestedblock--spec--template--spec--volumes))
@@ -182,7 +183,16 @@ Required:
 Optional:
 
 - `container_port` (Number) ContainerPort is the port that is being opened on the specified container's process.
+- `protection_protocol` (Block List, Max: 1) ProtectionProtocol is the optional name of the protection protocol being used. (see [below for nested schema](#nestedblock--spec--template--spec--containers--ports--protection_protocol))
 - `protocol` (String) Protocol is the network protocol being used. Defaults to UDP. TCP and TCPUDP are other options.
+
+<a id="nestedblock--spec--template--spec--containers--ports--protection_protocol"></a>
+### Nested Schema for `spec.template.spec.containers.ports.protection_protocol`
+
+Required:
+
+- `value` (String) ProtectionProtocol is the optional name of the protection protocol being used.
+
 
 
 <a id="nestedblock--spec--template--spec--containers--resources"></a>
@@ -209,6 +219,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--allow_privilege_escalation))
+- `app_armor_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--app_armor_profile))
 - `capabilities` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--capabilities))
 - `privileged` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--privileged))
 - `proc_mount` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--proc_mount))
@@ -226,6 +237,23 @@ Optional:
 Required:
 
 - `value` (Boolean)
+
+
+<a id="nestedblock--spec--template--spec--containers--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.template.spec.containers.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context--app_armor_profile--localhost_profile))
+- `type` (String)
+
+<a id="nestedblock--spec--template--spec--containers--security_context--app_armor_profile--localhost_profile"></a>
+### Nested Schema for `spec.template.spec.containers.security_context.app_armor_profile.localhost_profile`
+
+Required:
+
+- `value` (String)
+
 
 
 <a id="nestedblock--spec--template--spec--containers--security_context--capabilities"></a>
@@ -366,11 +394,20 @@ Optional:
 - `mount_propagation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--volume_mounts--mount_propagation))
 - `name` (String)
 - `read_only` (Boolean)
+- `recursive_read_only` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--spec--containers--volume_mounts--recursive_read_only))
 - `sub_path` (String)
 - `sub_path_expr` (String)
 
 <a id="nestedblock--spec--template--spec--containers--volume_mounts--mount_propagation"></a>
 ### Nested Schema for `spec.template.spec.containers.volume_mounts.mount_propagation`
+
+Required:
+
+- `value` (String)
+
+
+<a id="nestedblock--spec--template--spec--containers--volume_mounts--recursive_read_only"></a>
+### Nested Schema for `spec.template.spec.containers.volume_mounts.recursive_read_only`
 
 Required:
 

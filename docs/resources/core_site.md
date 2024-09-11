@@ -484,6 +484,7 @@ Optional:
 Optional:
 
 - `allow_privilege_escalation` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--security_context--allow_privilege_escalation))
+- `app_armor_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--security_context--app_armor_profile))
 - `capabilities` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--security_context--capabilities))
 - `privileged` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--security_context--privileged))
 - `proc_mount` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--security_context--proc_mount))
@@ -501,6 +502,23 @@ Optional:
 Required:
 
 - `value` (Boolean)
+
+
+<a id="nestedblock--spec--template--security_context--app_armor_profile"></a>
+### Nested Schema for `spec.template.security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--security_context--app_armor_profile--localhost_profile))
+- `type` (String)
+
+<a id="nestedblock--spec--template--security_context--app_armor_profile--localhost_profile"></a>
+### Nested Schema for `spec.template.security_context.app_armor_profile.localhost_profile`
+
+Required:
+
+- `value` (String)
+
 
 
 <a id="nestedblock--spec--template--security_context--capabilities"></a>
