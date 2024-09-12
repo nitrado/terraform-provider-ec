@@ -84,7 +84,7 @@ func flattenQuantity(v any) (any, error) {
 	return (&q).String(), nil
 }
 
-// FieldName returns the terraform styled field name from the given name.
+// FieldName returns the terraform-styled field name from the given name.
 func FieldName(name string) string {
 	name = strcase.ToSnake(name)
 	if strings.Contains(name, "cid_rs") {
