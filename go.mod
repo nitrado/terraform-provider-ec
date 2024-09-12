@@ -3,10 +3,11 @@ module github.com/nitrado/terraform-provider-ec
 go 1.23
 
 require (
+	github.com/ettle/strcase v0.2.0
 	github.com/hashicorp/go-cty v1.4.1-0.20200414143053-d3edf31b6320
 	github.com/hashicorp/terraform-plugin-docs v0.19.4
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
-	github.com/nitrado/tfconv v1.1.0
+	github.com/nitrado/tfconv v1.2.1
 	github.com/stretchr/testify v1.9.0
 	gitlab.com/nitrado/b2b/ec/apicore v1.2.0
 	gitlab.com/nitrado/b2b/ec/core v0.12.0
@@ -30,7 +31,6 @@ require (
 	github.com/cloudflare/circl v1.3.7 // indirect
 	github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc // indirect
 	github.com/emicklei/go-restful/v3 v3.12.1 // indirect
-	github.com/ettle/strcase v0.2.0 // indirect
 	github.com/evanphx/json-patch v5.9.0+incompatible // indirect
 	github.com/fatih/color v1.17.0 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect

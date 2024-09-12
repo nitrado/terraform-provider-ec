@@ -9,6 +9,7 @@ import (
 	containerv1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/container/v1"
 	corev1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/core/v1"
 	formationv1beta1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/formation/v1beta1"
+	protectionv1alpha1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/protection/v1alpha1"
 )
 
 type objInfo struct {
@@ -90,6 +91,24 @@ var objs = []objInfo{
 		Obj:      &formationv1beta1.Vessel{},
 		Filename: "ec/formation/schema_vessel.go",
 		FuncName: "vesselSchema",
+	},
+	{
+		Pkg:      "protection",
+		Obj:      &protectionv1alpha1.GatewayPolicy{},
+		Filename: "ec/protection/schema_gatewaypolicy.go",
+		FuncName: "gatewayPolicySchema",
+	},
+	{
+		Pkg:      "protection",
+		Obj:      &protectionv1alpha1.Protocol{},
+		Filename: "ec/protection/schema_protocol.go",
+		FuncName: "protocolSchema",
+	},
+	{
+		Pkg:      "protection",
+		Obj:      &protectionv1alpha1.Mitigation{},
+		Filename: "ec/protection/schema_migration.go",
+		FuncName: "migrationSchema",
 	},
 }
 

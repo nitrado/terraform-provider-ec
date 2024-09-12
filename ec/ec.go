@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/ettle/strcase"
 	"github.com/nitrado/tfconv"
 	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
 	"k8s.io/apimachinery/pkg/api/resource"
@@ -69,7 +70,7 @@ func SplitName(key string) (env, name string) {
 
 // Converter returns the configured converter.
 func Converter() *tfconv.Converter {
-	c := tfconv.New("json")
+	c := tfconv.NewWithName(FieldName, "json")
 	c.Register(resource.Quantity{}, expandQuantity, flattenQuantity)
 	return c
 }
@@ -81,4 +82,13 @@ func expandQuantity(v any) (any, error) {
 func flattenQuantity(v any) (any, error) {
 	q := v.(resource.Quantity)
 	return (&q).String(), nil
+}
+
+// FieldName returns the terraform styled field name from the given name.
+func FieldName(name string) string {
+	name = strcase.ToSnake(name)
+	if strings.Contains(name, "cid_rs") {
+		name = strings.ReplaceAll(name, "cid_rs", "cidrs")
+	}
+	return name
 }

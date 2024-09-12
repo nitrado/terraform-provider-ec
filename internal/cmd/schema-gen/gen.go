@@ -10,6 +10,7 @@ import (
 	"text/template"
 
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/tfconv/schemagen"
 )
 
@@ -27,7 +28,7 @@ func NewGenerator() *Generator {
 		seen: map[reflect.Type]string{},
 	}
 
-	g.gen = schemagen.New(g.docs, g.customize, "json")
+	g.gen = schemagen.NewWithName(g.docs, g.customize, ec.FieldName, "json")
 
 	return g
 }
