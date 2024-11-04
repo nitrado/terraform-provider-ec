@@ -64,6 +64,12 @@ var objs = []objInfo{
 	},
 	{
 		Pkg:      "core",
+		Obj:      &corev1.Location{},
+		Filename: "ec/core/schema_location.go",
+		FuncName: "locationSchema",
+	},
+	{
+		Pkg:      "core",
 		Obj:      &corev1.Region{},
 		Filename: "ec/core/schema_region.go",
 		FuncName: "regionSchema",

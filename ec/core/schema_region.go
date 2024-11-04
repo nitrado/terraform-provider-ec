@@ -44,6 +44,12 @@ func regionSchema() map[string]*schema.Schema {
 						Required:    true,
 						Elem: &schema.Resource{
 							Schema: map[string]*schema.Schema{
+								"locations": {
+									Type:        schema.TypeList,
+									Description: "Locations defines the locations for a type.",
+									Optional:    true,
+									Elem:        &schema.Schema{Type: schema.TypeString},
+								},
 								"name": {
 									Type:        schema.TypeString,
 									Description: "Name is the name of the region type.",
