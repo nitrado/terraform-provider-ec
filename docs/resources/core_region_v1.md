@@ -83,6 +83,7 @@ Required:
 
 Optional:
 
+- `locations` (List of String) Locations defines the locations for a type.
 - `template` (Block List, Max: 1) Template is the optional configuration to apply to all fleets in this region. (see [below for nested schema](#nestedblock--spec--types--template))
 
 <a id="nestedblock--spec--types--template"></a>
