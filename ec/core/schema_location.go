@@ -28,21 +28,11 @@ func locationSchema() map[string]*schema.Schema {
 			MaxItems:    1,
 			Elem: &schema.Resource{
 				Schema: map[string]*schema.Schema{
-					"region": {
-						Type:        schema.TypeString,
-						Description: "Region is the location region.",
-						Optional:    true,
-					},
 					"sites": {
 						Type:        schema.TypeList,
 						Description: "Sites are the site names that makes up the location.",
 						Optional:    true,
 						Elem:        &schema.Schema{Type: schema.TypeString},
-					},
-					"type": {
-						Type:        schema.TypeString,
-						Description: "Type is the type of the datacenter, e.g. cloud or bare metal.",
-						Optional:    true,
 					},
 				},
 			},

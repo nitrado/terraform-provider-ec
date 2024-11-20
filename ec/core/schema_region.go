@@ -55,12 +55,6 @@ func regionSchema() map[string]*schema.Schema {
 									Description: "Name is the name of the region type.",
 									Required:    true,
 								},
-								"sites": {
-									Type:        schema.TypeList,
-									Description: "Sites defines the sites for a type.",
-									Required:    true,
-									Elem:        &schema.Schema{Type: schema.TypeString},
-								},
 								"template": {
 									Type:        schema.TypeList,
 									Description: "Template is the optional configuration to apply to all fleets in this region.",

@@ -10,7 +10,7 @@ require (
 	github.com/nitrado/tfconv v1.2.1
 	github.com/stretchr/testify v1.9.0
 	gitlab.com/nitrado/b2b/ec/apicore v1.3.0
-	gitlab.com/nitrado/b2b/ec/core v0.15.0
+	gitlab.com/nitrado/b2b/ec/core v0.16.1
 	golang.org/x/oauth2 v0.23.0
 	k8s.io/apimachinery v0.30.3
 )

@@ -46,6 +46,4 @@ Read-Only:
 
 Optional:
 
-- `region` (String) Region is the location region.
 - `sites` (List of String) Sites are the site names that makes up the location.
-- `type` (String) Type is the type of the datacenter, e.g. cloud or bare metal.

@@ -79,7 +79,6 @@ Optional:
 Required:
 
 - `name` (String) Name is the name of the region type.
-- `sites` (List of String) Sites defines the sites for a type.
 
 Optional:
 
