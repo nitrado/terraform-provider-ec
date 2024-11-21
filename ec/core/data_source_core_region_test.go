@@ -26,9 +26,9 @@ func TestDataSourceRegions(t *testing.T) {
 					resource.TestCheckResourceAttr("ec_core_region.test", "spec.0.description", "My Region"),
 					resource.TestCheckResourceAttr("ec_core_region.test", "spec.0.types.#", "1"),
 					resource.TestCheckResourceAttr("ec_core_region.test", "spec.0.types.0.name", "my-type"),
-					resource.TestCheckResourceAttr("ec_core_region.test", "spec.0.types.0.sites.#", "2"),
-					resource.TestCheckResourceAttr("ec_core_region.test", "spec.0.types.0.sites.0", "test-site-1"),
-					resource.TestCheckResourceAttr("ec_core_region.test", "spec.0.types.0.sites.1", "test-site-2"),
+					resource.TestCheckResourceAttr("ec_core_region.test", "spec.0.types.0.locations.#", "2"),
+					resource.TestCheckResourceAttr("ec_core_region.test", "spec.0.types.0.locations.0", "test-loc-1"),
+					resource.TestCheckResourceAttr("ec_core_region.test", "spec.0.types.0.locations.1", "test-loc-2"),
 				),
 			},
 			{
@@ -41,9 +41,9 @@ func TestDataSourceRegions(t *testing.T) {
 					resource.TestCheckResourceAttr("data.ec_core_region.test", "spec.0.description", "My Region"),
 					resource.TestCheckResourceAttr("data.ec_core_region.test", "spec.0.types.#", "1"),
 					resource.TestCheckResourceAttr("data.ec_core_region.test", "spec.0.types.0.name", "my-type"),
-					resource.TestCheckResourceAttr("data.ec_core_region.test", "spec.0.types.0.sites.#", "2"),
-					resource.TestCheckResourceAttr("data.ec_core_region.test", "spec.0.types.0.sites.0", "test-site-1"),
-					resource.TestCheckResourceAttr("data.ec_core_region.test", "spec.0.types.0.sites.1", "test-site-2"),
+					resource.TestCheckResourceAttr("data.ec_core_region.test", "spec.0.types.0.locations.#", "2"),
+					resource.TestCheckResourceAttr("data.ec_core_region.test", "spec.0.types.0.locations.0", "test-loc-1"),
+					resource.TestCheckResourceAttr("data.ec_core_region.test", "spec.0.types.0.locations.1", "test-loc-2"),
 				),
 			},
 		},
@@ -60,7 +60,7 @@ func testDataSourceRegionsConfigBasic(name, env string) string {
     description = "My Region"
     types {
       name = "my-type"
-      sites = ["test-site-1", "test-site-2"]
+      locations = ["test-loc-1", "test-loc-2"]
     }
   }
 }
