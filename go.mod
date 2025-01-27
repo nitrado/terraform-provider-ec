@@ -7,7 +7,7 @@ require (
 	github.com/hashicorp/go-cty v1.4.1-0.20200414143053-d3edf31b6320
 	github.com/hashicorp/terraform-plugin-docs v0.19.4
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.34.0
-	github.com/nitrado/tfconv v1.2.1
+	github.com/nitrado/tfconv v1.2.2
 	github.com/stretchr/testify v1.9.0
 	gitlab.com/nitrado/b2b/ec/apicore v1.3.0
 	gitlab.com/nitrado/b2b/ec/core v0.16.1
