@@ -40,6 +40,8 @@ func TestResourceArmadaSets(t *testing.T) {
 					resource.TestCheckResourceAttr("ec_armada_armadaset.test", "spec.0.template.0.spec.0.containers.0.name", "my-ctr"),
 					resource.TestCheckResourceAttr("ec_armada_armadaset.test", "spec.0.template.0.spec.0.containers.0.branch", "prod"),
 					resource.TestCheckResourceAttr("ec_armada_armadaset.test", "spec.0.template.0.spec.0.containers.0.image", "test-xyz"),
+					resource.TestCheckResourceAttr("ec_armada_armadaset.test", "spec.0.template.0.spec.0.containers.0.command.#", "1"),
+					resource.TestCheckResourceAttr("ec_armada_armadaset.test", "spec.0.template.0.spec.0.containers.0.command.0", ""),
 				),
 			},
 			{
@@ -104,6 +106,9 @@ func testResourceArmadaSetsConfigBasic(env, name string) string {
           name = "my-ctr"
           branch = "prod"
           image = "test-xyz"
+          command = [
+		    ""
+          ]
         }
       }
     }
