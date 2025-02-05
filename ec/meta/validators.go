@@ -44,7 +44,7 @@ func validateEnvironment(value any, path cty.Path) (diags diag.Diagnostics) {
 	if len(v) > maxEnvironmentLength {
 		diags = append(diags, diag.Diagnostic{
 			Severity:      diag.Error,
-			Summary:       fmt.Sprintf("%q must be no more than %d characters", v, maxNameLength),
+			Summary:       fmt.Sprintf("%q must be no more than %d characters", v, maxEnvironmentLength),
 			AttributePath: path,
 		})
 	}
