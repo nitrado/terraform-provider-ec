@@ -7,6 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
+	apierrors "gitlab.com/nitrado/b2b/ec/apicore/api/errors"
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 )
 
@@ -36,6 +37,9 @@ func dataSourceProtocolRead(ctx context.Context, d *schema.ResourceData, m any) 
 
 	data, err := ec.Converter().Flatten(obj, protocolSchema())
 	if err != nil {
+		if apierrors.IsNotFound(err) {
+			return diag.Errorf("Protocol %q not found", name)
+		}
 		return diag.FromErr(err)
 	}
 

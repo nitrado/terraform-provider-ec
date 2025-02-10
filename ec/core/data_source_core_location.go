@@ -7,6 +7,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
+	apierrors "gitlab.com/nitrado/b2b/ec/apicore/api/errors"
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 	corev1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/core/v1"
 )
@@ -32,6 +33,9 @@ func dataSourceLocationRead(ctx context.Context, d *schema.ResourceData, m any) 
 	var obj *corev1.Location
 	obj, err = clientSet.CoreV1().Locations().Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
+		if apierrors.IsNotFound(err) {
+			return diag.Errorf("Location %q not found", name)
+		}
 		return diag.FromErr(err)
 	}
 

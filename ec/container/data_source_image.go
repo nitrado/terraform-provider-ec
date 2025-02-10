@@ -9,6 +9,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
+	apierrors "gitlab.com/nitrado/b2b/ec/apicore/api/errors"
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 	containerv1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/container/v1"
 )
@@ -39,6 +40,9 @@ func dataSourceImageRead(ctx context.Context, d *schema.ResourceData, m any) dia
 	case hasName:
 		obj, err = clientSet.ContainerV1().Images(branch).Get(ctx, name.(string), metav1.GetOptions{})
 		if err != nil {
+			if apierrors.IsNotFound(err) {
+				return diag.Errorf("Image %q not found in branch %q", name, branch)
+			}
 			return diag.FromErr(err)
 		}
 	case hasImage:
@@ -53,12 +57,7 @@ func dataSourceImageRead(ctx context.Context, d *schema.ResourceData, m any) dia
 			return diag.FromErr(err)
 		}
 		if len(list.Items) == 0 {
-			return diag.Diagnostics{
-				diag.Diagnostic{
-					Severity: diag.Error,
-					Summary:  "image not found",
-				},
-			}
+			return diag.Errorf("Image %q not found in branch %q", name, branch)
 		}
 		latestImg := slices.MaxFunc(list.Items, func(a, b containerv1.Image) int {
 			switch {
