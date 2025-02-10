@@ -23,31 +23,27 @@ func DataSourceMigration() *schema.Resource {
 
 func dataSourceMigrationRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	inst, _ := d.Get("instance").(string)
+	name, hasName := d.GetOk("metadata.0.name")
+	if !hasName {
+		return diag.FromErr(errors.New("metadata.0.name is required"))
+	}
+	d.SetId(name.(string))
+
 	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	name, hasName := d.GetOk("metadata.0.name")
-	if !hasName {
-		return diag.FromErr(errors.New("metadata.0.name is required"))
-	}
-
 	obj, err := clientSet.ProtectionV1Alpha1().Mitigations().Get(ctx, name.(string), metav1.GetOptions{})
 	if err != nil {
-		switch {
-		case apierrors.IsNotFound(err):
-			d.SetId("")
-			return nil
-		default:
-			return diag.FromErr(err)
-		}
+		return diag.FromErr(err)
 	}
-
-	d.SetId(obj.Name)
 
 	data, err := ec.Converter().Flatten(obj, migrationSchema())
 	if err != nil {
+		if apierrors.IsNotFound(err) {
+			return diag.Errorf("Migration %q not found", name)
+		}
 		return diag.FromErr(err)
 	}
 

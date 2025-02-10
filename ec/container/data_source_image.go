@@ -40,13 +40,10 @@ func dataSourceImageRead(ctx context.Context, d *schema.ResourceData, m any) dia
 	case hasName:
 		obj, err = clientSet.ContainerV1().Images(branch).Get(ctx, name.(string), metav1.GetOptions{})
 		if err != nil {
-			switch {
-			case apierrors.IsNotFound(err):
-				d.SetId("")
-				return nil
-			default:
-				return diag.FromErr(err)
+			if apierrors.IsNotFound(err) {
+				return diag.Errorf("Image %q not found in branch %q", name, branch)
 			}
+			return diag.FromErr(err)
 		}
 	case hasImage:
 		fieldSelector := map[string]string{
@@ -60,8 +57,7 @@ func dataSourceImageRead(ctx context.Context, d *schema.ResourceData, m any) dia
 			return diag.FromErr(err)
 		}
 		if len(list.Items) == 0 {
-			d.SetId("")
-			return nil
+			return diag.Errorf("Image %q not found in branch %q", name, branch)
 		}
 		latestImg := slices.MaxFunc(list.Items, func(a, b containerv1.Image) int {
 			switch {

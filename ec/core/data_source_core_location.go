@@ -23,23 +23,20 @@ func DataSourceLocation() *schema.Resource {
 
 func dataSourceLocationRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	inst, _ := d.Get("instance").(string)
+	name := d.Get("metadata.0.name").(string)
+
 	clientSet, err := ec.ResolveClientSet(m, inst)
 	if err != nil {
 		return diag.FromErr(err)
 	}
 
-	name := d.Get("metadata.0.name").(string)
-
 	var obj *corev1.Location
 	obj, err = clientSet.CoreV1().Locations().Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
-		switch {
-		case apierrors.IsNotFound(err):
-			d.SetId("")
-			return nil
-		default:
-			return diag.FromErr(err)
+		if apierrors.IsNotFound(err) {
+			return diag.Errorf("Location %q not found", name)
 		}
+		return diag.FromErr(err)
 	}
 
 	d.SetId(name)
