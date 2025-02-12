@@ -102,6 +102,7 @@ Optional:
 - `affinity` (Block List, Max: 1) Affinity is a group of affinity scheduling rules. (see [below for nested schema](#nestedblock--spec--template--affinity))
 - `env` (Block List) Env is a list of environment variables to set on all containers on this site. (see [below for nested schema](#nestedblock--spec--template--env))
 - `image_pull_secrets` (List of String) ImagePullSecrets points to secrets with authorization tokens that store docker credentials to access a registry.
+- `pod_security_context` (Block List, Max: 1) PodSecurityContext defines the security options the pod should be run with. (see [below for nested schema](#nestedblock--spec--template--pod_security_context))
 - `security_context` (Block List, Max: 1) SecurityContext defines the security options the container should be run with. This security context overrides the user security context if a top level property is set. (see [below for nested schema](#nestedblock--spec--template--security_context))
 - `tolerations` (Block List) Tolerations is a set of pod tolerations. (see [below for nested schema](#nestedblock--spec--template--tolerations))
 
@@ -474,6 +475,161 @@ Optional:
 
 - `api_version` (String)
 - `field_path` (String)
+
+
+
+
+<a id="nestedblock--spec--template--pod_security_context"></a>
+### Nested Schema for `spec.template.pod_security_context`
+
+Optional:
+
+- `app_armor_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--app_armor_profile))
+- `fs_group` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--fs_group))
+- `fs_group_change_policy` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--fs_group_change_policy))
+- `run_as_group` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--run_as_group))
+- `run_as_non_root` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--run_as_non_root))
+- `run_as_user` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--run_as_user))
+- `se_linux_options` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--se_linux_options))
+- `seccomp_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--seccomp_profile))
+- `supplemental_groups` (List of Number)
+- `sysctls` (Block List) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--sysctls))
+- `windows_options` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--windows_options))
+
+<a id="nestedblock--spec--template--pod_security_context--app_armor_profile"></a>
+### Nested Schema for `spec.template.pod_security_context.app_armor_profile`
+
+Optional:
+
+- `localhost_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--app_armor_profile--localhost_profile))
+- `type` (String)
+
+<a id="nestedblock--spec--template--pod_security_context--app_armor_profile--localhost_profile"></a>
+### Nested Schema for `spec.template.pod_security_context.app_armor_profile.localhost_profile`
+
+Required:
+
+- `value` (String)
+
+
+
+<a id="nestedblock--spec--template--pod_security_context--fs_group"></a>
+### Nested Schema for `spec.template.pod_security_context.fs_group`
+
+Required:
+
+- `value` (Number)
+
+
+<a id="nestedblock--spec--template--pod_security_context--fs_group_change_policy"></a>
+### Nested Schema for `spec.template.pod_security_context.fs_group_change_policy`
+
+Required:
+
+- `value` (String)
+
+
+<a id="nestedblock--spec--template--pod_security_context--run_as_group"></a>
+### Nested Schema for `spec.template.pod_security_context.run_as_group`
+
+Required:
+
+- `value` (Number)
+
+
+<a id="nestedblock--spec--template--pod_security_context--run_as_non_root"></a>
+### Nested Schema for `spec.template.pod_security_context.run_as_non_root`
+
+Required:
+
+- `value` (Boolean)
+
+
+<a id="nestedblock--spec--template--pod_security_context--run_as_user"></a>
+### Nested Schema for `spec.template.pod_security_context.run_as_user`
+
+Required:
+
+- `value` (Number)
+
+
+<a id="nestedblock--spec--template--pod_security_context--se_linux_options"></a>
+### Nested Schema for `spec.template.pod_security_context.se_linux_options`
+
+Optional:
+
+- `level` (String)
+- `role` (String)
+- `type` (String)
+- `user` (String)
+
+
+<a id="nestedblock--spec--template--pod_security_context--seccomp_profile"></a>
+### Nested Schema for `spec.template.pod_security_context.seccomp_profile`
+
+Optional:
+
+- `localhost_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--seccomp_profile--localhost_profile))
+- `type` (String)
+
+<a id="nestedblock--spec--template--pod_security_context--seccomp_profile--localhost_profile"></a>
+### Nested Schema for `spec.template.pod_security_context.seccomp_profile.localhost_profile`
+
+Required:
+
+- `value` (String)
+
+
+
+<a id="nestedblock--spec--template--pod_security_context--sysctls"></a>
+### Nested Schema for `spec.template.pod_security_context.sysctls`
+
+Optional:
+
+- `name` (String)
+- `value` (String)
+
+
+<a id="nestedblock--spec--template--pod_security_context--windows_options"></a>
+### Nested Schema for `spec.template.pod_security_context.windows_options`
+
+Optional:
+
+- `gmsa_credential_spec` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--windows_options--gmsa_credential_spec))
+- `gmsa_credential_spec_name` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--windows_options--gmsa_credential_spec_name))
+- `host_process` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--windows_options--host_process))
+- `run_as_user_name` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--windows_options--run_as_user_name))
+
+<a id="nestedblock--spec--template--pod_security_context--windows_options--gmsa_credential_spec"></a>
+### Nested Schema for `spec.template.pod_security_context.windows_options.gmsa_credential_spec`
+
+Required:
+
+- `value` (String)
+
+
+<a id="nestedblock--spec--template--pod_security_context--windows_options--gmsa_credential_spec_name"></a>
+### Nested Schema for `spec.template.pod_security_context.windows_options.gmsa_credential_spec_name`
+
+Required:
+
+- `value` (String)
+
+
+<a id="nestedblock--spec--template--pod_security_context--windows_options--host_process"></a>
+### Nested Schema for `spec.template.pod_security_context.windows_options.host_process`
+
+Required:
+
+- `value` (Boolean)
+
+
+<a id="nestedblock--spec--template--pod_security_context--windows_options--run_as_user_name"></a>
+### Nested Schema for `spec.template.pod_security_context.windows_options.run_as_user_name`
+
+Required:
+
+- `value` (String)
 
 
 

@@ -53,6 +53,7 @@ Optional:
 
 - `description` (String) Description is the optional description of the formation.
 - `termination_grace_periods` (Block List, Max: 1) TerminationGracePeriods are the optional durations that a game server has to terminate gracefully. If this value is nil, the default grace period for each situation will be used. These durations only apply when a game server is in use. (see [below for nested schema](#nestedblock--spec--termination_grace_periods))
+- `volume_templates` (Block List) VolumeTemplates is a list of volumes that vessels are allowed to reference. (see [below for nested schema](#nestedblock--spec--volume_templates))
 
 <a id="nestedblock--spec--template"></a>
 ### Nested Schema for `spec.template`
@@ -432,15 +433,43 @@ Required:
 
 Optional:
 
+- `empty_dir` (Block List, Max: 1) EmptyDir configures an empty dir volume. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--empty_dir))
+- `medium` (String) Medium is the storage medium type.  Deprecated: Use EmptyDir.Medium instead.
+- `persistent` (Block List, Max: 1) Persistent configures a persistent volume. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--persistent))
+- `size_limit` (Block List, Max: 1) SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--size_limit))
+- `type` (String) Type is the volume type.
+
+<a id="nestedblock--spec--template--spec--volumes--empty_dir"></a>
+### Nested Schema for `spec.template.spec.volumes.empty_dir`
+
+Optional:
+
 - `medium` (String) Medium is the storage medium type.
-- `size_limit` (Block List, Max: 1) SizeLimit is the maximum size of the volume. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--size_limit))
+- `size_limit` (Block List, Max: 1) SizeLimit is the maximum size of the volume. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--empty_dir--size_limit))
+
+<a id="nestedblock--spec--template--spec--volumes--empty_dir--size_limit"></a>
+### Nested Schema for `spec.template.spec.volumes.empty_dir.size_limit`
+
+Required:
+
+- `value` (String) SizeLimit is the maximum size of the volume.
+
+
+
+<a id="nestedblock--spec--template--spec--volumes--persistent"></a>
+### Nested Schema for `spec.template.spec.volumes.persistent`
+
+Required:
+
+- `volume_name` (String) VolumeName is the name of the volume to store data in.
+
 
 <a id="nestedblock--spec--template--spec--volumes--size_limit"></a>
 ### Nested Schema for `spec.template.spec.volumes.size_limit`
 
 Required:
 
-- `value` (String) SizeLimit is the maximum size of the volume.
+- `value` (String) SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead.
 
 
 
@@ -593,3 +622,45 @@ Required:
 Required:
 
 - `value` (Number) UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.
+
+
+
+<a id="nestedblock--spec--volume_templates"></a>
+### Nested Schema for `spec.volume_templates`
+
+Optional:
+
+- `metadata` (Block List, Max: 1) Standard object's metadata. (see [below for nested schema](#nestedblock--spec--volume_templates--metadata))
+- `spec` (Block List, Max: 1) Spec defines the desired volume template. (see [below for nested schema](#nestedblock--spec--volume_templates--spec))
+
+<a id="nestedblock--spec--volume_templates--metadata"></a>
+### Nested Schema for `spec.volume_templates.metadata`
+
+Optional:
+
+- `annotations` (Map of String) An unstructured map of keys and values stored on an object.
+- `environment` (String) The name of the environment the object belongs to.
+- `labels` (Map of String) A map of keys and values that can be used to organize and categorize objects.
+- `name` (String) The unique object name within its scope.
+
+Read-Only:
+
+- `revision` (String) An opaque resource revision.
+- `uid` (String) A unique identifier for each an object.
+
+
+<a id="nestedblock--spec--volume_templates--spec"></a>
+### Nested Schema for `spec.volume_templates.spec`
+
+Optional:
+
+- `reclaim_policy` (String)
+- `volume_spec` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--volume_templates--spec--volume_spec))
+
+<a id="nestedblock--spec--volume_templates--spec--volume_spec"></a>
+### Nested Schema for `spec.volume_templates.spec.volume_spec`
+
+Required:
+
+- `capacity` (String) Capacity is the capacity of the volume.
+- `volume_store_name` (String) VolumeStoreName is the name of the volume store this volume uses.
