@@ -577,9 +577,39 @@ func vesselSchema() map[string]*schema.Schema {
 												Optional:    true,
 												Elem: &schema.Resource{
 													Schema: map[string]*schema.Schema{
+														"empty_dir": {
+															Type:        schema.TypeList,
+															Description: "EmptyDir configures an empty dir volume.",
+															Optional:    true,
+															MaxItems:    1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"medium": {
+																		Type:        schema.TypeString,
+																		Description: "Medium is the storage medium type.",
+																		Optional:    true,
+																	},
+																	"size_limit": {
+																		Type:        schema.TypeList,
+																		Description: "SizeLimit is the maximum size of the volume.",
+																		Optional:    true,
+																		MaxItems:    1,
+																		Elem: &schema.Resource{
+																			Schema: map[string]*schema.Schema{
+																				"value": {
+																					Type:        schema.TypeString,
+																					Description: "SizeLimit is the maximum size of the volume.",
+																					Required:    true,
+																				},
+																			},
+																		},
+																	},
+																},
+															},
+														},
 														"medium": {
 															Type:        schema.TypeString,
-															Description: "Medium is the storage medium type.",
+															Description: "Medium is the storage medium type.  Deprecated: Use EmptyDir.Medium instead.",
 															Optional:    true,
 														},
 														"name": {
@@ -587,20 +617,40 @@ func vesselSchema() map[string]*schema.Schema {
 															Description: "Name is the name of the volume mount.",
 															Required:    true,
 														},
+														"persistent": {
+															Type:        schema.TypeList,
+															Description: "Persistent configures a persistent volume.",
+															Optional:    true,
+															MaxItems:    1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"volume_name": {
+																		Type:        schema.TypeString,
+																		Description: "VolumeName is the name of the volume to store data in.",
+																		Required:    true,
+																	},
+																},
+															},
+														},
 														"size_limit": {
 															Type:        schema.TypeList,
-															Description: "SizeLimit is the maximum size of the volume.",
+															Description: "SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead.",
 															Optional:    true,
 															MaxItems:    1,
 															Elem: &schema.Resource{
 																Schema: map[string]*schema.Schema{
 																	"value": {
 																		Type:        schema.TypeString,
-																		Description: "SizeLimit is the maximum size of the volume.",
+																		Description: "SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead.",
 																		Required:    true,
 																	},
 																},
 															},
+														},
+														"type": {
+															Type:        schema.TypeString,
+															Description: "Type is the volume type.",
+															Optional:    true,
 														},
 													},
 												},

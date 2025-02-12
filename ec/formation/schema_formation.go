@@ -557,9 +557,39 @@ func formationSchema() map[string]*schema.Schema {
 												Optional:    true,
 												Elem: &schema.Resource{
 													Schema: map[string]*schema.Schema{
+														"empty_dir": {
+															Type:        schema.TypeList,
+															Description: "EmptyDir configures an empty dir volume.",
+															Optional:    true,
+															MaxItems:    1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"medium": {
+																		Type:        schema.TypeString,
+																		Description: "Medium is the storage medium type.",
+																		Optional:    true,
+																	},
+																	"size_limit": {
+																		Type:        schema.TypeList,
+																		Description: "SizeLimit is the maximum size of the volume.",
+																		Optional:    true,
+																		MaxItems:    1,
+																		Elem: &schema.Resource{
+																			Schema: map[string]*schema.Schema{
+																				"value": {
+																					Type:        schema.TypeString,
+																					Description: "SizeLimit is the maximum size of the volume.",
+																					Required:    true,
+																				},
+																			},
+																		},
+																	},
+																},
+															},
+														},
 														"medium": {
 															Type:        schema.TypeString,
-															Description: "Medium is the storage medium type.",
+															Description: "Medium is the storage medium type.  Deprecated: Use EmptyDir.Medium instead.",
 															Optional:    true,
 														},
 														"name": {
@@ -567,20 +597,40 @@ func formationSchema() map[string]*schema.Schema {
 															Description: "Name is the name of the volume mount.",
 															Required:    true,
 														},
+														"persistent": {
+															Type:        schema.TypeList,
+															Description: "Persistent configures a persistent volume.",
+															Optional:    true,
+															MaxItems:    1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"volume_name": {
+																		Type:        schema.TypeString,
+																		Description: "VolumeName is the name of the volume to store data in.",
+																		Required:    true,
+																	},
+																},
+															},
+														},
 														"size_limit": {
 															Type:        schema.TypeList,
-															Description: "SizeLimit is the maximum size of the volume.",
+															Description: "SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead.",
 															Optional:    true,
 															MaxItems:    1,
 															Elem: &schema.Resource{
 																Schema: map[string]*schema.Schema{
 																	"value": {
 																		Type:        schema.TypeString,
-																		Description: "SizeLimit is the maximum size of the volume.",
+																		Description: "SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead.",
 																		Required:    true,
 																	},
 																},
 															},
+														},
+														"type": {
+															Type:        schema.TypeString,
+															Description: "Type is the volume type.",
+															Optional:    true,
 														},
 													},
 												},
@@ -772,6 +822,55 @@ func formationSchema() map[string]*schema.Schema {
 														"value": {
 															Type:        schema.TypeInt,
 															Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.",
+															Required:    true,
+														},
+													},
+												},
+											},
+										},
+									},
+								},
+							},
+						},
+					},
+					"volume_templates": {
+						Type:        schema.TypeList,
+						Description: "VolumeTemplates is a list of volumes that vessels are allowed to reference.",
+						Optional:    true,
+						Elem: &schema.Resource{
+							Schema: map[string]*schema.Schema{
+								"metadata": {
+									Type:        schema.TypeList,
+									Description: "Standard object's metadata.",
+									Optional:    true,
+									MaxItems:    1,
+									Elem:        &schema.Resource{Schema: meta.Schema()},
+								},
+								"spec": {
+									Type:        schema.TypeList,
+									Description: "Spec defines the desired volume template.",
+									Optional:    true,
+									MaxItems:    1,
+									Elem: &schema.Resource{
+										Schema: map[string]*schema.Schema{
+											"reclaim_policy": {
+												Type:     schema.TypeString,
+												Optional: true,
+											},
+											"volume_spec": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"capacity": {
+															Type:        schema.TypeString,
+															Description: "Capacity is the capacity of the volume.",
+															Required:    true,
+														},
+														"volume_store_name": {
+															Type:        schema.TypeString,
+															Description: "VolumeStoreName is the name of the volume store this volume uses.",
 															Required:    true,
 														},
 													},
