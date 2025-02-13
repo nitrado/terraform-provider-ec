@@ -61,12 +61,12 @@ Optional:
 Required:
 
 - `distribution` (Block List, Min: 1) Distribution specifies the distribution of game servers across the available types of capacity in the selected region. (see [below for nested schema](#nestedblock--spec--armadas--distribution))
-- `name` (String) Name is the name of the armada.
 - `region` (String) Region defines the region the game servers are distributed to.
 
 Optional:
 
 - `description` (String) Description is the optional description of the armada.
+- `name` (String) Name is the name of the armada. Deprecated: In future releases, the Armada name will be based on the Region.
 
 <a id="nestedblock--spec--armadas--distribution"></a>
 ### Nested Schema for `spec.armadas.distribution`
@@ -116,6 +116,7 @@ Optional:
 - `gateway_policies` (List of String) GatewayPolicies are the gateway policy names applied to the game servers.
 - `health` (Block List, Max: 1) Health is the health checking configuration for Agones game servers. (see [below for nested schema](#nestedblock--spec--template--spec--health))
 - `strategy` (Block List, Max: 1) Strategy is the deployment strategy. (see [below for nested schema](#nestedblock--spec--template--spec--strategy))
+- `termination_grace_period_seconds` (Block List, Max: 1) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds. (see [below for nested schema](#nestedblock--spec--template--spec--termination_grace_period_seconds))
 - `volumes` (Block List) Volumes are pod volumes. (see [below for nested schema](#nestedblock--spec--template--spec--volumes))
 
 <a id="nestedblock--spec--template--spec--containers"></a>
@@ -479,6 +480,14 @@ Optional:
 
 
 
+<a id="nestedblock--spec--template--spec--termination_grace_period_seconds"></a>
+### Nested Schema for `spec.template.spec.termination_grace_period_seconds`
+
+Required:
+
+- `value` (Number) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.
+
+
 <a id="nestedblock--spec--template--spec--volumes"></a>
 ### Nested Schema for `spec.template.spec.volumes`
 
@@ -521,11 +530,15 @@ Optional:
 <a id="nestedblock--spec--override"></a>
 ### Nested Schema for `spec.override`
 
+Required:
+
+- `region` (String) Region is the name of the armada Region that will be overridden.
+
 Optional:
 
 - `env` (Block List) Env is a list of environment variables to set on containers. (see [below for nested schema](#nestedblock--spec--override--env))
 - `labels` (Map of String) Labels is a map of keys and values that can be used to organize and categorize objects.
-- `name` (String) Name is the name of the armada that will be overridden.
+- `name` (String) Name is the name of the armada Region that will be overridden. Deprecated: Use the Region to override values.
 
 <a id="nestedblock--spec--override--env"></a>
 ### Nested Schema for `spec.override.env`

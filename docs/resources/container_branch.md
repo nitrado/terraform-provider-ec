@@ -21,6 +21,12 @@ resource "ec_container_branch" "test" {
   spec {
     description = "My branch"
     display_name = "Test"
+
+    retention_policy_rules {
+      name = "default"
+      keep_count = 10
+      keep_days = 30
+    }
   }
 }
 ```
@@ -61,3 +67,18 @@ Optional:
 
 - `description` (String) Description is the optional description of the branch.
 - `display_name` (String) DisplayName is the display name of the branch.
+- `retention_policy_rules` (Block List) RetentionPolicyRules are the rules that define how images are retained. (see [below for nested schema](#nestedblock--spec--retention_policy_rules))
+
+<a id="nestedblock--spec--retention_policy_rules"></a>
+### Nested Schema for `spec.retention_policy_rules`
+
+Required:
+
+- `name` (String) Name is the name of the image retention policy.
+
+Optional:
+
+- `image_regex` (String) ImageRegex is the optional regex selector for images that this policy applies to.
+- `keep_count` (Number) KeepCount is the minimum number of tags to keep per image.
+- `keep_days` (Number) KeepDays is the minimum number of days an image tag must be kept for.
+- `tag_regex` (String) TagRegex is the optional regex selector for tags that this policy applies to.

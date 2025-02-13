@@ -536,6 +536,21 @@ func formationSchema() map[string]*schema.Schema {
 													},
 												},
 											},
+											"termination_grace_period_seconds": {
+												Type:        schema.TypeList,
+												Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.",
+												Optional:    true,
+												MaxItems:    1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"value": {
+															Type:        schema.TypeInt,
+															Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.",
+															Required:    true,
+														},
+													},
+												},
+											},
 											"volumes": {
 												Type:        schema.TypeList,
 												Description: "Volumes are pod volumes.",

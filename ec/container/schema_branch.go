@@ -38,6 +38,40 @@ func branchSchema() map[string]*schema.Schema {
 						Description: "DisplayName is the display name of the branch.",
 						Optional:    true,
 					},
+					"retention_policy_rules": {
+						Type:        schema.TypeList,
+						Description: "RetentionPolicyRules are the rules that define how images are retained.",
+						Optional:    true,
+						Elem: &schema.Resource{
+							Schema: map[string]*schema.Schema{
+								"image_regex": {
+									Type:        schema.TypeString,
+									Description: "ImageRegex is the optional regex selector for images that this policy applies to.",
+									Optional:    true,
+								},
+								"keep_count": {
+									Type:        schema.TypeInt,
+									Description: "KeepCount is the minimum number of tags to keep per image.",
+									Optional:    true,
+								},
+								"keep_days": {
+									Type:        schema.TypeInt,
+									Description: "KeepDays is the minimum number of days an image tag must be kept for.",
+									Optional:    true,
+								},
+								"name": {
+									Type:        schema.TypeString,
+									Description: "Name is the name of the image retention policy.",
+									Required:    true,
+								},
+								"tag_regex": {
+									Type:        schema.TypeString,
+									Description: "TagRegex is the optional regex selector for tags that this policy applies to.",
+									Optional:    true,
+								},
+							},
+						},
+					},
 				},
 			},
 		},
