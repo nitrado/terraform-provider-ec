@@ -70,8 +70,8 @@ func armadaSetSchema() map[string]*schema.Schema {
 								},
 								"name": {
 									Type:        schema.TypeString,
-									Description: "Name is the name of the armada.",
-									Required:    true,
+									Description: "Name is the name of the armada. Deprecated: In future releases, the Armada name will be based on the Region.",
+									Optional:    true,
 								},
 								"region": {
 									Type:        schema.TypeString,
@@ -131,8 +131,13 @@ func armadaSetSchema() map[string]*schema.Schema {
 								},
 								"name": {
 									Type:        schema.TypeString,
-									Description: "Name is the name of the armada that will be overridden.",
+									Description: "Name is the name of the armada Region that will be overridden. Deprecated: Use the Region to override values.",
 									Optional:    true,
+								},
+								"region": {
+									Type:        schema.TypeString,
+									Description: "Region is the name of the armada Region that will be overridden.",
+									Required:    true,
 								},
 							},
 						},
@@ -701,6 +706,21 @@ func armadaSetSchema() map[string]*schema.Schema {
 														"type": {
 															Type:     schema.TypeString,
 															Optional: true,
+														},
+													},
+												},
+											},
+											"termination_grace_period_seconds": {
+												Type:        schema.TypeList,
+												Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.",
+												Optional:    true,
+												MaxItems:    1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"value": {
+															Type:        schema.TypeInt,
+															Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.",
+															Required:    true,
 														},
 													},
 												},

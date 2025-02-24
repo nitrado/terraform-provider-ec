@@ -102,6 +102,7 @@ Optional:
 - `gateway_policies` (List of String) GatewayPolicies are the gateway policy names applied to the game servers.
 - `health` (Block List, Max: 1) Health is the health checking configuration for Agones game servers. (see [below for nested schema](#nestedblock--spec--template--spec--health))
 - `strategy` (Block List, Max: 1) Strategy is the deployment strategy. (see [below for nested schema](#nestedblock--spec--template--spec--strategy))
+- `termination_grace_period_seconds` (Block List, Max: 1) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds. (see [below for nested schema](#nestedblock--spec--template--spec--termination_grace_period_seconds))
 - `volumes` (Block List) Volumes are pod volumes. (see [below for nested schema](#nestedblock--spec--template--spec--volumes))
 
 <a id="nestedblock--spec--template--spec--containers"></a>
@@ -463,6 +464,14 @@ Optional:
 - `type` (Number)
 
 
+
+
+<a id="nestedblock--spec--template--spec--termination_grace_period_seconds"></a>
+### Nested Schema for `spec.template.spec.termination_grace_period_seconds`
+
+Required:
+
+- `value` (Number) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.
 
 
 <a id="nestedblock--spec--template--spec--volumes"></a>
