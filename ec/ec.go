@@ -1,13 +1,19 @@
 package ec
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"strings"
+	"time"
 
 	"github.com/ettle/strcase"
 	"github.com/nitrado/tfconv"
+	apierrors "gitlab.com/nitrado/b2b/ec/apicore/api/errors"
+	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
+	"gitlab.com/nitrado/b2b/ec/apicore/runtime"
 	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
+	clientsettools "gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/tools/clientset"
 	"k8s.io/apimachinery/pkg/api/resource"
 )
 
@@ -65,6 +71,28 @@ func SplitName(key string) (env, name string) {
 		return "", parts[0]
 	default:
 		return parts[0], parts[1]
+	}
+}
+
+// WaitForDeletion waits for the deletion of an object, calling getFn to check the status.
+func WaitForDeletion[T runtime.Object](ctx context.Context, getter clientsettools.Getter[T], name string) error {
+	t := time.NewTicker(time.Second)
+	defer t.Stop()
+
+	for {
+		_, err := getter.Get(ctx, name, metav1.GetOptions{})
+		if err != nil {
+			if apierrors.IsNotFound(err) {
+				return nil
+			}
+			return err
+		}
+
+		select {
+		case <-ctx.Done():
+			return ctx.Err()
+		case <-t.C:
+		}
 	}
 }
 

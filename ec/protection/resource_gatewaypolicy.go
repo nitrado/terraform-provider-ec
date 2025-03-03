@@ -124,6 +124,11 @@ func resourceGatewayPolicyDelete(ctx context.Context, d *schema.ResourceData, m 
 		}
 	}
 
+	// Wait for the deletion to complete.
+	if err = ec.WaitForDeletion(ctx, clientSet.ProtectionV1Alpha1().GatewayPolicies(), name); err != nil {
+		return diag.FromErr(err)
+	}
+
 	d.SetId("")
 	return nil
 }

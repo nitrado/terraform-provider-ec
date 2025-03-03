@@ -128,6 +128,11 @@ func resourceSiteDelete(ctx context.Context, d *schema.ResourceData, m any) diag
 		}
 	}
 
+	// Wait for the deletion to complete.
+	if err = ec.WaitForDeletion(ctx, clientSet.CoreV1().Sites(), name); err != nil {
+		return diag.FromErr(err)
+	}
+
 	d.SetId("")
 	return nil
 }

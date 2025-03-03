@@ -124,6 +124,11 @@ func resourceEnvironmentDelete(ctx context.Context, d *schema.ResourceData, m an
 		}
 	}
 
+	// Wait for the deletion to complete.
+	if err = ec.WaitForDeletion(ctx, clientSet.CoreV1().Environments(), name); err != nil {
+		return diag.FromErr(err)
+	}
+
 	d.SetId("")
 	return nil
 }

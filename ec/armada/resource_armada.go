@@ -128,6 +128,11 @@ func resourceArmadaDelete(ctx context.Context, d *schema.ResourceData, m any) di
 		}
 	}
 
+	// Wait for the deletion to complete.
+	if err = ec.WaitForDeletion(ctx, clientSet.ArmadaV1().Armadas(env), name); err != nil {
+		return diag.FromErr(err)
+	}
+
 	d.SetId("")
 	return nil
 }
