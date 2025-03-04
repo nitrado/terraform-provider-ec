@@ -124,6 +124,11 @@ func resourceVesselDelete(ctx context.Context, d *schema.ResourceData, m any) di
 		}
 	}
 
+	// Wait for the deletion to complete.
+	if err = ec.WaitForDeletion(ctx, clientSet.FormationV1Beta1().Vessels(env), name); err != nil {
+		return diag.FromErr(err)
+	}
+
 	d.SetId("")
 	return nil
 }

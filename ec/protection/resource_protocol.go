@@ -124,6 +124,11 @@ func resourceProtocolDelete(ctx context.Context, d *schema.ResourceData, m any) 
 		}
 	}
 
+	// Wait for the deletion to complete.
+	if err = ec.WaitForDeletion(ctx, clientSet.ProtectionV1Alpha1().Protocols(), name); err != nil {
+		return diag.FromErr(err)
+	}
+
 	d.SetId("")
 	return nil
 }

@@ -128,6 +128,11 @@ func resourceBranchDelete(ctx context.Context, d *schema.ResourceData, m any) di
 		}
 	}
 
+	// Wait for the deletion to complete.
+	if err = ec.WaitForDeletion(ctx, clientSet.ContainerV1().Branches(), name); err != nil {
+		return diag.FromErr(err)
+	}
+
 	d.SetId("")
 	return nil
 }
