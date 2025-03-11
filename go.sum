@@ -293,6 +293,8 @@ gitlab.com/nitrado/b2b/ec/apicore v1.3.2 h1:REAMQ7XrxDuxf3qb+86C0+KSg0LOOGCqlaw8
 gitlab.com/nitrado/b2b/ec/apicore v1.3.2/go.mod h1:Jm1WG3CcNmYbZAoIrof/W4I1THJtmtilRIFD/tc3MNs=
 gitlab.com/nitrado/b2b/ec/core v0.18.1-0.20250307141315-c0ce4d10771e h1:jxmnagWdX/0fErNgdC4DbOFLMTlB0lOgLn5BbbworPM=
 gitlab.com/nitrado/b2b/ec/core v0.18.1-0.20250307141315-c0ce4d10771e/go.mod h1:TGc4ztZ3vh18CVqSXox8ML2hsBDb5nqwsmwY0MJwqb8=
+gitlab.com/nitrado/b2b/ec/core v0.19.0 h1:pzL6x6SQcTodrS//WgxRSK73eb44hlUxxgcpQ7YWP70=
+gitlab.com/nitrado/b2b/ec/core v0.19.0/go.mod h1:TGc4ztZ3vh18CVqSXox8ML2hsBDb5nqwsmwY0MJwqb8=
 go.abhg.dev/goldmark/frontmatter v0.2.0 h1:P8kPG0YkL12+aYk2yU3xHv4tcXzeVnN+gU0tJ5JnxRw=
 go.abhg.dev/goldmark/frontmatter v0.2.0/go.mod h1:XqrEkZuM57djk7zrlRUB02x8I5J0px76YjkOzhB4YlU=
 go.opentelemetry.io/otel v1.33.0 h1:/FerN9bax5LoK51X/sI0SVYrjSE0/yUL7DpxW4K3FWw=
