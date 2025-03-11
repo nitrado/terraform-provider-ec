@@ -1,4 +1,4 @@
-package formation
+package storage
 
 import (
 	"context"
@@ -11,16 +11,16 @@ import (
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 )
 
-// DataSourceVessel returns the data source resource for a Vessel.
-func DataSourceVessel() *schema.Resource {
+// DataSourceVolumeStoreRetentionPolicy returns the data source resource for a Volume Store Retention Policy.
+func DataSourceVolumeStoreRetentionPolicy() *schema.Resource {
 	return &schema.Resource{
-		Description: "Use this data source to access information about an existing Vessel.",
-		ReadContext: dataSourceVesselRead,
-		Schema:      vesselSchema(),
+		Description: "Use this data source to access information about an existing Volume Store Retention Policy.",
+		ReadContext: dataSourceVolumeStoreRetentionPolicyRead,
+		Schema:      volumeStoreRetentionPolicySchema(),
 	}
 }
 
-func dataSourceVesselRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func dataSourceVolumeStoreRetentionPolicyRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	inst, _ := d.Get("instance").(string)
 	name := d.Get("metadata.0.name").(string)
 	env := d.Get("metadata.0.environment").(string)
@@ -31,15 +31,15 @@ func dataSourceVesselRead(ctx context.Context, d *schema.ResourceData, m any) di
 		return diag.FromErr(err)
 	}
 
-	obj, err := clientSet.FormationV1Beta1().Vessels(env).Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.StorageV1Beta1().VolumeStoreRetentionPolicies(env).Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		if apierrors.IsNotFound(err) {
-			return diag.Errorf("Vessel %q not found in environment %q", name, env)
+			return diag.Errorf("Volume Store Retention Policy %q not found", name)
 		}
 		return diag.FromErr(err)
 	}
 
-	data, err := ec.Converter().Flatten(obj, vesselSchema())
+	data, err := ec.Converter().Flatten(obj, volumeStoreRetentionPolicySchema())
 	if err != nil {
 		return diag.FromErr(err)
 	}

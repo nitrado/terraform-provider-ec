@@ -672,6 +672,240 @@ func siteSchema() map[string]*schema.Schema {
 									Optional:    true,
 									Elem:        &schema.Schema{Type: schema.TypeString},
 								},
+								"pod_security_context": {
+									Type:        schema.TypeList,
+									Description: "PodSecurityContext defines the security options the pod should be run with.",
+									Optional:    true,
+									MaxItems:    1,
+									Elem: &schema.Resource{
+										Schema: map[string]*schema.Schema{
+											"app_armor_profile": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"localhost_profile": {
+															Type:     schema.TypeList,
+															Optional: true,
+															MaxItems: 1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"value": {
+																		Type:     schema.TypeString,
+																		Required: true,
+																	},
+																},
+															},
+														},
+														"type": {
+															Type:     schema.TypeString,
+															Optional: true,
+														},
+													},
+												},
+											},
+											"fs_group": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"value": {
+															Type:     schema.TypeInt,
+															Required: true,
+														},
+													},
+												},
+											},
+											"fs_group_change_policy": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"value": {
+															Type:     schema.TypeString,
+															Required: true,
+														},
+													},
+												},
+											},
+											"run_as_group": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"value": {
+															Type:     schema.TypeInt,
+															Required: true,
+														},
+													},
+												},
+											},
+											"run_as_non_root": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"value": {
+															Type:     schema.TypeBool,
+															Required: true,
+														},
+													},
+												},
+											},
+											"run_as_user": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"value": {
+															Type:     schema.TypeInt,
+															Required: true,
+														},
+													},
+												},
+											},
+											"se_linux_options": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"level": {
+															Type:     schema.TypeString,
+															Optional: true,
+														},
+														"role": {
+															Type:     schema.TypeString,
+															Optional: true,
+														},
+														"type": {
+															Type:     schema.TypeString,
+															Optional: true,
+														},
+														"user": {
+															Type:     schema.TypeString,
+															Optional: true,
+														},
+													},
+												},
+											},
+											"seccomp_profile": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"localhost_profile": {
+															Type:     schema.TypeList,
+															Optional: true,
+															MaxItems: 1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"value": {
+																		Type:     schema.TypeString,
+																		Required: true,
+																	},
+																},
+															},
+														},
+														"type": {
+															Type:     schema.TypeString,
+															Optional: true,
+														},
+													},
+												},
+											},
+											"supplemental_groups": {
+												Type:     schema.TypeList,
+												Optional: true,
+												Elem:     &schema.Schema{Type: schema.TypeInt},
+											},
+											"sysctls": {
+												Type:     schema.TypeList,
+												Optional: true,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"name": {
+															Type:     schema.TypeString,
+															Optional: true,
+														},
+														"value": {
+															Type:     schema.TypeString,
+															Optional: true,
+														},
+													},
+												},
+											},
+											"windows_options": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"gmsa_credential_spec": {
+															Type:     schema.TypeList,
+															Optional: true,
+															MaxItems: 1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"value": {
+																		Type:     schema.TypeString,
+																		Required: true,
+																	},
+																},
+															},
+														},
+														"gmsa_credential_spec_name": {
+															Type:     schema.TypeList,
+															Optional: true,
+															MaxItems: 1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"value": {
+																		Type:     schema.TypeString,
+																		Required: true,
+																	},
+																},
+															},
+														},
+														"host_process": {
+															Type:     schema.TypeList,
+															Optional: true,
+															MaxItems: 1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"value": {
+																		Type:     schema.TypeBool,
+																		Required: true,
+																	},
+																},
+															},
+														},
+														"run_as_user_name": {
+															Type:     schema.TypeList,
+															Optional: true,
+															MaxItems: 1,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"value": {
+																		Type:     schema.TypeString,
+																		Required: true,
+																	},
+																},
+															},
+														},
+													},
+												},
+											},
+										},
+									},
+								},
 								"security_context": {
 									Type:        schema.TypeList,
 									Description: "SecurityContext defines the security options the container should be run with. This security context overrides the user security context if a top level property is set.",

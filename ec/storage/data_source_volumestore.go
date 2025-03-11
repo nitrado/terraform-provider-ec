@@ -1,4 +1,4 @@
-package protection
+package storage
 
 import (
 	"context"
@@ -11,16 +11,16 @@ import (
 	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 )
 
-// DataSourceProtocol returns the data source resource for a Protocol.
-func DataSourceProtocol() *schema.Resource {
+// DataSourceVolumeStore returns the data source resource for a Volume Store.
+func DataSourceVolumeStore() *schema.Resource {
 	return &schema.Resource{
-		Description: "Use this data source to access information about an existing Protocol.",
-		ReadContext: dataSourceProtocolRead,
-		Schema:      protocolSchema(),
+		Description: "Use this data source to access information about an existing Volume Store.",
+		ReadContext: dataSourceVolumeStoreRead,
+		Schema:      volumeStoreSchema(),
 	}
 }
 
-func dataSourceProtocolRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
+func dataSourceVolumeStoreRead(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	inst, _ := d.Get("instance").(string)
 	name := d.Get("metadata.0.name").(string)
 	d.SetId(name)
@@ -30,15 +30,15 @@ func dataSourceProtocolRead(ctx context.Context, d *schema.ResourceData, m any) 
 		return diag.FromErr(err)
 	}
 
-	obj, err := clientSet.ProtectionV1Alpha1().Protocols().Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.StorageV1Beta1().VolumeStore().Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		if apierrors.IsNotFound(err) {
-			return diag.Errorf("Protocol %q not found", name)
+			return diag.Errorf("Volume Store %q not found", name)
 		}
 		return diag.FromErr(err)
 	}
 
-	data, err := ec.Converter().Flatten(obj, protocolSchema())
+	data, err := ec.Converter().Flatten(obj, volumeStoreSchema())
 	if err != nil {
 		return diag.FromErr(err)
 	}

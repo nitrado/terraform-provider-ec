@@ -10,6 +10,7 @@ import (
 	corev1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/core/v1"
 	formationv1beta1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/formation/v1beta1"
 	protectionv1alpha1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/protection/v1alpha1"
+	storagev1beta1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/storage/v1beta1"
 )
 
 type objInfo struct {
@@ -115,6 +116,24 @@ var objs = []objInfo{
 		Obj:      &protectionv1alpha1.Mitigation{},
 		Filename: "ec/protection/schema_migration.go",
 		FuncName: "migrationSchema",
+	},
+	{
+		Pkg:      "storage",
+		Obj:      &storagev1beta1.VolumeStore{},
+		Filename: "ec/storage/schema_volumestore.go",
+		FuncName: "volumeStoreSchema",
+	},
+	{
+		Pkg:      "storage",
+		Obj:      &storagev1beta1.VolumeStoreRetentionPolicy{},
+		Filename: "ec/storage/schema_volumestoreretentionpolicy.go",
+		FuncName: "volumeStoreRetentionPolicySchema",
+	},
+	{
+		Pkg:      "storage",
+		Obj:      &storagev1beta1.Volume{},
+		Filename: "ec/storage/schema_volume.go",
+		FuncName: "volumeSchema",
 	},
 }
 
