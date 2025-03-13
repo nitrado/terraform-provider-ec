@@ -10,8 +10,8 @@ See the [docs](docs/index.md) to find supported resources and data sources.
 
 ### Documentation Generation
 
-The documentation is generated using Go's `generate` command:
+To generate the documentation, run the following command:
 
 ```shell
-go generate
+make docs-gen
 ```
