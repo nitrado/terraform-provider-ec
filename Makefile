@@ -29,3 +29,9 @@ build:
 schema-gen:
 	@go run ./internal/cmd/schema-gen/
 .PHONY: schema-gen
+
+# Docs Generation
+
+docs-gen:
+	@go tool tfplugindocs generate
+.PHONY: docs-gen
