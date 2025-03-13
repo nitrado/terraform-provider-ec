@@ -7,7 +7,7 @@ linters-settings:
     max-complexity: 15
     skip-tests: true
   lll:
-    line-length: 130
+    line-length: 160
   gofumpt:
     extra-rules: true
   gosec:
@@ -23,10 +23,8 @@ linters-settings:
 linters:
   enable-all: true
   disable:
-    - execinquery # deprecated
-    - exportloopref # deprecated
     - gocyclo # duplicate of cyclop
-    - gomnd # deprecated
+    - tenv # deprecated
     - depguard
     - dupl
     - err113

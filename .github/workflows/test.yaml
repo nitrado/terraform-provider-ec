@@ -10,19 +10,18 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      GO_VERSION: "1.23"
       GOPRIVATE: gitlab.com/nitrado/*
-      GOLANGCI_LINT_VERSION: v1.60.3
+      GOLANGCI_LINT_VERSION: v1.64.7
 
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
       - name: Install Go
         if: success()
         uses: actions/setup-go@v5
         with:
-          go-version: ${{ env.GO_VERSION }}
-
-      - name: Checkout code
-        uses: actions/checkout@v4
+          go-version-file: 'go.mod'
 
       - name: Create .netrc
         uses: extractions/netrc@v2
@@ -30,14 +29,6 @@ jobs:
           machine: gitlab.com
           username: ${{ secrets.GITLAB_USERNAME }}
           password: ${{ secrets.GITLAB_TOKEN }}
-
-      - name: Cache Go modules
-        uses: actions/cache@v4
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
 
       - name: Download Go modules
         run: |
@@ -48,8 +39,13 @@ jobs:
         with:
           version: ${{ env.GOLANGCI_LINT_VERSION }}
 
-      - name: Run tests
-        run: go run gotest.tools/gotestsum@latest --junitfile tests.xml --format pkgname -- -cover -race ./...
+      - name: Setup gotestsum
+        uses: gertd/action-gotestsum@v3.0.0
+        with:
+          gotestsum_version: v1.12.0
+
+      - name: Run Tests
+        run: gotestsum --junitfile tests.xml --format pkgname -- -cover -race ./...
 
       - name: Test Summary
         uses: test-summary/action@v2

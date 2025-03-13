@@ -8,20 +8,19 @@ jobs:
   Release:
     runs-on: ubuntu-latest
     env:
-      GO_VERSION: "1.23"
       GOPRIVATE: gitlab.com/nitrado/*
 
     steps:
-      - name: Install Go
-        if: success()
-        uses: actions/setup-go@v5
-        with:
-          go-version: ${{ env.GO_VERSION }}
-
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: Install Go
+        if: success()
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
 
       - name: Create .netrc
         uses: extractions/netrc@v2
@@ -29,14 +28,6 @@ jobs:
           machine: gitlab.com
           username: ${{ secrets.GITLAB_USERNAME }}
           password: ${{ secrets.GITLAB_TOKEN }}
-
-      - name: Cache Go modules
-        uses: actions/cache@v4
-        with:
-          path: ~/go/pkg/mod
-          key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-          restore-keys: |
-            ${{ runner.os }}-go-
 
       - name: Import GPG key
         id: import_gpg
