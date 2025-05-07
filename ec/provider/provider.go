@@ -7,6 +7,8 @@ import (
 	"net/url"
 	"sync"
 
+	"github.com/gamefabric/gf-core/pkg/apiclient/clientset"
+	"github.com/gamefabric/gf-core/pkg/apiclient/rest"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
@@ -16,8 +18,6 @@ import (
 	"github.com/nitrado/terraform-provider-ec/ec/formation"
 	"github.com/nitrado/terraform-provider-ec/ec/protection"
 	"github.com/nitrado/terraform-provider-ec/ec/storage"
-	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
-	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/rest"
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )

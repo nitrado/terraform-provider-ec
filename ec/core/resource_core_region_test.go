@@ -6,11 +6,11 @@ import (
 	"strings"
 	"testing"
 
+	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
+	"github.com/gamefabric/gf-core/pkg/apiclient/clientset"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/terraform"
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
-	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
 )
 
 func TestResourceRegions(t *testing.T) {

@@ -3,13 +3,13 @@ package protection
 import (
 	"context"
 
+	"github.com/gamefabric/gf-apicore/api/errors"
+	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
+	protectionv1alpha1 "github.com/gamefabric/gf-core/pkg/api/protection/v1alpha1"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
-	"gitlab.com/nitrado/b2b/ec/apicore/api/errors"
-	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	protectionv1alpha1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/protection/v1alpha1"
 )
 
 // ResourceProtocol returns the resource for a Protocol.

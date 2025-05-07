@@ -3,12 +3,12 @@ package protection
 import (
 	"context"
 
+	apierrors "github.com/gamefabric/gf-apicore/api/errors"
+	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/pkg/resource"
-	apierrors "gitlab.com/nitrado/b2b/ec/apicore/api/errors"
-	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 )
 
 // DataSourceProtocol returns the data source resource for a Protocol.
