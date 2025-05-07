@@ -10,12 +10,20 @@ jobs:
 
     runs-on: ubuntu-latest
     env:
-      GOPRIVATE: gitlab.com/nitrado/*
+      GOPROXY: https://${{ secrets.GOPROXY }},direct
+      GONOSUMDB: ${{ secrets.GONOSUMDB }}
       GOLANGCI_LINT_VERSION: v1.64.7
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Setup Proxy Credentials
+        uses: extractions/netrc@v2
+        with:
+          machine: ${{ secrets.GOPROXY }}
+          username: ${{ secrets.GOPROXY_USERNAME }}
+          password: ${{ secrets.GOPROXY_TOKEN }}
 
       - name: Install Go
         if: success()
@@ -23,21 +31,19 @@ jobs:
         with:
           go-version-file: 'go.mod'
 
-      - name: Create .netrc
-        uses: extractions/netrc@v2
-        with:
-          machine: gitlab.com
-          username: ${{ secrets.GITLAB_USERNAME }}
-          password: ${{ secrets.GITLAB_TOKEN }}
-
-      - name: Download Go modules
-        run: |
-          go mod download
+      - name: Download dependencies
+        run: go mod download
+        if: steps.install-go.outputs.cache-hit != 'true'
 
       - name: Run linter
         uses: golangci/golangci-lint-action@v6
         with:
           version: ${{ env.GOLANGCI_LINT_VERSION }}
+
+      - name: Setup gotestsum
+        uses: gertd/action-gotestsum@v3.0.0
+        with:
+          gotestsum_version: v1.12.0
 
       - name: Setup gotestsum
         uses: gertd/action-gotestsum@v3.0.0
