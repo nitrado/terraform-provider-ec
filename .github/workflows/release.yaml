@@ -8,7 +8,8 @@ jobs:
   Release:
     runs-on: ubuntu-latest
     env:
-      GOPRIVATE: gitlab.com/nitrado/*
+      GOPROXY: https://${{ secrets.GOPROXY }},direct
+      GONOSUMDB: ${{ secrets.GONOSUMDB }}
 
     steps:
       - name: Checkout code
@@ -16,18 +17,18 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup Proxy Credentials
+        uses: extractions/netrc@v2
+        with:
+          machine: ${{ secrets.GOPROXY }}
+          username: ${{ secrets.GOPROXY_USERNAME }}
+          password: ${{ secrets.GOPROXY_TOKEN }}
+
       - name: Install Go
         if: success()
         uses: actions/setup-go@v5
         with:
           go-version-file: 'go.mod'
-
-      - name: Create .netrc
-        uses: extractions/netrc@v2
-        with:
-          machine: gitlab.com
-          username: ${{ secrets.GITLAB_USERNAME }}
-          password: ${{ secrets.GITLAB_TOKEN }}
 
       - name: Import GPG key
         id: import_gpg
