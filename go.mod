@@ -2,10 +2,6 @@ module github.com/nitrado/terraform-provider-ec
 
 go 1.24.1
 
-replace k8s.io/apimachinery => k8s.io/apimachinery v0.32.3
-
-replace github.com/vmihailenco/msgpack/v5 => github.com/vmihailenco/msgpack/v5 v5.4.0
-
 require (
 	github.com/ettle/strcase v0.2.0
 	github.com/gamefabric/gf-apicore v1.5.0
