@@ -4,14 +4,14 @@ import (
 	"context"
 	"testing"
 
+	"github.com/gamefabric/gf-apicore/runtime"
+	"github.com/gamefabric/gf-core/pkg/apiclient/clientset"
+	"github.com/gamefabric/gf-core/pkg/apiclient/fake"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/ec/provider"
 	"github.com/stretchr/testify/require"
-	"gitlab.com/nitrado/b2b/ec/apicore/runtime"
-	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
-	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/fake"
 )
 
 // SetupProviderFactories returns a configured test terraform provider.

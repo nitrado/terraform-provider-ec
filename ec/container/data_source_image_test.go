@@ -4,10 +4,10 @@ import (
 	"testing"
 	"time"
 
+	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
+	containerv1 "github.com/gamefabric/gf-core/pkg/api/container/v1"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
-	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	containerv1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/container/v1"
 )
 
 func TestDataSourceImages(t *testing.T) {

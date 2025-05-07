@@ -5,9 +5,9 @@ import (
 	"os"
 	"testing"
 
+	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 )
 

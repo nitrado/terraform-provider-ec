@@ -3,10 +3,10 @@ package core_test
 import (
 	"testing"
 
+	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
+	corev1 "github.com/gamefabric/gf-core/pkg/api/core/v1"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
-	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	corev1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/core/v1"
 )
 
 func TestDataSourceLocations(t *testing.T) {

@@ -3,10 +3,10 @@ package protection_test
 import (
 	"testing"
 
+	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
+	protectionv1alpha1 "github.com/gamefabric/gf-core/pkg/api/protection/v1alpha1"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
-	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	protectionv1alpha1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/protection/v1alpha1"
 )
 
 func TestDataSourceMigrations(t *testing.T) {

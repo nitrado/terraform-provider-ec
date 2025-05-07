@@ -8,12 +8,12 @@ import (
 	"time"
 
 	"github.com/ettle/strcase"
+	apierrors "github.com/gamefabric/gf-apicore/api/errors"
+	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
+	"github.com/gamefabric/gf-apicore/runtime"
+	"github.com/gamefabric/gf-core/pkg/apiclient/clientset"
+	clientsettools "github.com/gamefabric/gf-core/pkg/apiclient/tools/clientset"
 	"github.com/nitrado/tfconv"
-	apierrors "gitlab.com/nitrado/b2b/ec/apicore/api/errors"
-	metav1 "gitlab.com/nitrado/b2b/ec/apicore/apis/meta/v1"
-	"gitlab.com/nitrado/b2b/ec/apicore/runtime"
-	"gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/clientset"
-	clientsettools "gitlab.com/nitrado/b2b/ec/core/pkg/apiclient/tools/clientset"
 	"k8s.io/apimachinery/pkg/api/resource"
 )
 

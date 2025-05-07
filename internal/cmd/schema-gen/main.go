@@ -5,12 +5,12 @@ import (
 	"io"
 	"os"
 
-	armadav1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/armada/v1"
-	containerv1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/container/v1"
-	corev1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/core/v1"
-	formationv1beta1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/formation/v1beta1"
-	protectionv1alpha1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/protection/v1alpha1"
-	storagev1beta1 "gitlab.com/nitrado/b2b/ec/core/pkg/api/storage/v1beta1"
+	armadav1 "github.com/gamefabric/gf-core/pkg/api/armada/v1"
+	containerv1 "github.com/gamefabric/gf-core/pkg/api/container/v1"
+	corev1 "github.com/gamefabric/gf-core/pkg/api/core/v1"
+	formationv1beta1 "github.com/gamefabric/gf-core/pkg/api/formation/v1beta1"
+	protectionv1alpha1 "github.com/gamefabric/gf-core/pkg/api/protection/v1alpha1"
+	storagev1beta1 "github.com/gamefabric/gf-core/pkg/api/storage/v1beta1"
 )
 
 type objInfo struct {
