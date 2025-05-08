@@ -185,7 +185,7 @@ Optional:
 
 - `container_port` (Number) ContainerPort is the port that is being opened on the specified container's process.
 - `protection_protocol` (Block List, Max: 1) ProtectionProtocol is the optional name of the protection protocol being used. (see [below for nested schema](#nestedblock--spec--template--spec--containers--ports--protection_protocol))
-- `protocol` (String) Protocol is the network protocol being used. Defaults to UDP. TCP and TCPUDP are other options.
+- `protocol` (String) Protocol is the network protocol being used. Defaults to UDP. TCP is the other option.
 
 <a id="nestedblock--spec--template--spec--containers--ports--protection_protocol"></a>
 ### Nested Schema for `spec.template.spec.containers.ports.protection_protocol`
@@ -211,6 +211,7 @@ Optional:
 Optional:
 
 - `name` (String)
+- `request` (String)
 
 
 
