@@ -172,6 +172,10 @@ func formationSchema() map[string]*schema.Schema {
 																					Type:     schema.TypeString,
 																					Optional: true,
 																				},
+																				"request": {
+																					Type:     schema.TypeString,
+																					Optional: true,
+																				},
 																			},
 																		},
 																	},

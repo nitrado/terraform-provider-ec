@@ -16,5 +16,10 @@ func resourcesSchema() map[string]*schema.Schema {
 			Description: "Memory is the Memory resource.",
 			Optional:    true,
 		},
+		"pods": {
+			Type:        schema.TypeString,
+			Description: "Pods is the Pods resource.",
+			Optional:    true,
+		},
 	}
 }
