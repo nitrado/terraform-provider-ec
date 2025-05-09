@@ -28,6 +28,7 @@ func TestDataSourceSites(t *testing.T) {
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.credentials.0.token", "tok"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.cpu", "250m"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.memory", "1Gi"),
+					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.pods", "100"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.template.0.image_pull_secrets.0", "test-secret"),
 				),
 			},
@@ -44,6 +45,7 @@ func TestDataSourceSites(t *testing.T) {
 					resource.TestCheckResourceAttr("data.ec_core_site.test", "spec.0.credentials.0.token", "tok"),
 					resource.TestCheckResourceAttr("data.ec_core_site.test", "spec.0.resources.0.cpu", "250m"),
 					resource.TestCheckResourceAttr("data.ec_core_site.test", "spec.0.resources.0.memory", "1Gi"),
+					resource.TestCheckResourceAttr("data.ec_core_site.test", "spec.0.resources.0.pods", "100"),
 					resource.TestCheckResourceAttr("data.ec_core_site.test", "spec.0.template.0.image_pull_secrets.0", "test-secret"),
 					resource.TestCheckResourceAttr("data.ec_core_site.test", "spec.0.template.0.env.0.name", "foo"),
 					resource.TestCheckResourceAttr("data.ec_core_site.test", "spec.0.template.0.env.0.value", "bar"),
@@ -69,6 +71,7 @@ func testDataSourceSitesConfigBasic(name string) string {
     resources {
       cpu = "250m"
       memory = "1Gi"
+      pods = 100
 	}
 	template {
       env {

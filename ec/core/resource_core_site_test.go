@@ -34,6 +34,7 @@ func TestResourceSites(t *testing.T) {
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.credentials.0.token", "tok"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.cpu", "250m"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.memory", "1Gi"),
+					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.pods", "100"),
 				),
 			},
 			{
@@ -50,6 +51,7 @@ func TestResourceSites(t *testing.T) {
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.credentials.0.token", "tok"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.cpu", "250m"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.memory", "1Gi"),
+					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.pods", "100"),
 				),
 			},
 			{
@@ -65,6 +67,7 @@ func TestResourceSites(t *testing.T) {
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.credentials.0.token", "tok"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.cpu", "250m"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.memory", "1Gi"),
+					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.resources.0.pods", "100"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.template.0.env.#", "2"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.template.0.env.0.name", "foo"),
 					resource.TestCheckResourceAttr("ec_core_site.test", "spec.0.template.0.env.0.value", "bar"),
@@ -101,6 +104,7 @@ func testResourceSitesConfigBasic(name string) string {
     resources {
       cpu = "250m"
       memory = "1Gi"
+      pods = 100
 	}
   }
 }`, name)
@@ -126,6 +130,7 @@ func testResourceSitesConfigBasic2(name string) string {
     resources {
       cpu = "250m"
       memory = "1Gi"
+      pods = 100
 	}
   }
 }`, name)
@@ -148,6 +153,7 @@ func testResourceSitesConfigBasicWithEnv(name string) string {
     resources {
       cpu = "250m"
       memory = "1Gi"
+      pods = 100
 	}
     template {
       env {
