@@ -618,17 +618,9 @@ func armadaSchema() map[string]*schema.Schema {
 																		MaxItems: 1,
 																		Elem: &schema.Resource{
 																			Schema: map[string]*schema.Schema{
-																				"int_val": {
-																					Type:     schema.TypeInt,
-																					Optional: true,
-																				},
-																				"str_val": {
+																				"value": {
 																					Type:     schema.TypeString,
-																					Optional: true,
-																				},
-																				"type": {
-																					Type:     schema.TypeInt,
-																					Optional: true,
+																					Required: true,
 																				},
 																			},
 																		},
@@ -639,17 +631,9 @@ func armadaSchema() map[string]*schema.Schema {
 																		MaxItems: 1,
 																		Elem: &schema.Resource{
 																			Schema: map[string]*schema.Schema{
-																				"int_val": {
-																					Type:     schema.TypeInt,
-																					Optional: true,
-																				},
-																				"str_val": {
+																				"value": {
 																					Type:     schema.TypeString,
-																					Optional: true,
-																				},
-																				"type": {
-																					Type:     schema.TypeInt,
-																					Optional: true,
+																					Required: true,
 																				},
 																			},
 																		},

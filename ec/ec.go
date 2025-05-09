@@ -15,6 +15,7 @@ import (
 	clientsettools "github.com/gamefabric/gf-core/pkg/apiclient/tools/clientset"
 	"github.com/nitrado/tfconv"
 	"k8s.io/apimachinery/pkg/api/resource"
+	"k8s.io/apimachinery/pkg/util/intstr"
 )
 
 // ProviderContext contains connection context information.
@@ -100,6 +101,7 @@ func WaitForDeletion[T runtime.Object](ctx context.Context, getter clientsettool
 func Converter() *tfconv.Converter {
 	c := tfconv.NewWithName(FieldName, "json")
 	c.Register(resource.Quantity{}, expandQuantity, flattenQuantity)
+	c.Register(intstr.IntOrString{}, expandIntOrString, flattenIntOrString)
 	return c
 }
 
@@ -110,6 +112,15 @@ func expandQuantity(v any) (any, error) {
 func flattenQuantity(v any) (any, error) {
 	q := v.(resource.Quantity)
 	return (&q).String(), nil
+}
+
+func expandIntOrString(v any) (any, error) {
+	return intstr.Parse(v.(string)), nil
+}
+
+func flattenIntOrString(v any) (any, error) {
+	i := v.(intstr.IntOrString)
+	return i.String(), nil
 }
 
 // FieldName returns the terraform-styled field name from the given name.
