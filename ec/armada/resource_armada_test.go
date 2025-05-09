@@ -37,6 +37,9 @@ func TestResourceArmadas(t *testing.T) {
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.distribution.0.max_replicas", "2"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.distribution.0.buffer_size", "3"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.template.0.metadata.0.labels.foo", "bar"),
+					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.template.0.spec.0.strategy.0.type", "RollingUpdate"),
+					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.template.0.spec.0.strategy.0.rolling_update.0.max_unavailable.0.value", "25%"),
+					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.template.0.spec.0.strategy.0.rolling_update.0.max_surge.0.value", "10"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.template.0.spec.0.containers.0.name", "my-ctr"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.template.0.spec.0.containers.0.branch", "prod"),
 					resource.TestCheckResourceAttr("ec_armada_armada.test", "spec.0.template.0.spec.0.containers.0.image", "test-xyz"),
@@ -97,6 +100,17 @@ func testResourceArmadasConfigBasic(env, name string) string {
         }
       }
       spec {
+		strategy {
+		  type = "RollingUpdate"
+		  rolling_update {
+			max_unavailable {
+			  value = "25%%"
+			}
+			max_surge {	
+			  value = "10"
+			}
+		  }
+		}
         containers {
           name = "my-ctr"
           branch = "prod"

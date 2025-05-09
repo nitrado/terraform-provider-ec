@@ -448,21 +448,17 @@ Optional:
 <a id="nestedblock--spec--template--spec--strategy--rolling_update--max_surge"></a>
 ### Nested Schema for `spec.template.spec.strategy.rolling_update.max_surge`
 
-Optional:
+Required:
 
-- `int_val` (Number)
-- `str_val` (String)
-- `type` (Number)
+- `value` (String)
 
 
 <a id="nestedblock--spec--template--spec--strategy--rolling_update--max_unavailable"></a>
 ### Nested Schema for `spec.template.spec.strategy.rolling_update.max_unavailable`
 
-Optional:
+Required:
 
-- `int_val` (Number)
-- `str_val` (String)
-- `type` (Number)
+- `value` (String)
 
 
 

@@ -135,7 +135,7 @@ func (g *Generator) customize(obj any, sf *reflect.StructField, typ reflect.Type
 	}
 
 	switch typ.String() {
-	case "resource.Quantity":
+	case "resource.Quantity", "intstr.IntOrString":
 		return "", reflect.String, true
 	case "v1.ObjectMeta":
 		return "meta.Schema", kind, true
