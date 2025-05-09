@@ -74,6 +74,7 @@ Optional:
 
 - `cpu` (String) CPU is the CPU resource.
 - `memory` (String) Memory is the Memory resource.
+- `pods` (String) Pods is the Pods resource.
 
 
 <a id="nestedblock--spec--template"></a>
@@ -472,9 +473,11 @@ Optional:
 - `run_as_group` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--run_as_group))
 - `run_as_non_root` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--run_as_non_root))
 - `run_as_user` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--run_as_user))
+- `se_linux_change_policy` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--se_linux_change_policy))
 - `se_linux_options` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--se_linux_options))
 - `seccomp_profile` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--seccomp_profile))
 - `supplemental_groups` (List of Number)
+- `supplemental_groups_policy` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--supplemental_groups_policy))
 - `sysctls` (Block List) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--sysctls))
 - `windows_options` (Block List, Max: 1) (see [below for nested schema](#nestedblock--spec--template--pod_security_context--windows_options))
 
@@ -535,6 +538,14 @@ Required:
 - `value` (Number)
 
 
+<a id="nestedblock--spec--template--pod_security_context--se_linux_change_policy"></a>
+### Nested Schema for `spec.template.pod_security_context.se_linux_change_policy`
+
+Required:
+
+- `value` (String)
+
+
 <a id="nestedblock--spec--template--pod_security_context--se_linux_options"></a>
 ### Nested Schema for `spec.template.pod_security_context.se_linux_options`
 
@@ -561,6 +572,14 @@ Required:
 
 - `value` (String)
 
+
+
+<a id="nestedblock--spec--template--pod_security_context--supplemental_groups_policy"></a>
+### Nested Schema for `spec.template.pod_security_context.supplemental_groups_policy`
+
+Required:
+
+- `value` (String)
 
 
 <a id="nestedblock--spec--template--pod_security_context--sysctls"></a>

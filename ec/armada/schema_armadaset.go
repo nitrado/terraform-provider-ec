@@ -259,7 +259,7 @@ func armadaSetSchema() map[string]*schema.Schema {
 																	},
 																	"protocol": {
 																		Type:        schema.TypeString,
-																		Description: "Protocol is the network protocol being used. Defaults to UDP. TCP and TCPUDP are other options.",
+																		Description: "Protocol is the network protocol being used. Defaults to UDP. TCP is the other option.",
 																		Optional:    true,
 																	},
 																},
@@ -278,6 +278,10 @@ func armadaSetSchema() map[string]*schema.Schema {
 																		Elem: &schema.Resource{
 																			Schema: map[string]*schema.Schema{
 																				"name": {
+																					Type:     schema.TypeString,
+																					Optional: true,
+																				},
+																				"request": {
 																					Type:     schema.TypeString,
 																					Optional: true,
 																				},

@@ -770,6 +770,19 @@ func siteSchema() map[string]*schema.Schema {
 													},
 												},
 											},
+											"se_linux_change_policy": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"value": {
+															Type:     schema.TypeString,
+															Required: true,
+														},
+													},
+												},
+											},
 											"se_linux_options": {
 												Type:     schema.TypeList,
 												Optional: true,
@@ -825,6 +838,19 @@ func siteSchema() map[string]*schema.Schema {
 												Type:     schema.TypeList,
 												Optional: true,
 												Elem:     &schema.Schema{Type: schema.TypeInt},
+											},
+											"supplemental_groups_policy": {
+												Type:     schema.TypeList,
+												Optional: true,
+												MaxItems: 1,
+												Elem: &schema.Resource{
+													Schema: map[string]*schema.Schema{
+														"value": {
+															Type:     schema.TypeString,
+															Required: true,
+														},
+													},
+												},
 											},
 											"sysctls": {
 												Type:     schema.TypeList,
