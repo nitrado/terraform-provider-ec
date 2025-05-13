@@ -86,7 +86,6 @@ func testResourceArmadaSetsConfigBasic(env, name string) string {
   spec {
     description = "My ArmadaSet"
     armadas {
-      name = "eu-armada"
       region = "eu"
       distribution {
         name = "baremetal"
@@ -125,7 +124,6 @@ func testResourceArmadaSetsConfigBasicWithEnv(env, name string) string {
   spec {
     description = "My ArmadaSet"
     armadas {
-      name = "eu-armada"
       region = "eu"
       distribution {
         name = "baremetal"
