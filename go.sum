@@ -56,8 +56,8 @@ github.com/fxamacker/cbor/v2 v2.7.0 h1:iM5WgngdRBanHcxugY4JySA0nk1wZorNOpTgCMedv
 github.com/fxamacker/cbor/v2 v2.7.0/go.mod h1:pxXPTn3joSm21Gbwsv0w9OSA2y1HFR9qXEeXQVeNoDQ=
 github.com/gamefabric/gf-apicore v1.5.0 h1:+sMS0XtN6JDVzx1xf/w+Xy4wjzBcx/qGk5ixx7U4rgM=
 github.com/gamefabric/gf-apicore v1.5.0/go.mod h1:P8R8MyhYZ9WC1Zeti8s1DifD9Pcbzo+MBeN/gI1qv0k=
-github.com/gamefabric/gf-core v0.23.0-rc.1 h1:hcEiDHeWzy8wyYLB9ZIdqHG3+wp2mDboiGPiIf1KRG4=
-github.com/gamefabric/gf-core v0.23.0-rc.1/go.mod h1:VgbO6Gly8oFw0iX/gAWIeKyzTOFw9Z3PkJhtg5mchvo=
+github.com/gamefabric/gf-core v0.23.0 h1:EapeBl5GQwWAAI4UHsJUKIlowxanEyHMlF/4fGRT7PI=
+github.com/gamefabric/gf-core v0.23.0/go.mod h1:qaTRrShgluea3rQPy2vk8vVLHKTR5R/0Al0rQ2KqrLA=
 github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 h1:+zs/tPmkDkHx3U66DAb0lQFJrpS6731Oaa12ikc+DiI=
 github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376/go.mod h1:an3vInlBmSxCcxctByoQdvwPiA7DTK7jaaFDBTtu0ic=
 github.com/go-git/go-billy/v5 v5.6.0 h1:w2hPNtoehvJIxR00Vb4xX94qHQi/ApZfX+nBE2Cjio8=
