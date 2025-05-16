@@ -6,6 +6,7 @@ import (
 	"os"
 
 	armadav1 "github.com/gamefabric/gf-core/pkg/api/armada/v1"
+	authenticationv1beta1 "github.com/gamefabric/gf-core/pkg/api/authentication/v1beta1"
 	containerv1 "github.com/gamefabric/gf-core/pkg/api/container/v1"
 	corev1 "github.com/gamefabric/gf-core/pkg/api/core/v1"
 	formationv1beta1 "github.com/gamefabric/gf-core/pkg/api/formation/v1beta1"
@@ -38,6 +39,12 @@ var objs = []objInfo{
 		Obj:      &armadav1.ArmadaSet{},
 		Filename: "ec/armada/schema_armadaset.go",
 		FuncName: "armadaSetSchema",
+	},
+	{
+		Pkg:      "authentication",
+		Obj:      &authenticationv1beta1.Provider{},
+		Filename: "ec/authentication/schema_provider.go",
+		FuncName: "providerSchema",
 	},
 	{
 		Pkg:      "container",
