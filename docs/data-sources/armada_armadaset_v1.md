@@ -66,7 +66,6 @@ Required:
 Optional:
 
 - `description` (String) Description is the optional description of the armada.
-- `name` (String) Name is the name of the armada. Deprecated: In future releases, the Armada name will be based on the Region.
 
 <a id="nestedblock--spec--armadas--distribution"></a>
 ### Nested Schema for `spec.armadas.distribution`
@@ -535,7 +534,6 @@ Optional:
 
 - `env` (Block List) Env is a list of environment variables to set on containers. (see [below for nested schema](#nestedblock--spec--override--env))
 - `labels` (Map of String) Labels is a map of keys and values that can be used to organize and categorize objects.
-- `name` (String) Name is the name of the armada Region that will be overridden. Deprecated: Use the Region to override values.
 
 <a id="nestedblock--spec--override--env"></a>
 ### Nested Schema for `spec.override.env`
