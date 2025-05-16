@@ -1,30 +1,23 @@
+version: "2"
 run:
   tests: false
-  timeout: 5m
 
-linters-settings:
-  cyclop:
-    max-complexity: 15
-    skip-tests: true
-  lll:
-    line-length: 160
-  gofumpt:
-    extra-rules: true
-  gosec:
-    excludes:
-      - G101
-      - G402
-  tagliatelle:
-    case:
-      use-field-name: true
-      rules:
-        json: pascal
+formatters:
+  enable:
+    - gci
+    - gofmt
+    - gofumpt
+    - goimports
+  settings:
+    gofumpt:
+      extra-rules: true
+  exclusions:
+    generated: lax
 
 linters:
-  enable-all: true
+  default: all
   disable:
     - gocyclo # duplicate of cyclop
-    - tenv # deprecated
     - depguard
     - dupl
     - err113
@@ -35,19 +28,28 @@ linters:
     - gochecknoglobals
     - gochecknoinits
     - godox
-    - mnd
     - gomoddirectives
     - ireturn
     - lll
+    - mnd
     - nlreturn
     - nonamedreturns
     - tagliatelle
     - varnamelen
     - wrapcheck
     - wsl
-
-issues:
-  exclude-use-default: false
-  exclude:
-    - "ST1000: at least one file in a package should have a package comment"
-    - "package-comments: should have a package comment"
+  settings:
+    cyclop:
+      max-complexity: 15
+    lll:
+      line-length: 160
+  exclusions:
+    generated: lax
+    rules:
+      - path: (.+)\.go$
+        text: 'ST1000: at least one file in a package should have a package comment'
+      - path: (.+)\.go$
+        text: 'package-comments: should have a package comment'
+      - linters:
+          - cyclop
+        path: (.+)_test\.go
