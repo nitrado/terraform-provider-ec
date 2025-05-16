@@ -13,6 +13,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
 	"github.com/nitrado/terraform-provider-ec/ec/armada"
+	"github.com/nitrado/terraform-provider-ec/ec/authentication"
 	"github.com/nitrado/terraform-provider-ec/ec/container"
 	"github.com/nitrado/terraform-provider-ec/ec/core"
 	"github.com/nitrado/terraform-provider-ec/ec/formation"
@@ -158,6 +159,10 @@ func Provider() *schema.Provider {
 			"ec_armada_armada_v1":                           armada.ResourceArmada(),
 			"ec_armada_armadaset":                           armada.ResourceArmadaSet(),
 			"ec_armada_armadaset_v1":                        armada.ResourceArmadaSet(),
+			"ec_authentication_provider":                    authentication.ResourceProvider(),
+			"ec_authentication_provider_v1beta1":            authentication.ResourceProvider(),
+			"ec_authentication_serviceaccount":              authentication.ResourceServiceAccount(),
+			"ec_authentication_serviceaccount_v1beta1":      authentication.ResourceServiceAccount(),
 			"ec_container_branch":                           container.ResourceBranch(),
 			"ec_container_branch_v1":                        container.ResourceBranch(),
 			"ec_core_environment":                           core.ResourceEnvironment(),
