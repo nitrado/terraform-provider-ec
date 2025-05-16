@@ -58,21 +58,6 @@ func resourceServiceAccountRead(ctx context.Context, d *schema.ResourceData, m a
 	return nil
 }
 
-func extractDataKey(data any, key string) any {
-	if a, ok := data.([]any); ok && len(a) > 0 {
-		data = a[0]
-	}
-	m, ok := data.(map[string]any)
-	if !ok {
-		return nil
-	}
-	v, ok := m[key]
-	if !ok {
-		return nil
-	}
-	return v
-}
-
 func resourceServiceAccountCreate(ctx context.Context, d *schema.ResourceData, m any) diag.Diagnostics {
 	inst, _ := d.Get("instance").(string)
 	clientSet, err := ec.ResolveClientSet(m, inst)
