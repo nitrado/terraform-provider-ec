@@ -435,9 +435,7 @@ Required:
 Optional:
 
 - `empty_dir` (Block List, Max: 1) EmptyDir configures an empty dir volume. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--empty_dir))
-- `medium` (String) Medium is the storage medium type.  Deprecated: Use EmptyDir.Medium instead.
 - `persistent` (Block List, Max: 1) Persistent configures a persistent volume. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--persistent))
-- `size_limit` (Block List, Max: 1) SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead. (see [below for nested schema](#nestedblock--spec--template--spec--volumes--size_limit))
 - `type` (String) Type is the volume type.
 
 <a id="nestedblock--spec--template--spec--volumes--empty_dir"></a>
@@ -463,14 +461,6 @@ Required:
 Required:
 
 - `volume_name` (String) VolumeName is the name of the volume to store data in.
-
-
-<a id="nestedblock--spec--template--spec--volumes--size_limit"></a>
-### Nested Schema for `spec.template.spec.volumes.size_limit`
-
-Required:
-
-- `value` (String) SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead.
 
 
 
