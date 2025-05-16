@@ -69,7 +69,6 @@ func testDataSourceArmadaSetsConfigBasic(name, env string) string {
   spec {
     description = "My ArmadaSet"
     armadas {
-      name = "eu-armada"
       region = "eu"
       distribution {
         name = "baremetal"
