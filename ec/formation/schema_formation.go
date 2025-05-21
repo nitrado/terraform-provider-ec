@@ -591,11 +591,6 @@ func formationSchema() map[string]*schema.Schema {
 																},
 															},
 														},
-														"medium": {
-															Type:        schema.TypeString,
-															Description: "Medium is the storage medium type.  Deprecated: Use EmptyDir.Medium instead.",
-															Optional:    true,
-														},
 														"name": {
 															Type:        schema.TypeString,
 															Description: "Name is the name of the volume mount.",
@@ -611,21 +606,6 @@ func formationSchema() map[string]*schema.Schema {
 																	"volume_name": {
 																		Type:        schema.TypeString,
 																		Description: "VolumeName is the name of the volume to store data in.",
-																		Required:    true,
-																	},
-																},
-															},
-														},
-														"size_limit": {
-															Type:        schema.TypeList,
-															Description: "SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead.",
-															Optional:    true,
-															MaxItems:    1,
-															Elem: &schema.Resource{
-																Schema: map[string]*schema.Schema{
-																	"value": {
-																		Type:        schema.TypeString,
-																		Description: "SizeLimit is the maximum size of the volume.  Deprecated: Use EmptyDir.SizeLimit instead.",
 																		Required:    true,
 																	},
 																},
