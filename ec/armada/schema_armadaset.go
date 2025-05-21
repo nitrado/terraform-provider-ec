@@ -68,11 +68,6 @@ func armadaSetSchema() map[string]*schema.Schema {
 										},
 									},
 								},
-								"name": {
-									Type:        schema.TypeString,
-									Description: "Name is the name of the armada. Deprecated: In future releases, the Armada name will be based on the Region.",
-									Optional:    true,
-								},
 								"region": {
 									Type:        schema.TypeString,
 									Description: "Region defines the region the game servers are distributed to.",
@@ -128,11 +123,6 @@ func armadaSetSchema() map[string]*schema.Schema {
 									Description: "Labels is a map of keys and values that can be used to organize and categorize objects.",
 									Optional:    true,
 									Elem:        &schema.Schema{Type: schema.TypeString},
-								},
-								"name": {
-									Type:        schema.TypeString,
-									Description: "Name is the name of the armada Region that will be overridden. Deprecated: Use the Region to override values.",
-									Optional:    true,
 								},
 								"region": {
 									Type:        schema.TypeString,

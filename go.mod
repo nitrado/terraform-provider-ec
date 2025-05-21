@@ -4,8 +4,8 @@ go 1.24.1
 
 require (
 	github.com/ettle/strcase v0.2.0
-	github.com/gamefabric/gf-apicore v1.5.0
-	github.com/gamefabric/gf-core v0.23.0
+	github.com/gamefabric/gf-apicore v1.6.1
+	github.com/gamefabric/gf-core v0.23.1-0.20250520094656-cf793ec8faad
 	github.com/hashicorp/go-cty v1.4.1
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.36.1
 	github.com/nitrado/tfconv v1.3.0
