@@ -17,7 +17,6 @@ formatters:
 linters:
   default: all
   disable:
-    - gocyclo # duplicate of cyclop
     - depguard
     - dupl
     - err113
@@ -50,6 +49,3 @@ linters:
         text: 'ST1000: at least one file in a package should have a package comment'
       - path: (.+)\.go$
         text: 'package-comments: should have a package comment'
-      - linters:
-          - cyclop
-        path: (.+)_test\.go
