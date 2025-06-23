@@ -60,4 +60,4 @@ signs:
       - "${artifact}"
 
 snapshot:
-  version_template: 'dev-{{ slice .FullCommit 0 8}}'
+  version_template: 'dev-{{ slice .FullCommit 0 7 }}'
