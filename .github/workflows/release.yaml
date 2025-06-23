@@ -1,9 +1,14 @@
+name: release
+
+permissions:
+  contents: write
+  id-token: write
+
 on:
   push:
     tags:
       - '*'
 
-name: release
 jobs:
   Release:
     runs-on: ubuntu-latest

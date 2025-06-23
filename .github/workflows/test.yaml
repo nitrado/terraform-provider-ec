@@ -1,10 +1,15 @@
+name: run tests
+
+permissions:
+  contents: read
+  id-token: write
+
 on:
   push:
     branches:
       - main
   pull_request:
 
-name: run tests
 jobs:
   Test:
 
@@ -43,12 +48,7 @@ jobs:
       - name: Setup gotestsum
         uses: gertd/action-gotestsum@v3.0.0
         with:
-          gotestsum_version: v1.12.0
-
-      - name: Setup gotestsum
-        uses: gertd/action-gotestsum@v3.0.0
-        with:
-          gotestsum_version: v1.12.0
+          gotestsum_version: v1.12.3
 
       - name: Run Tests
         run: gotestsum --junitfile tests.xml --format pkgname -- -cover -race ./...
