@@ -5,7 +5,7 @@ import (
 
 	"github.com/gamefabric/gf-apicore/api/errors"
 	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
-	protectionv1alpha1 "github.com/gamefabric/gf-core/pkg/api/protection/v1alpha1"
+	protectionv1 "github.com/gamefabric/gf-core/pkg/api/protection/v1"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
@@ -36,7 +36,7 @@ func resourceGatewayPolicyRead(ctx context.Context, d *schema.ResourceData, m an
 
 	name := d.Id()
 
-	obj, err := clientSet.ProtectionV1Alpha1().GatewayPolicies().Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.ProtectionV1().GatewayPolicies().Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		switch {
 		case errors.IsNotFound(err):
@@ -65,7 +65,7 @@ func resourceGatewayPolicyCreate(ctx context.Context, d *schema.ResourceData, m 
 		return diag.FromErr(err)
 	}
 
-	obj := &protectionv1alpha1.GatewayPolicy{}
+	obj := &protectionv1.GatewayPolicy{}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -73,7 +73,7 @@ func resourceGatewayPolicyCreate(ctx context.Context, d *schema.ResourceData, m 
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.ProtectionV1Alpha1().GatewayPolicies().Create(ctx, obj, metav1.CreateOptions{})
+	out, err := clientSet.ProtectionV1().GatewayPolicies().Create(ctx, obj, metav1.CreateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -89,7 +89,7 @@ func resourceGatewayPolicyUpdate(ctx context.Context, d *schema.ResourceData, m 
 		return diag.FromErr(err)
 	}
 
-	obj := &protectionv1alpha1.GatewayPolicy{}
+	obj := &protectionv1.GatewayPolicy{}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -97,7 +97,7 @@ func resourceGatewayPolicyUpdate(ctx context.Context, d *schema.ResourceData, m 
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.ProtectionV1Alpha1().GatewayPolicies().Update(ctx, obj, metav1.UpdateOptions{})
+	out, err := clientSet.ProtectionV1().GatewayPolicies().Update(ctx, obj, metav1.UpdateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -115,7 +115,7 @@ func resourceGatewayPolicyDelete(ctx context.Context, d *schema.ResourceData, m 
 
 	name := d.Id()
 
-	if err = clientSet.ProtectionV1Alpha1().GatewayPolicies().Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
+	if err = clientSet.ProtectionV1().GatewayPolicies().Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
 		switch {
 		case errors.IsNotFound(err):
 			// We will consider this a successful delete.
@@ -125,7 +125,7 @@ func resourceGatewayPolicyDelete(ctx context.Context, d *schema.ResourceData, m 
 	}
 
 	// Wait for the deletion to complete.
-	if err = ec.WaitForDeletion(ctx, clientSet.ProtectionV1Alpha1().GatewayPolicies(), name); err != nil {
+	if err = ec.WaitForDeletion(ctx, clientSet.ProtectionV1().GatewayPolicies(), name); err != nil {
 		return diag.FromErr(err)
 	}
 

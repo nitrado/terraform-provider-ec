@@ -30,7 +30,7 @@ func dataSourceProtocolRead(ctx context.Context, d *schema.ResourceData, m any) 
 		return diag.FromErr(err)
 	}
 
-	obj, err := clientSet.ProtectionV1Alpha1().Protocols().Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.ProtectionV1().Protocols().Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		if apierrors.IsNotFound(err) {
 			return diag.Errorf("Protocol %q not found", name)

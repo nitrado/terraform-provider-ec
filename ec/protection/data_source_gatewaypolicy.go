@@ -30,7 +30,7 @@ func dataSourceGatewayPolicyRead(ctx context.Context, d *schema.ResourceData, m 
 		return diag.FromErr(err)
 	}
 
-	obj, err := clientSet.ProtectionV1Alpha1().GatewayPolicies().Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.ProtectionV1().GatewayPolicies().Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		if apierrors.IsNotFound(err) {
 			return diag.Errorf("Gateway Policy %q not found", name)

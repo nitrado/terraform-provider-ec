@@ -5,7 +5,7 @@ import (
 
 	"github.com/gamefabric/gf-apicore/api/errors"
 	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
-	formationv1beta1 "github.com/gamefabric/gf-core/pkg/api/formation/v1beta1"
+	formationv1 "github.com/gamefabric/gf-core/pkg/api/formation/v1"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"
@@ -36,7 +36,7 @@ func resourceVesselRead(ctx context.Context, d *schema.ResourceData, m any) diag
 
 	env, name := ec.SplitName(d.Id())
 
-	obj, err := clientSet.FormationV1Beta1().Vessels(env).Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.FormationV1().Vessels(env).Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		switch {
 		case errors.IsNotFound(err):
@@ -65,7 +65,7 @@ func resourceVesselCreate(ctx context.Context, d *schema.ResourceData, m any) di
 		return diag.FromErr(err)
 	}
 
-	obj := &formationv1beta1.Vessel{}
+	obj := &formationv1.Vessel{}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -73,7 +73,7 @@ func resourceVesselCreate(ctx context.Context, d *schema.ResourceData, m any) di
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.FormationV1Beta1().Vessels(obj.Environment).Create(ctx, obj, metav1.CreateOptions{})
+	out, err := clientSet.FormationV1().Vessels(obj.Environment).Create(ctx, obj, metav1.CreateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -89,7 +89,7 @@ func resourceVesselUpdate(ctx context.Context, d *schema.ResourceData, m any) di
 		return diag.FromErr(err)
 	}
 
-	obj := &formationv1beta1.Vessel{}
+	obj := &formationv1.Vessel{}
 	if err = ec.Converter().Expand(d.Get("metadata").([]any), &obj.ObjectMeta); err != nil {
 		return diag.FromErr(err)
 	}
@@ -97,7 +97,7 @@ func resourceVesselUpdate(ctx context.Context, d *schema.ResourceData, m any) di
 		return diag.FromErr(err)
 	}
 
-	out, err := clientSet.FormationV1Beta1().Vessels(obj.Environment).Update(ctx, obj, metav1.UpdateOptions{})
+	out, err := clientSet.FormationV1().Vessels(obj.Environment).Update(ctx, obj, metav1.UpdateOptions{})
 	if err != nil {
 		return diag.FromErr(err)
 	}
@@ -115,7 +115,7 @@ func resourceVesselDelete(ctx context.Context, d *schema.ResourceData, m any) di
 
 	env, name := ec.SplitName(d.Id())
 
-	if err = clientSet.FormationV1Beta1().Vessels(env).Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
+	if err = clientSet.FormationV1().Vessels(env).Delete(ctx, name, metav1.DeleteOptions{}); err != nil {
 		switch {
 		case errors.IsNotFound(err):
 			// We will consider this a successful delete.
@@ -125,7 +125,7 @@ func resourceVesselDelete(ctx context.Context, d *schema.ResourceData, m any) di
 	}
 
 	// Wait for the deletion to complete.
-	if err = ec.WaitForDeletion(ctx, clientSet.FormationV1Beta1().Vessels(env), name); err != nil {
+	if err = ec.WaitForDeletion(ctx, clientSet.FormationV1().Vessels(env), name); err != nil {
 		return diag.FromErr(err)
 	}
 
