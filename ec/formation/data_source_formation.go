@@ -31,7 +31,7 @@ func dataSourceFormationRead(ctx context.Context, d *schema.ResourceData, m any)
 		return diag.FromErr(err)
 	}
 
-	obj, err := clientSet.FormationV1Beta1().Formations(env).Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.FormationV1().Formations(env).Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		if apierrors.IsNotFound(err) {
 			return diag.Errorf("Formation %q not found in environment %q", name, env)

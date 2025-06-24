@@ -84,7 +84,7 @@ func testCheckProtocolDestroy(cs clientset.Interface) func(s *terraform.State) e
 			}
 
 			name := rs.Primary.ID
-			resp, err := cs.ProtectionV1Alpha1().Protocols().Get(context.Background(), name, metav1.GetOptions{})
+			resp, err := cs.ProtectionV1().Protocols().Get(context.Background(), name, metav1.GetOptions{})
 			if err == nil {
 				if resp.Name == rs.Primary.ID {
 					return fmt.Errorf("protocol still exists: %s", rs.Primary.ID)

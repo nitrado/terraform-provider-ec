@@ -145,7 +145,7 @@ func testCheckFormationsDestroy(cs clientset.Interface) func(s *terraform.State)
 			}
 
 			env, name, _ := strings.Cut(rs.Primary.ID, "/")
-			resp, err := cs.FormationV1Beta1().Formations(env).Get(context.Background(), name, metav1.GetOptions{})
+			resp, err := cs.FormationV1().Formations(env).Get(context.Background(), name, metav1.GetOptions{})
 			if err == nil {
 				if resp.Name == rs.Primary.ID {
 					return fmt.Errorf("formation still exists: %s", rs.Primary.ID)

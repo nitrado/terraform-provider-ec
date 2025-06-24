@@ -34,7 +34,7 @@ func dataSourceMigrationRead(ctx context.Context, d *schema.ResourceData, m any)
 		return diag.FromErr(err)
 	}
 
-	obj, err := clientSet.ProtectionV1Alpha1().Mitigations().Get(ctx, name.(string), metav1.GetOptions{})
+	obj, err := clientSet.ProtectionV1().Mitigations().Get(ctx, name.(string), metav1.GetOptions{})
 	if err != nil {
 		if apierrors.IsNotFound(err) {
 			return diag.Errorf("Migration %q not found", name)

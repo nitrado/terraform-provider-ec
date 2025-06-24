@@ -31,7 +31,7 @@ func dataSourceVesselRead(ctx context.Context, d *schema.ResourceData, m any) di
 		return diag.FromErr(err)
 	}
 
-	obj, err := clientSet.FormationV1Beta1().Vessels(env).Get(ctx, name, metav1.GetOptions{})
+	obj, err := clientSet.FormationV1().Vessels(env).Get(ctx, name, metav1.GetOptions{})
 	if err != nil {
 		if apierrors.IsNotFound(err) {
 			return diag.Errorf("Vessel %q not found in environment %q", name, env)

@@ -4,21 +4,21 @@ import (
 	"testing"
 
 	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
-	protectionv1alpha1 "github.com/gamefabric/gf-core/pkg/api/protection/v1alpha1"
+	protectionv1 "github.com/gamefabric/gf-core/pkg/api/protection/v1"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/resource"
 	"github.com/nitrado/terraform-provider-ec/ec/provider/providertest"
 )
 
 func TestDataSourceMigrations(t *testing.T) {
-	migration1 := &protectionv1alpha1.Mitigation{
+	migration1 := &protectionv1.Mitigation{
 		ObjectMeta: metav1.ObjectMeta{Name: "my-migration-1"},
-		Spec: protectionv1alpha1.MitigationSpec{
+		Spec: protectionv1.MitigationSpec{
 			DisplayName: "my migration 1",
 		},
 	}
-	migration2 := &protectionv1alpha1.Mitigation{
+	migration2 := &protectionv1.Mitigation{
 		ObjectMeta: metav1.ObjectMeta{Name: "my-migration-2"},
-		Spec: protectionv1alpha1.MitigationSpec{
+		Spec: protectionv1.MitigationSpec{
 			DisplayName: "my migration 2",
 		},
 	}

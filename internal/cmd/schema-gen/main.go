@@ -9,8 +9,8 @@ import (
 	authenticationv1beta1 "github.com/gamefabric/gf-core/pkg/api/authentication/v1beta1"
 	containerv1 "github.com/gamefabric/gf-core/pkg/api/container/v1"
 	corev1 "github.com/gamefabric/gf-core/pkg/api/core/v1"
-	formationv1beta1 "github.com/gamefabric/gf-core/pkg/api/formation/v1beta1"
-	protectionv1alpha1 "github.com/gamefabric/gf-core/pkg/api/protection/v1alpha1"
+	formationv1 "github.com/gamefabric/gf-core/pkg/api/formation/v1"
+	protectionv1 "github.com/gamefabric/gf-core/pkg/api/protection/v1"
 	storagev1beta1 "github.com/gamefabric/gf-core/pkg/api/storage/v1beta1"
 )
 
@@ -96,31 +96,31 @@ var objs = []objInfo{
 	},
 	{
 		Pkg:      "formation",
-		Obj:      &formationv1beta1.Formation{},
+		Obj:      &formationv1.Formation{},
 		Filename: "ec/formation/schema_formation.go",
 		FuncName: "formationSchema",
 	},
 	{
 		Pkg:      "formation",
-		Obj:      &formationv1beta1.Vessel{},
+		Obj:      &formationv1.Vessel{},
 		Filename: "ec/formation/schema_vessel.go",
 		FuncName: "vesselSchema",
 	},
 	{
 		Pkg:      "protection",
-		Obj:      &protectionv1alpha1.GatewayPolicy{},
+		Obj:      &protectionv1.GatewayPolicy{},
 		Filename: "ec/protection/schema_gatewaypolicy.go",
 		FuncName: "gatewayPolicySchema",
 	},
 	{
 		Pkg:      "protection",
-		Obj:      &protectionv1alpha1.Protocol{},
+		Obj:      &protectionv1.Protocol{},
 		Filename: "ec/protection/schema_protocol.go",
 		FuncName: "protocolSchema",
 	},
 	{
 		Pkg:      "protection",
-		Obj:      &protectionv1alpha1.Mitigation{},
+		Obj:      &protectionv1.Mitigation{},
 		Filename: "ec/protection/schema_migration.go",
 		FuncName: "migrationSchema",
 	},
