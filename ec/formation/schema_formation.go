@@ -542,14 +542,14 @@ func formationSchema() map[string]*schema.Schema {
 											},
 											"termination_grace_period_seconds": {
 												Type:        schema.TypeList,
-												Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.",
+												Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to\nterminate gracefully.\nDefaults to 30 seconds.",
 												Optional:    true,
 												MaxItems:    1,
 												Elem: &schema.Resource{
 													Schema: map[string]*schema.Schema{
 														"value": {
 															Type:        schema.TypeInt,
-															Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.",
+															Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to\nterminate gracefully.\nDefaults to 30 seconds.",
 															Required:    true,
 														},
 													},
@@ -627,21 +627,21 @@ func formationSchema() map[string]*schema.Schema {
 					},
 					"termination_grace_periods": {
 						Type:        schema.TypeList,
-						Description: "TerminationGracePeriods are the optional durations that a game server has to terminate gracefully. If this value is nil, the default grace period for each situation will be used. These durations only apply when a game server is in use.",
+						Description: "TerminationGracePeriods are the optional durations that a game server has to terminate\ngracefully. If this value is nil, the default grace period for each situation will be used.\nThese durations only apply when a game server is in use.",
 						Optional:    true,
 						MaxItems:    1,
 						Elem: &schema.Resource{
 							Schema: map[string]*schema.Schema{
 								"maintenance": {
 									Type:        schema.TypeList,
-									Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned.",
+									Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when\nthe site it is running is cordoned.",
 									Optional:    true,
 									MaxItems:    1,
 									Elem: &schema.Resource{
 										Schema: map[string]*schema.Schema{
 											"value": {
 												Type:        schema.TypeInt,
-												Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned.",
+												Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when\nthe site it is running is cordoned.",
 												Required:    true,
 											},
 										},
@@ -649,14 +649,14 @@ func formationSchema() map[string]*schema.Schema {
 								},
 								"spec_change": {
 									Type:        schema.TypeList,
-									Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected.",
+									Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when\na spec change is detected.",
 									Optional:    true,
 									MaxItems:    1,
 									Elem: &schema.Resource{
 										Schema: map[string]*schema.Schema{
 											"value": {
 												Type:        schema.TypeInt,
-												Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected.",
+												Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when\na spec change is detected.",
 												Required:    true,
 											},
 										},
@@ -664,14 +664,14 @@ func formationSchema() map[string]*schema.Schema {
 								},
 								"user_initiated": {
 									Type:        schema.TypeList,
-									Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.",
+									Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when\nuser initiates a restart or suspends a vessel.",
 									Optional:    true,
 									MaxItems:    1,
 									Elem: &schema.Resource{
 										Schema: map[string]*schema.Schema{
 											"value": {
 												Type:        schema.TypeInt,
-												Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.",
+												Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when\nuser initiates a restart or suspends a vessel.",
 												Required:    true,
 											},
 										},
@@ -732,7 +732,7 @@ func formationSchema() map[string]*schema.Schema {
 											},
 											"labels": {
 												Type:        schema.TypeMap,
-												Description: "Labels is a map of keys and values that can be used to organize and categorize objects.",
+												Description: "Labels is a map of keys and values that can be used to organize and categorize\nobjects.",
 												Optional:    true,
 												Elem:        &schema.Schema{Type: schema.TypeString},
 											},
@@ -761,21 +761,21 @@ func formationSchema() map[string]*schema.Schema {
 								},
 								"termination_grace_periods": {
 									Type:        schema.TypeList,
-									Description: "TerminationGracePeriods are the optional durations that a game server has to terminate gracefully. If this value is nil, the default grace period for each situation will be used. These durations only apply when a game server is in use.",
+									Description: "TerminationGracePeriods are the optional durations that a game server has to terminate\ngracefully. If this value is nil, the default grace period for each situation will be used.\nThese durations only apply when a game server is in use.",
 									Optional:    true,
 									MaxItems:    1,
 									Elem: &schema.Resource{
 										Schema: map[string]*schema.Schema{
 											"maintenance": {
 												Type:        schema.TypeList,
-												Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned.",
+												Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when\nthe site it is running is cordoned.",
 												Optional:    true,
 												MaxItems:    1,
 												Elem: &schema.Resource{
 													Schema: map[string]*schema.Schema{
 														"value": {
 															Type:        schema.TypeInt,
-															Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned.",
+															Description: "Maintenance is the optional duration in seconds that a game server has to gracefully terminate when\nthe site it is running is cordoned.",
 															Required:    true,
 														},
 													},
@@ -783,14 +783,14 @@ func formationSchema() map[string]*schema.Schema {
 											},
 											"spec_change": {
 												Type:        schema.TypeList,
-												Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected.",
+												Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when\na spec change is detected.",
 												Optional:    true,
 												MaxItems:    1,
 												Elem: &schema.Resource{
 													Schema: map[string]*schema.Schema{
 														"value": {
 															Type:        schema.TypeInt,
-															Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected.",
+															Description: "SpecChange is the optional duration in seconds that a game server has to gracefully terminate when\na spec change is detected.",
 															Required:    true,
 														},
 													},
@@ -798,14 +798,14 @@ func formationSchema() map[string]*schema.Schema {
 											},
 											"user_initiated": {
 												Type:        schema.TypeList,
-												Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.",
+												Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when\nuser initiates a restart or suspends a vessel.",
 												Optional:    true,
 												MaxItems:    1,
 												Elem: &schema.Resource{
 													Schema: map[string]*schema.Schema{
 														"value": {
 															Type:        schema.TypeInt,
-															Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.",
+															Description: "UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when\nuser initiates a restart or suspends a vessel.",
 															Required:    true,
 														},
 													},

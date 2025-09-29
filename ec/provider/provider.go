@@ -7,8 +7,8 @@ import (
 	"net/url"
 	"sync"
 
+	"github.com/gamefabric/gf-apiclient/rest"
 	"github.com/gamefabric/gf-core/pkg/apiclient/clientset"
-	"github.com/gamefabric/gf-core/pkg/apiclient/rest"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/diag"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
 	"github.com/nitrado/terraform-provider-ec/ec"

@@ -46,7 +46,7 @@ func branchSchema() map[string]*schema.Schema {
 							Schema: map[string]*schema.Schema{
 								"image_regex": {
 									Type:        schema.TypeString,
-									Description: "ImageRegex is the optional regex selector for images that this policy applies to.",
+									Description: "ImageRegex is the optional regex selector for images that\nthis policy applies to.",
 									Optional:    true,
 								},
 								"keep_count": {
@@ -66,7 +66,7 @@ func branchSchema() map[string]*schema.Schema {
 								},
 								"tag_regex": {
 									Type:        schema.TypeString,
-									Description: "TagRegex is the optional regex selector for tags that this policy applies to.",
+									Description: "TagRegex is the optional regex selector for tags that\nthis policy applies to.",
 									Optional:    true,
 								},
 							},
