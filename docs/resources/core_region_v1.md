@@ -83,7 +83,8 @@ Required:
 Optional:
 
 - `locations` (List of String) Locations defines the locations for a type.
-- `template` (Block List, Max: 1) Template is the optional configuration to apply to all fleets in this region. (see [below for nested schema](#nestedblock--spec--types--template))
+- `template` (Block List, Max: 1) Template is the optional configuration to apply to all fleets
+in this region. (see [below for nested schema](#nestedblock--spec--types--template))
 
 <a id="nestedblock--spec--types--template"></a>
 ### Nested Schema for `spec.types.template`
@@ -111,7 +112,11 @@ Optional:
 Optional:
 
 - `config_file_key_ref` (Block List, Max: 1) ConfigFileKeyRef select the configuration file. (see [below for nested schema](#nestedblock--spec--types--template--env--value_from--config_file_key_ref))
-- `field_ref` (Block List, Max: 1) FieldRef selects the field of the pod. Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName, metadata.imageBranch, metadata.imageName, metadata.imageTag, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--types--template--env--value_from--field_ref))
+- `field_ref` (Block List, Max: 1) FieldRef selects the field of the pod.
+Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`,
+metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName,
+metadata.imageBranch, metadata.imageName, metadata.imageTag,
+spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--types--template--env--value_from--field_ref))
 
 <a id="nestedblock--spec--types--template--env--value_from--config_file_key_ref"></a>
 ### Nested Schema for `spec.types.template.env.value_from.config_file_key_ref`

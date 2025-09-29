@@ -8,11 +8,11 @@ import (
 	"time"
 
 	"github.com/ettle/strcase"
+	clientsettools "github.com/gamefabric/gf-apiclient/tools/clientset"
 	apierrors "github.com/gamefabric/gf-apicore/api/errors"
 	metav1 "github.com/gamefabric/gf-apicore/apis/meta/v1"
 	"github.com/gamefabric/gf-apicore/runtime"
 	"github.com/gamefabric/gf-core/pkg/apiclient/clientset"
-	clientsettools "github.com/gamefabric/gf-core/pkg/apiclient/tools/clientset"
 	"github.com/nitrado/tfconv"
 	"k8s.io/apimachinery/pkg/api/resource"
 	"k8s.io/apimachinery/pkg/util/intstr"

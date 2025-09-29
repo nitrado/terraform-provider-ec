@@ -57,7 +57,7 @@ func regionSchema() map[string]*schema.Schema {
 								},
 								"template": {
 									Type:        schema.TypeList,
-									Description: "Template is the optional configuration to apply to all fleets in this region.",
+									Description: "Template is the optional configuration to apply to all fleets\nin this region.",
 									Optional:    true,
 									MaxItems:    1,
 									Elem: &schema.Resource{

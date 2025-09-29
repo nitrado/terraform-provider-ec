@@ -52,9 +52,13 @@ Required:
 Optional:
 
 - `cordoned` (Boolean) Cordoned determines if a site can have fleets scheduled.
-- `cpu_ratio` (Number) CPURatio is the applied ratio for any subordinate game server CPU request or limit.  This facilitates the optimal utilization of various CPU generations for a game. The default is 1.0.
+- `cpu_ratio` (Number) CPURatio is the applied ratio for any subordinate game server CPU request or limit.
+
+This facilitates the optimal utilization of various CPU generations for a game.
+The default is 1.0.
 - `description` (String) Description is the optional description of the site.
-- `template` (Block List, Max: 1) Template is the optional configuration to apply to all fleets on this site. (see [below for nested schema](#nestedblock--spec--template))
+- `template` (Block List, Max: 1) Template is the optional configuration to apply to all fleets
+on this site. (see [below for nested schema](#nestedblock--spec--template))
 
 <a id="nestedblock--spec--credentials"></a>
 ### Nested Schema for `spec.credentials`
@@ -86,7 +90,9 @@ Optional:
 - `env` (Block List) Env is a list of environment variables to set on all containers on this site. (see [below for nested schema](#nestedblock--spec--template--env))
 - `image_pull_secrets` (List of String) ImagePullSecrets points to secrets with authorization tokens that store docker credentials to access a registry.
 - `pod_security_context` (Block List, Max: 1) PodSecurityContext defines the security options the pod should be run with. (see [below for nested schema](#nestedblock--spec--template--pod_security_context))
-- `security_context` (Block List, Max: 1) SecurityContext defines the security options the container should be run with. This security context overrides the user security context if a top level property is set. (see [below for nested schema](#nestedblock--spec--template--security_context))
+- `security_context` (Block List, Max: 1) SecurityContext defines the security options the container should be run with.
+This security context overrides the user security context if a top level
+property is set. (see [below for nested schema](#nestedblock--spec--template--security_context))
 - `tolerations` (Block List) Tolerations is a set of pod tolerations. (see [below for nested schema](#nestedblock--spec--template--tolerations))
 
 <a id="nestedblock--spec--template--affinity"></a>
@@ -441,7 +447,11 @@ Optional:
 Optional:
 
 - `config_file_key_ref` (Block List, Max: 1) ConfigFileKeyRef select the configuration file. (see [below for nested schema](#nestedblock--spec--template--env--value_from--config_file_key_ref))
-- `field_ref` (Block List, Max: 1) FieldRef selects the field of the pod. Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName, metadata.imageBranch, metadata.imageName, metadata.imageTag, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--template--env--value_from--field_ref))
+- `field_ref` (Block List, Max: 1) FieldRef selects the field of the pod.
+Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`,
+metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName,
+metadata.imageBranch, metadata.imageName, metadata.imageTag,
+spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--template--env--value_from--field_ref))
 
 <a id="nestedblock--spec--template--env--value_from--config_file_key_ref"></a>
 ### Nested Schema for `spec.template.env.value_from.config_file_key_ref`

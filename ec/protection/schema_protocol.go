@@ -30,12 +30,12 @@ func protocolSchema() map[string]*schema.Schema {
 				Schema: map[string]*schema.Schema{
 					"description": {
 						Type:        schema.TypeString,
-						Description: "Description is the protocol description. +optional",
+						Description: "Description is the protocol description.\n+optional",
 						Optional:    true,
 					},
 					"display_name": {
 						Type:        schema.TypeString,
-						Description: "DisplayName is the display name for the user. +optional",
+						Description: "DisplayName is the display name for the user.\n+optional",
 						Optional:    true,
 					},
 					"mitigation_name": {

@@ -59,7 +59,9 @@ Required:
 
 Optional:
 
-- `image_regex` (String) ImageRegex is the optional regex selector for images that this policy applies to.
+- `image_regex` (String) ImageRegex is the optional regex selector for images that
+this policy applies to.
 - `keep_count` (Number) KeepCount is the minimum number of tags to keep per image.
 - `keep_days` (Number) KeepDays is the minimum number of days an image tag must be kept for.
-- `tag_regex` (String) TagRegex is the optional regex selector for tags that this policy applies to.
+- `tag_regex` (String) TagRegex is the optional regex selector for tags that
+this policy applies to.

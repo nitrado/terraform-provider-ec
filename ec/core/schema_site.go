@@ -35,7 +35,7 @@ func siteSchema() map[string]*schema.Schema {
 					},
 					"cpu_ratio": {
 						Type:        schema.TypeFloat,
-						Description: "CPURatio is the applied ratio for any subordinate game server CPU request or limit.  This facilitates the optimal utilization of various CPU generations for a game. The default is 1.0.",
+						Description: "CPURatio is the applied ratio for any subordinate game server CPU request or limit.\n\nThis facilitates the optimal utilization of various CPU generations for a game.\nThe default is 1.0.",
 						Optional:    true,
 					},
 					"credentials": {
@@ -82,7 +82,7 @@ func siteSchema() map[string]*schema.Schema {
 					},
 					"template": {
 						Type:        schema.TypeList,
-						Description: "Template is the optional configuration to apply to all fleets on this site.",
+						Description: "Template is the optional configuration to apply to all fleets\non this site.",
 						Optional:    true,
 						MaxItems:    1,
 						Elem: &schema.Resource{
@@ -934,7 +934,7 @@ func siteSchema() map[string]*schema.Schema {
 								},
 								"security_context": {
 									Type:        schema.TypeList,
-									Description: "SecurityContext defines the security options the container should be run with. This security context overrides the user security context if a top level property is set.",
+									Description: "SecurityContext defines the security options the container should be run with.\nThis security context overrides the user security context if a top level\nproperty is set.",
 									Optional:    true,
 									MaxItems:    1,
 									Elem: &schema.Resource{

@@ -61,21 +61,38 @@ Required:
 
 Optional:
 
-- `acr_values` (List of String) ACRValues (Authentication Context Class Reference Values) that specifies the Authentication Context Class Values within the Authentication Request that the Authorization Server is being requested to use for processing requests from this Client, with the values appearing in order of preference.
+- `acr_values` (List of String) ACRValues (Authentication Context Class Reference Values) that specifies the Authentication Context Class Values
+within the Authentication Request that the Authorization Server is being requested to use for
+processing requests from this Client, with the values appearing in order of preference.
 - `allowed_groups` (List of String) AllowedGroups is a list of groups that are allowed to authenticate with this provider.
-- `basic_auth_unsupported` (Block List, Max: 1) BasicAuthUnsupported causes client_secret to be passed as POST parameters instead of basic auth. This is specifically "NOT RECOMMENDED" by the OAuth2 RFC, but some providers require it.  https://tools.ietf.org/html/rfc6749#section-2.3.1 (see [below for nested schema](#nestedblock--spec--oidc--basic_auth_unsupported))
+- `basic_auth_unsupported` (Block List, Max: 1) BasicAuthUnsupported causes client_secret to be passed as POST parameters instead of basic
+auth. This is specifically "NOT RECOMMENDED" by the OAuth2 RFC, but some
+providers require it.
+
+https://tools.ietf.org/html/rfc6749#section-2.3.1 (see [below for nested schema](#nestedblock--spec--oidc--basic_auth_unsupported))
 - `claim_mapping` (Block List, Max: 1) ClaimMapping contains all claim mapping overrides. (see [below for nested schema](#nestedblock--spec--oidc--claim_mapping))
 - `claim_modifications` (Block List, Max: 1) ClaimMutations contains all claim mutations options. (see [below for nested schema](#nestedblock--spec--oidc--claim_modifications))
-- `get_user_info` (Boolean) GetUserInfo uses the userinfo endpoint to get additional claims for the token. This is especially useful where upstreams return "thin" id tokens.
-- `hosted_domains` (List of String) HostedDomains was an optional list of whitelisted domains when using the OIDC provider with Google. Only users from a whitelisted domain were allowed to log in. Support for this option was removed from the OIDC provider. Consider switching to the Google provider which supports this option.  Deprecated: will be removed in future releases.
+- `get_user_info` (Boolean) GetUserInfo uses the userinfo endpoint to get additional claims for
+the token. This is especially useful where upstreams return "thin"
+id tokens.
+- `hosted_domains` (List of String) HostedDomains was an optional list of whitelisted domains when using the OIDC provider with Google.
+Only users from a whitelisted domain were allowed to log in.
+Support for this option was removed from the OIDC provider.
+Consider switching to the Google provider which supports this option.
+
+Deprecated: will be removed in future releases.
 - `insecure_enable_groups` (Boolean) InsecureEnableGroups enables groups claims.
 - `insecure_skip_email_verified` (Boolean) InsecureSkipEmailVerified overrides the value of email_verified to true in the returned claims.
 - `insecure_skip_verify` (Boolean) InsecureSkipVerify disabled certificate verification. Use with caution.
-- `override_claim_mapping` (Boolean) OverrideClaimMapping will be used to override the options defined in claimMappings. i.e. if there are 'email' and `preferred_email` claims available, by default Dex will always use the `email` claim independent of the ClaimMapping.EmailKey. This setting allows you to override the default behavior of Dex and enforce the mappings defined in `claimMapping`.
+- `override_claim_mapping` (Boolean) OverrideClaimMapping will be used to override the options defined in claimMappings.
+i.e. if there are 'email' and `preferred_email` claims available, by default Dex will always use the `email` claim independent of the ClaimMapping.EmailKey.
+This setting allows you to override the default behavior of Dex and enforce the mappings defined in `claimMapping`.
 - `prompt_type` (Block List, Max: 1) PromptType will be used for the prompt parameter. When offline_access scope is used this defaults to prompt=consent. (see [below for nested schema](#nestedblock--spec--oidc--prompt_type))
-- `provider_discovery_overrides` (Block List, Max: 1) The section to override options discovered automatically from the providers' discovery URL (.well-known/openid-configuration). (see [below for nested schema](#nestedblock--spec--oidc--provider_discovery_overrides))
+- `provider_discovery_overrides` (Block List, Max: 1) The section to override options discovered automatically from
+the providers' discovery URL (.well-known/openid-configuration). (see [below for nested schema](#nestedblock--spec--oidc--provider_discovery_overrides))
 - `root_c_as` (List of String) RootCAs are root certificates for SSL validation.
-- `scopes` (List of String) Scopes are the scopes requested from the OIDC provider. Defaults to "profile" and "email".
+- `scopes` (List of String) Scopes are the scopes requested from the OIDC provider.
+Defaults to "profile" and "email".
 - `user_id_key` (String) UserIDKey is the key used to identify the user in the claims.
 - `user_name_key` (String) UserNameKey is the key used to identify the username in the claims.
 
@@ -84,7 +101,11 @@ Optional:
 
 Required:
 
-- `value` (Boolean) BasicAuthUnsupported causes client_secret to be passed as POST parameters instead of basic auth. This is specifically "NOT RECOMMENDED" by the OAuth2 RFC, but some providers require it.  https://tools.ietf.org/html/rfc6749#section-2.3.1
+- `value` (Boolean) BasicAuthUnsupported causes client_secret to be passed as POST parameters instead of basic
+auth. This is specifically "NOT RECOMMENDED" by the OAuth2 RFC, but some
+providers require it.
+
+https://tools.ietf.org/html/rfc6749#section-2.3.1
 
 
 <a id="nestedblock--spec--oidc--claim_mapping"></a>
@@ -92,9 +113,12 @@ Required:
 
 Optional:
 
-- `email` (String) Configurable key which contains the email claims. Defaults to "email".
-- `groups` (String) Configurable key which contains the groups claims Defaults to "groups".
-- `preferred_username` (String) Configurable key which contains the preferred username claims Defaults to "preferred_username".
+- `email` (String) Configurable key which contains the email claims.
+Defaults to "email".
+- `groups` (String) Configurable key which contains the groups claims
+Defaults to "groups".
+- `preferred_username` (String) Configurable key which contains the preferred username claims
+Defaults to "preferred_username".
 
 
 <a id="nestedblock--spec--oidc--claim_modifications"></a>
@@ -138,6 +162,9 @@ Required:
 
 Optional:
 
-- `auth_url` (String) AuthURL provides a way to user overwrite the Auth URL from the .well-known/openid-configuration authorization_endpoint
-- `jwks_url` (String) JWKSURL provides a way to user overwrite the JWKS URL from the .well-known/openid-configuration jwks_uri
-- `token_url` (String) TokenURL provides a way to user overwrite the Token URL from the .well-known/openid-configuration token_endpoint
+- `auth_url` (String) AuthURL provides a way to user overwrite the Auth URL
+from the .well-known/openid-configuration authorization_endpoint
+- `jwks_url` (String) JWKSURL provides a way to user overwrite the JWKS URL
+from the .well-known/openid-configuration jwks_uri
+- `token_url` (String) TokenURL provides a way to user overwrite the Token URL
+from the .well-known/openid-configuration token_endpoint

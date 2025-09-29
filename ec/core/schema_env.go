@@ -40,7 +40,7 @@ func envSchema() map[string]*schema.Schema {
 					},
 					"field_ref": {
 						Type:        schema.TypeList,
-						Description: "FieldRef selects the field of the pod. Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName, metadata.imageBranch, metadata.imageName, metadata.imageTag, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
+						Description: "FieldRef selects the field of the pod.\nSupports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`,\nmetadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName,\nmetadata.imageBranch, metadata.imageName, metadata.imageTag,\nspec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.",
 						Optional:    true,
 						MaxItems:    1,
 						Elem: &schema.Resource{

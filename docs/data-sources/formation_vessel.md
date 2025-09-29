@@ -53,7 +53,9 @@ Optional:
 
 - `description` (String) Description is the optional description of the vessel.
 - `suspend` (Block List, Max: 1) Suspend specifies whether the vessel should create a game server or not. (see [below for nested schema](#nestedblock--spec--suspend))
-- `termination_grace_periods` (Block List, Max: 1) TerminationGracePeriods are the optional durations that a game server has to terminate gracefully. If this value is nil, the default grace period for each situation will be used. These durations only apply when a game server is in use. (see [below for nested schema](#nestedblock--spec--termination_grace_periods))
+- `termination_grace_periods` (Block List, Max: 1) TerminationGracePeriods are the optional durations that a game server has to terminate
+gracefully. If this value is nil, the default grace period for each situation will be used.
+These durations only apply when a game server is in use. (see [below for nested schema](#nestedblock--spec--termination_grace_periods))
 
 <a id="nestedblock--spec--template"></a>
 ### Nested Schema for `spec.template`
@@ -90,7 +92,9 @@ Optional:
 
 - `gateway_policies` (List of String) GatewayPolicies are the gateway policy names applied to the game servers.
 - `health` (Block List, Max: 1) Health is the health checking configuration for Agones game servers. (see [below for nested schema](#nestedblock--spec--template--spec--health))
-- `termination_grace_period_seconds` (Block List, Max: 1) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds. (see [below for nested schema](#nestedblock--spec--template--spec--termination_grace_period_seconds))
+- `termination_grace_period_seconds` (Block List, Max: 1) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to
+terminate gracefully.
+Defaults to 30 seconds. (see [below for nested schema](#nestedblock--spec--template--spec--termination_grace_period_seconds))
 - `volumes` (Block List) Volumes are pod volumes. (see [below for nested schema](#nestedblock--spec--template--spec--volumes))
 
 <a id="nestedblock--spec--template--spec--containers"></a>
@@ -140,7 +144,11 @@ Optional:
 Optional:
 
 - `config_file_key_ref` (Block List, Max: 1) ConfigFileKeyRef select the configuration file. (see [below for nested schema](#nestedblock--spec--template--spec--containers--env--value_from--config_file_key_ref))
-- `field_ref` (Block List, Max: 1) FieldRef selects the field of the pod. Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName, metadata.imageBranch, metadata.imageName, metadata.imageTag, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--template--spec--containers--env--value_from--field_ref))
+- `field_ref` (Block List, Max: 1) FieldRef selects the field of the pod.
+Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`,
+metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName,
+metadata.imageBranch, metadata.imageName, metadata.imageTag,
+spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--template--spec--containers--env--value_from--field_ref))
 
 <a id="nestedblock--spec--template--spec--containers--env--value_from--config_file_key_ref"></a>
 ### Nested Schema for `spec.template.spec.containers.env.value_from.config_file_key_ref`
@@ -422,7 +430,9 @@ Optional:
 
 Required:
 
-- `value` (Number) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.
+- `value` (Number) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to
+terminate gracefully.
+Defaults to 30 seconds.
 
 
 <a id="nestedblock--spec--template--spec--volumes"></a>
@@ -479,16 +489,20 @@ Required:
 
 Optional:
 
-- `maintenance` (Block List, Max: 1) Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned. (see [below for nested schema](#nestedblock--spec--termination_grace_periods--maintenance))
-- `spec_change` (Block List, Max: 1) SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected. (see [below for nested schema](#nestedblock--spec--termination_grace_periods--spec_change))
-- `user_initiated` (Block List, Max: 1) UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel. (see [below for nested schema](#nestedblock--spec--termination_grace_periods--user_initiated))
+- `maintenance` (Block List, Max: 1) Maintenance is the optional duration in seconds that a game server has to gracefully terminate when
+the site it is running is cordoned. (see [below for nested schema](#nestedblock--spec--termination_grace_periods--maintenance))
+- `spec_change` (Block List, Max: 1) SpecChange is the optional duration in seconds that a game server has to gracefully terminate when
+a spec change is detected. (see [below for nested schema](#nestedblock--spec--termination_grace_periods--spec_change))
+- `user_initiated` (Block List, Max: 1) UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when
+user initiates a restart or suspends a vessel. (see [below for nested schema](#nestedblock--spec--termination_grace_periods--user_initiated))
 
 <a id="nestedblock--spec--termination_grace_periods--maintenance"></a>
 ### Nested Schema for `spec.termination_grace_periods.maintenance`
 
 Required:
 
-- `value` (Number) Maintenance is the optional duration in seconds that a game server has to gracefully terminate when the site it is running is cordoned.
+- `value` (Number) Maintenance is the optional duration in seconds that a game server has to gracefully terminate when
+the site it is running is cordoned.
 
 
 <a id="nestedblock--spec--termination_grace_periods--spec_change"></a>
@@ -496,7 +510,8 @@ Required:
 
 Required:
 
-- `value` (Number) SpecChange is the optional duration in seconds that a game server has to gracefully terminate when a spec change is detected.
+- `value` (Number) SpecChange is the optional duration in seconds that a game server has to gracefully terminate when
+a spec change is detected.
 
 
 <a id="nestedblock--spec--termination_grace_periods--user_initiated"></a>
@@ -504,4 +519,5 @@ Required:
 
 Required:
 
-- `value` (Number) UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when user initiates a restart or suspends a vessel.
+- `value` (Number) UserInitiated is the optional duration in seconds that a game server has to gracefully terminate when
+user initiates a restart or suspends a vessel.

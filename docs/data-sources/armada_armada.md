@@ -46,7 +46,8 @@ Read-Only:
 
 Required:
 
-- `distribution` (Block List, Min: 1) Distribution specifies the distribution of game servers across the available types of capacity in the selected region. (see [below for nested schema](#nestedblock--spec--distribution))
+- `distribution` (Block List, Min: 1) Distribution specifies the distribution of game servers across the
+available types of capacity in the selected region. (see [below for nested schema](#nestedblock--spec--distribution))
 - `region` (String) Region defines the region the game servers are distributed to.
 - `template` (Block List, Min: 1, Max: 1) Template describes the fleets that are created. (see [below for nested schema](#nestedblock--spec--template))
 
@@ -102,7 +103,9 @@ Optional:
 - `gateway_policies` (List of String) GatewayPolicies are the gateway policy names applied to the game servers.
 - `health` (Block List, Max: 1) Health is the health checking configuration for Agones game servers. (see [below for nested schema](#nestedblock--spec--template--spec--health))
 - `strategy` (Block List, Max: 1) Strategy is the deployment strategy. (see [below for nested schema](#nestedblock--spec--template--spec--strategy))
-- `termination_grace_period_seconds` (Block List, Max: 1) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds. (see [below for nested schema](#nestedblock--spec--template--spec--termination_grace_period_seconds))
+- `termination_grace_period_seconds` (Block List, Max: 1) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to
+terminate gracefully.
+Defaults to 30 seconds. (see [below for nested schema](#nestedblock--spec--template--spec--termination_grace_period_seconds))
 - `volumes` (Block List) Volumes are pod volumes. (see [below for nested schema](#nestedblock--spec--template--spec--volumes))
 
 <a id="nestedblock--spec--template--spec--containers"></a>
@@ -152,7 +155,11 @@ Optional:
 Optional:
 
 - `config_file_key_ref` (Block List, Max: 1) ConfigFileKeyRef select the configuration file. (see [below for nested schema](#nestedblock--spec--template--spec--containers--env--value_from--config_file_key_ref))
-- `field_ref` (Block List, Max: 1) FieldRef selects the field of the pod. Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`, metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName, metadata.imageBranch, metadata.imageName, metadata.imageTag, spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--template--spec--containers--env--value_from--field_ref))
+- `field_ref` (Block List, Max: 1) FieldRef selects the field of the pod.
+Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadata.annotations['<KEY>']`,
+metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName,
+metadata.imageBranch, metadata.imageName, metadata.imageTag,
+spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--template--spec--containers--env--value_from--field_ref))
 
 <a id="nestedblock--spec--template--spec--containers--env--value_from--config_file_key_ref"></a>
 ### Nested Schema for `spec.template.spec.containers.env.value_from.config_file_key_ref`
@@ -468,7 +475,9 @@ Required:
 
 Required:
 
-- `value` (Number) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.
+- `value` (Number) TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to
+terminate gracefully.
+Defaults to 30 seconds.
 
 
 <a id="nestedblock--spec--template--spec--volumes"></a>
@@ -506,4 +515,5 @@ Optional:
 
 Optional:
 
-- `seconds` (Number) Seconds defines how often the auto-scaler will re-evaluate the number of game servers.
+- `seconds` (Number) Seconds defines how often the auto-scaler will re-evaluate the
+number of game servers.

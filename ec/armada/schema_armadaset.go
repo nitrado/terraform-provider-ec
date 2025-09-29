@@ -41,7 +41,7 @@ func armadaSetSchema() map[string]*schema.Schema {
 								},
 								"distribution": {
 									Type:        schema.TypeList,
-									Description: "Distribution specifies the distribution of game servers across the available types of capacity in the selected region.",
+									Description: "Distribution specifies the distribution of game servers across the\navailable types of capacity in the selected region.",
 									Required:    true,
 									Elem: &schema.Resource{
 										Schema: map[string]*schema.Schema{
@@ -92,7 +92,7 @@ func armadaSetSchema() map[string]*schema.Schema {
 										Schema: map[string]*schema.Schema{
 											"seconds": {
 												Type:        schema.TypeInt,
-												Description: "Seconds defines how often the auto-scaler will re-evaluate the number of game servers.",
+												Description: "Seconds defines how often the auto-scaler will re-evaluate the\nnumber of game servers.",
 												Optional:    true,
 											},
 										},
@@ -120,7 +120,7 @@ func armadaSetSchema() map[string]*schema.Schema {
 								},
 								"labels": {
 									Type:        schema.TypeMap,
-									Description: "Labels is a map of keys and values that can be used to organize and categorize objects.",
+									Description: "Labels is a map of keys and values that can be used to organize and categorize\nobjects.",
 									Optional:    true,
 									Elem:        &schema.Schema{Type: schema.TypeString},
 								},
@@ -690,14 +690,14 @@ func armadaSetSchema() map[string]*schema.Schema {
 											},
 											"termination_grace_period_seconds": {
 												Type:        schema.TypeList,
-												Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.",
+												Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to\nterminate gracefully.\nDefaults to 30 seconds.",
 												Optional:    true,
 												MaxItems:    1,
 												Elem: &schema.Resource{
 													Schema: map[string]*schema.Schema{
 														"value": {
 															Type:        schema.TypeInt,
-															Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to terminate gracefully. Defaults to 30 seconds.",
+															Description: "TerminationGracePeriodSeconds is the optional duration in seconds the game servers need to\nterminate gracefully.\nDefaults to 30 seconds.",
 															Required:    true,
 														},
 													},

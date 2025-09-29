@@ -46,7 +46,9 @@ Read-Only:
 
 Optional:
 
-- `description` (String) Description is the protocol description. +optional
-- `display_name` (String) DisplayName is the display name for the user. +optional
+- `description` (String) Description is the protocol description.
++optional
+- `display_name` (String) DisplayName is the display name for the user.
++optional
 - `mitigation_name` (String) MitigationName is the Mitigation name.
 - `protocol` (String) Protocol is the network protocol.
