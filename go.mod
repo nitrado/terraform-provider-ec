@@ -11,8 +11,8 @@ replace (
 require (
 	github.com/ettle/strcase v0.2.0
 	github.com/gamefabric/gf-apiclient v0.2.0
-	github.com/gamefabric/gf-apicore v1.8.0
-	github.com/gamefabric/gf-core v0.28.1-0.20250926134643-e26b1a0660d1
+	github.com/gamefabric/gf-apicore v1.9.0
+	github.com/gamefabric/gf-core v0.29.0
 	github.com/hashicorp/go-cty v1.5.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.38.1
 	github.com/nitrado/tfconv v1.3.0
