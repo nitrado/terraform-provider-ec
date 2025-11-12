@@ -58,8 +58,8 @@ github.com/gamefabric/gf-apiclient v0.2.0 h1:ljKI3IfkY424/6adY7hTUbHZxuDgXe+cAkG
 github.com/gamefabric/gf-apiclient v0.2.0/go.mod h1:QNFAxroscROk1jA+ng5/aQlFbGJfuTLZ/0jhw3xcD8k=
 github.com/gamefabric/gf-apicore v1.9.0 h1:ulxRjA/8s/pK2jQbyDDrqdwzSrne2u6INVhWNyRyyY8=
 github.com/gamefabric/gf-apicore v1.9.0/go.mod h1:OCQMHZRPSXXfZ4ukGd3REH1fe70CrcuphaXk5A5PoAI=
-github.com/gamefabric/gf-core v0.29.0 h1:3NBXSJRte/NjsW5LLObm0ylSDHz81Rqf93KU3quGuNQ=
-github.com/gamefabric/gf-core v0.29.0/go.mod h1:QwOOtbkofFK1iOXxQynS/xPEInczRsGnxu5ZFGxG4vM=
+github.com/gamefabric/gf-core v0.30.0 h1:PqchIyWI5xsS/kx4OkzXSbGr0RLmtXDkYNaTfbXw508=
+github.com/gamefabric/gf-core v0.30.0/go.mod h1:+6B+zTPfBgTJLQF/TLzzFgxEivcIFr68vCPiHNHQ8gU=
 github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 h1:+zs/tPmkDkHx3U66DAb0lQFJrpS6731Oaa12ikc+DiI=
 github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376/go.mod h1:an3vInlBmSxCcxctByoQdvwPiA7DTK7jaaFDBTtu0ic=
 github.com/go-git/go-billy/v5 v5.6.2 h1:6Q86EsPXMa7c3YZ3aLAQsMA0VlWmy43r6FHqa/UNbRM=
@@ -406,8 +406,8 @@ google.golang.org/genproto/googleapis/api v0.0.0-20250922171735-9219d122eba9 h1:
 google.golang.org/genproto/googleapis/api v0.0.0-20250922171735-9219d122eba9/go.mod h1:LmwNphe5Afor5V3R5BppOULHOnt2mCIf+NxMd4XiygE=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20250922171735-9219d122eba9 h1:V1jCN2HBa8sySkR5vLcCSqJSTMv093Rw9EJefhQGP7M=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20250922171735-9219d122eba9/go.mod h1:HSkG/KdJWusxU1F6CNrwNDjBMgisKxGnc5dAZfT0mjQ=
-google.golang.org/grpc v1.75.1 h1:/ODCNEuf9VghjgO3rqLcfg8fiOP0nSluljWFlDxELLI=
-google.golang.org/grpc v1.75.1/go.mod h1:JtPAzKiq4v1xcAB2hydNlWI2RnF85XXcV0mhKXr2ecQ=
+google.golang.org/grpc v1.76.0 h1:UnVkv1+uMLYXoIz6o7chp59WfQUYA2ex/BXQ9rHZu7A=
+google.golang.org/grpc v1.76.0/go.mod h1:Ju12QI8M6iQJtbcsV+awF5a4hfJMLi4X0JLo94ULZ6c=
 google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp09yW+WbY/TyQbw=
 google.golang.org/protobuf v1.26.0/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
 google.golang.org/protobuf v1.36.9 h1:w2gp2mA27hUeUzj9Ex9FBjsBm40zfaDtEWow293U7Iw=
