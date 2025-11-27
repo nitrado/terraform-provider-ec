@@ -97,6 +97,7 @@ Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadat
 metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName,
 metadata.imageBranch, metadata.imageName, metadata.imageTag,
 spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--types--template--env--value_from--field_ref))
+- `secret_key_ref` (Block List, Max: 1) SecretKeyRef selects the secret file. (see [below for nested schema](#nestedblock--spec--types--template--env--value_from--secret_key_ref))
 
 <a id="nestedblock--spec--types--template--env--value_from--config_file_key_ref"></a>
 ### Nested Schema for `spec.types.template.env.value_from.config_file_key_ref`
@@ -113,3 +114,12 @@ Optional:
 
 - `api_version` (String)
 - `field_path` (String)
+
+
+<a id="nestedblock--spec--types--template--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.types.template.env.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) Key is the key of the secret to select.
+- `name` (String) Name is the name of the configuration file.
