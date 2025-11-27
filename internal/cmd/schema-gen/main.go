@@ -89,6 +89,12 @@ var objs = []objInfo{
 		FuncName: "siteSchema",
 	},
 	{
+		Pkg:      "core",
+		Obj:      &corev1.ConfigFile{},
+		Filename: "ec/core/schema_configfile.go",
+		FuncName: "configFileSchema",
+	},
+	{
 		Pkg:      "formation",
 		Obj:      corev1.EnvVar{},
 		Filename: "ec/formation/schema_env.go",

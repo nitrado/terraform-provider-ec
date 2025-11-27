@@ -56,6 +56,26 @@ func envSchema() map[string]*schema.Schema {
 							},
 						},
 					},
+					"secret_key_ref": {
+						Type:        schema.TypeList,
+						Description: "SecretKeyRef selects the secret file.",
+						Optional:    true,
+						MaxItems:    1,
+						Elem: &schema.Resource{
+							Schema: map[string]*schema.Schema{
+								"key": {
+									Type:        schema.TypeString,
+									Description: "Key is the key of the secret to select.",
+									Required:    true,
+								},
+								"name": {
+									Type:        schema.TypeString,
+									Description: "Name is the name of the configuration file.",
+									Required:    true,
+								},
+							},
+						},
+					},
 				},
 			},
 		},
