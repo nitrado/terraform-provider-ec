@@ -291,6 +291,25 @@ func armadaSetSchema() map[string]*schema.Schema {
 																},
 															},
 														},
+														"secrets": {
+															Type:        schema.TypeList,
+															Description: "Secrets is a list of secrets to mount into the containers' filesystem.",
+															Optional:    true,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"mount_path": {
+																		Type:        schema.TypeString,
+																		Description: "MountPath is the path to mount the secret on.",
+																		Required:    true,
+																	},
+																	"name": {
+																		Type:        schema.TypeString,
+																		Description: "Name is the name of the secret.",
+																		Required:    true,
+																	},
+																},
+															},
+														},
 														"security_context": {
 															Type:        schema.TypeList,
 															Description: "SecurityContext defines the security options the container should be run with.",

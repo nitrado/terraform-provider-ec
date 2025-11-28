@@ -138,6 +138,7 @@ Optional:
 - `env` (Block List) Env is a list of environment variables to set in the container. (see [below for nested schema](#nestedblock--spec--template--spec--containers--env))
 - `ports` (Block List) Ports are the ports to expose from the container. (see [below for nested schema](#nestedblock--spec--template--spec--containers--ports))
 - `resources` (Block List, Max: 1) Resources are the compute resources required by the container. (see [below for nested schema](#nestedblock--spec--template--spec--containers--resources))
+- `secrets` (Block List) Secrets is a list of secrets to mount into the containers' filesystem. (see [below for nested schema](#nestedblock--spec--template--spec--containers--secrets))
 - `security_context` (Block List, Max: 1) SecurityContext defines the security options the container should be run with. (see [below for nested schema](#nestedblock--spec--template--spec--containers--security_context))
 - `volume_mounts` (Block List) VolumeMounts are the volumes to mount into the container's filesystem. (see [below for nested schema](#nestedblock--spec--template--spec--containers--volume_mounts))
 
@@ -173,6 +174,7 @@ Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadat
 metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName,
 metadata.imageBranch, metadata.imageName, metadata.imageTag,
 spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--template--spec--containers--env--value_from--field_ref))
+- `secret_key_ref` (Block List, Max: 1) SecretKeyRef selects the secret file. (see [below for nested schema](#nestedblock--spec--template--spec--containers--env--value_from--secret_key_ref))
 
 <a id="nestedblock--spec--template--spec--containers--env--value_from--config_file_key_ref"></a>
 ### Nested Schema for `spec.template.spec.containers.env.value_from.config_file_key_ref`
@@ -189,6 +191,15 @@ Optional:
 
 - `api_version` (String)
 - `field_path` (String)
+
+
+<a id="nestedblock--spec--template--spec--containers--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.template.spec.containers.env.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) Key is the key of the secret to select.
+- `name` (String) Name is the name of the configuration file.
 
 
 
@@ -233,6 +244,15 @@ Optional:
 - `name` (String)
 - `request` (String)
 
+
+
+<a id="nestedblock--spec--template--spec--containers--secrets"></a>
+### Nested Schema for `spec.template.spec.containers.secrets`
+
+Required:
+
+- `mount_path` (String) MountPath is the path to mount the secret on.
+- `name` (String) Name is the name of the secret.
 
 
 <a id="nestedblock--spec--template--spec--containers--security_context"></a>
@@ -569,6 +589,7 @@ Supports metadata.name, metadata.namespace, `metadata.labels['<KEY>']`, `metadat
 metadata.armadaName, metadata.regionName, metadata.regionTypeName, metadata.siteName,
 metadata.imageBranch, metadata.imageName, metadata.imageTag,
 spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs. (see [below for nested schema](#nestedblock--spec--override--env--value_from--field_ref))
+- `secret_key_ref` (Block List, Max: 1) SecretKeyRef selects the secret file. (see [below for nested schema](#nestedblock--spec--override--env--value_from--secret_key_ref))
 
 <a id="nestedblock--spec--override--env--value_from--config_file_key_ref"></a>
 ### Nested Schema for `spec.override.env.value_from.config_file_key_ref`
@@ -585,3 +606,12 @@ Optional:
 
 - `api_version` (String)
 - `field_path` (String)
+
+
+<a id="nestedblock--spec--override--env--value_from--secret_key_ref"></a>
+### Nested Schema for `spec.override.env.value_from.secret_key_ref`
+
+Required:
+
+- `key` (String) Key is the key of the secret to select.
+- `name` (String) Name is the name of the configuration file.
