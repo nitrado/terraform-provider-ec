@@ -58,8 +58,8 @@ github.com/gamefabric/gf-apiclient v0.2.0 h1:ljKI3IfkY424/6adY7hTUbHZxuDgXe+cAkG
 github.com/gamefabric/gf-apiclient v0.2.0/go.mod h1:QNFAxroscROk1jA+ng5/aQlFbGJfuTLZ/0jhw3xcD8k=
 github.com/gamefabric/gf-apicore v1.9.0 h1:ulxRjA/8s/pK2jQbyDDrqdwzSrne2u6INVhWNyRyyY8=
 github.com/gamefabric/gf-apicore v1.9.0/go.mod h1:OCQMHZRPSXXfZ4ukGd3REH1fe70CrcuphaXk5A5PoAI=
-github.com/gamefabric/gf-core v0.30.1-0.20251127073747-fa3fd166eb96 h1:LFWjGPCdmUUWo4DMio80NzFhs/v/PHY/Uf1wsUt0ydc=
-github.com/gamefabric/gf-core v0.30.1-0.20251127073747-fa3fd166eb96/go.mod h1:DCvCLg0WuhBMjRNHcbvDXqFPdaTjK5pCtLV3IjtbGEA=
+github.com/gamefabric/gf-core v0.31.0 h1:bdnq7WL50vDf8BuI6O7UCtCtdAtZjNeawt8b7KInH5k=
+github.com/gamefabric/gf-core v0.31.0/go.mod h1:15OX0LwACPAhUANxRowcBkPK1gO/xF/nVG2icVAniEg=
 github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 h1:+zs/tPmkDkHx3U66DAb0lQFJrpS6731Oaa12ikc+DiI=
 github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376/go.mod h1:an3vInlBmSxCcxctByoQdvwPiA7DTK7jaaFDBTtu0ic=
 github.com/go-git/go-billy/v5 v5.6.2 h1:6Q86EsPXMa7c3YZ3aLAQsMA0VlWmy43r6FHqa/UNbRM=
