@@ -12,7 +12,7 @@ require (
 	github.com/ettle/strcase v0.2.0
 	github.com/gamefabric/gf-apiclient v0.2.1
 	github.com/gamefabric/gf-apicore v1.9.1
-	github.com/gamefabric/gf-core v0.31.1-0.20251218113717-eb47a2630f35
+	github.com/gamefabric/gf-core v0.32.0
 	github.com/hashicorp/go-cty v1.5.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.38.1
 	github.com/nitrado/tfconv v1.3.0
@@ -147,7 +147,7 @@ require (
 	google.golang.org/appengine v1.6.8 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20251111163417-95abcf5c77ba // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20251202230838-ff82c1b0f217 // indirect
-	google.golang.org/grpc v1.77.0 // indirect
+	google.golang.org/grpc v1.78.0 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/fsnotify.v1 v1.4.7 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect

@@ -60,8 +60,8 @@ github.com/gamefabric/gf-apiclient v0.2.1 h1:w8ycxJKfV55hAHFYe48g0oP9Ubw7fYDOZnR
 github.com/gamefabric/gf-apiclient v0.2.1/go.mod h1:Dr65KBmFpNWmZ/3ld1SeiGmondthd5nlwuWnYUNGXPA=
 github.com/gamefabric/gf-apicore v1.9.1 h1:z0AJ18gDM7zlObDK7gGfpp4mEHB3qYC+eb0Dn5l8lOU=
 github.com/gamefabric/gf-apicore v1.9.1/go.mod h1:8EPB+Ici80fmdikJDvKfsktGh5MDvnWwFcZ37cRxO7U=
-github.com/gamefabric/gf-core v0.31.1-0.20251218113717-eb47a2630f35 h1:iuxpIrPiJxKUYS4RhEahsE6wd6ptGiOItOm2zVVdw0A=
-github.com/gamefabric/gf-core v0.31.1-0.20251218113717-eb47a2630f35/go.mod h1:Kil3hABQ+Rv8zZKg/pcAv6fdLnV/IBwe4Pj1AmuhkUI=
+github.com/gamefabric/gf-core v0.32.0 h1:pf9PDHlnoCzvFxf5GMZU0g7mwxykR4r+f302UE7c/hk=
+github.com/gamefabric/gf-core v0.32.0/go.mod h1:kHpdTUKQUXyA6h+0dCjdYDlUcwo01v+pCTip9iUUutE=
 github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376 h1:+zs/tPmkDkHx3U66DAb0lQFJrpS6731Oaa12ikc+DiI=
 github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376/go.mod h1:an3vInlBmSxCcxctByoQdvwPiA7DTK7jaaFDBTtu0ic=
 github.com/go-git/go-billy/v5 v5.6.2 h1:6Q86EsPXMa7c3YZ3aLAQsMA0VlWmy43r6FHqa/UNbRM=
@@ -408,8 +408,8 @@ google.golang.org/genproto/googleapis/api v0.0.0-20251111163417-95abcf5c77ba h1:
 google.golang.org/genproto/googleapis/api v0.0.0-20251111163417-95abcf5c77ba/go.mod h1:G5IanEx8/PgI9w6CFcYQf7jMtHQhZruvfM1i3qOqk5U=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20251202230838-ff82c1b0f217 h1:gRkg/vSppuSQoDjxyiGfN4Upv/h/DQmIR10ZU8dh4Ww=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20251202230838-ff82c1b0f217/go.mod h1:7i2o+ce6H/6BluujYR+kqX3GKH+dChPTQU19wjRPiGk=
-google.golang.org/grpc v1.77.0 h1:wVVY6/8cGA6vvffn+wWK5ToddbgdU3d8MNENr4evgXM=
-google.golang.org/grpc v1.77.0/go.mod h1:z0BY1iVj0q8E1uSQCjL9cppRj+gnZjzDnzV0dHhrNig=
+google.golang.org/grpc v1.78.0 h1:K1XZG/yGDJnzMdd/uZHAkVqJE+xIDOcmdSFZkBUicNc=
+google.golang.org/grpc v1.78.0/go.mod h1:I47qjTo4OKbMkjA/aOOwxDIiPSBofUtQUI5EfpWvW7U=
 google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp09yW+WbY/TyQbw=
 google.golang.org/protobuf v1.26.0/go.mod h1:9q0QmTI4eRPtz6boOQmLYwt+qCgq0jsYwAQnmE0givc=
 google.golang.org/protobuf v1.36.11 h1:fV6ZwhNocDyBLK0dj+fg8ektcVegBBuEolpbTQyBNVE=
