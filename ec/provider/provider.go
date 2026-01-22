@@ -195,7 +195,15 @@ func Provider() *schema.Provider {
 	}
 
 	p.ConfigureContextFunc = func(ctx context.Context, d *schema.ResourceData) (any, diag.Diagnostics) {
-		return providerConfigure(ctx, d, p.TerraformVersion)
+		result, diags := providerConfigure(ctx, d, p.TerraformVersion)
+		diags = append(diags, diag.Diagnostic{
+			Severity: diag.Warning,
+			Summary:  "Provider Deprecated",
+			Detail: "GameFabric Legacy Provider is deprecated. " +
+				"End of Support is June 30, 2026. New features are only available in the new Gamefabric Provider. " +
+				"Migration Guide: https://github.com/GameFabric/terraform-provider-gamefabric/blob/main/docs/guides/migration-from-nitrado-ec.md",
+		})
+		return result, diags
 	}
 
 	return p
