@@ -17,7 +17,7 @@ description: |-
 >
 > We strongly recommend all users migrate to the new GameFabric Provider immediately to ensure future compatibility and access to the latest platform features.
 >
-> [Read the Migration Guide.](./latest/docs/guides/migration-from-nitrado-ec)
+> [Read the Migration Guide.](https://github.com/GameFabric/terraform-provider-gamefabric/blob/main/docs/guides/migration-from-nitrado-ec.md)
 
 Use the Enterprise Console provider to interact with Nitrado Enterprise Console.
 
