@@ -1,5 +1,5 @@
-agones.dev/agones v1.54.0 h1:D3fRxQY2o1TWXZ6ko9moUeZ+8EnL00cFzHFgIaZLobA=
-agones.dev/agones v1.54.0/go.mod h1:Gj05TIPWT+eezKsSoVbnI0HPgg9tEkx6K1i/uRv5dhw=
+agones.dev/agones v1.52.2 h1:LdOzxRgei0ZJa5OpsJjWjm1YS+/43nv5B32KYOnEaY8=
+agones.dev/agones v1.52.2/go.mod h1:j7BPURDYVk99fpGw1roXxr38bGqsQ86bNJXC5IIJzUk=
 dario.cat/mergo v1.0.2 h1:85+piFYR1tMbRrLcDwR18y4UKJ3aH1Tbzi24VRW1TK8=
 dario.cat/mergo v1.0.2/go.mod h1:E/hbnu0NxMFBjpMIE34DRGLWqDy0g5FuKDhCb31ngxA=
 github.com/BurntSushi/toml v1.2.1 h1:9F2/+DoOYIOksmaJFPw1tGFy1eDnIJXg+UHjuD8lTak=

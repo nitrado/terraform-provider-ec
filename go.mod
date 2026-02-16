@@ -3,6 +3,7 @@ module github.com/nitrado/terraform-provider-ec
 go 1.25.1
 
 replace (
+	agones.dev/agones => agones.dev/agones v1.52.2
 	k8s.io/api => k8s.io/api v0.33.5
 	k8s.io/apimachinery => k8s.io/apimachinery v0.33.5
 	k8s.io/client-go => k8s.io/client-go v0.33.5
