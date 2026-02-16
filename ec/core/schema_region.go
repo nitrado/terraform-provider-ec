@@ -57,7 +57,7 @@ func regionSchema() map[string]*schema.Schema {
 								},
 								"template": {
 									Type:        schema.TypeList,
-									Description: "Template is the optional configuration to apply to all fleets\nin this region.",
+									Description: "Template is the optional configuration to apply to all game servers in this region type.",
 									Optional:    true,
 									MaxItems:    1,
 									Elem: &schema.Resource{
@@ -70,7 +70,7 @@ func regionSchema() map[string]*schema.Schema {
 											},
 											"scheduling": {
 												Type:        schema.TypeString,
-												Description: "Scheduling strategy. Defaults to \"Packed\"",
+												Description: "Scheduling strategy determines how game servers are scheduled on a Site. Defaults to \"Packed\".",
 												Optional:    true,
 											},
 										},
