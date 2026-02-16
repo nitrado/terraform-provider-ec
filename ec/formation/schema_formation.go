@@ -740,11 +740,49 @@ func formationSchema() map[string]*schema.Schema {
 															Optional:    true,
 															Elem:        &schema.Schema{Type: schema.TypeString},
 														},
+														"config_files": {
+															Type:        schema.TypeList,
+															Description: "ConfigFiles is a list of configuration files to mount into the containers filesystem.",
+															Optional:    true,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"mount_path": {
+																		Type:        schema.TypeString,
+																		Description: "MountPath is the path to mount the configuration file on.",
+																		Required:    true,
+																	},
+																	"name": {
+																		Type:        schema.TypeString,
+																		Description: "Name is the name of the configuration file.",
+																		Required:    true,
+																	},
+																},
+															},
+														},
 														"env": {
 															Type:        schema.TypeList,
 															Description: "Env is a list of environment variables to set on containers.",
 															Optional:    true,
 															Elem:        &schema.Resource{Schema: envSchema()},
+														},
+														"secrets": {
+															Type:        schema.TypeList,
+															Description: "Secrets is a list of secrets to mount into the containers' filesystem.",
+															Optional:    true,
+															Elem: &schema.Resource{
+																Schema: map[string]*schema.Schema{
+																	"mount_path": {
+																		Type:        schema.TypeString,
+																		Description: "MountPath is the path to mount the secret on.",
+																		Required:    true,
+																	},
+																	"name": {
+																		Type:        schema.TypeString,
+																		Description: "Name is the name of the secret.",
+																		Required:    true,
+																	},
+																},
+															},
 														},
 													},
 												},

@@ -3,6 +3,7 @@ module github.com/nitrado/terraform-provider-ec
 go 1.25.1
 
 replace (
+	agones.dev/agones => agones.dev/agones v1.52.2
 	k8s.io/api => k8s.io/api v0.33.5
 	k8s.io/apimachinery => k8s.io/apimachinery v0.33.5
 	k8s.io/client-go => k8s.io/client-go v0.33.5
@@ -12,7 +13,7 @@ require (
 	github.com/ettle/strcase v0.2.0
 	github.com/gamefabric/gf-apiclient v0.2.1
 	github.com/gamefabric/gf-apicore v1.9.1
-	github.com/gamefabric/gf-core v0.32.0
+	github.com/gamefabric/gf-core v0.33.0
 	github.com/hashicorp/go-cty v1.5.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.38.1
 	github.com/nitrado/tfconv v1.3.0
