@@ -562,9 +562,20 @@ Required:
 
 Optional:
 
+- `config_files` (Block List) ConfigFiles is a list of configuration files to mount into the containers filesystem. (see [below for nested schema](#nestedblock--spec--override--config_files))
 - `env` (Block List) Env is a list of environment variables to set on containers. (see [below for nested schema](#nestedblock--spec--override--env))
 - `labels` (Map of String) Labels is a map of keys and values that can be used to organize and categorize
 objects.
+- `secrets` (Block List) Secrets is a list of secrets to mount into the containers' filesystem. (see [below for nested schema](#nestedblock--spec--override--secrets))
+
+<a id="nestedblock--spec--override--config_files"></a>
+### Nested Schema for `spec.override.config_files`
+
+Required:
+
+- `mount_path` (String) MountPath is the path to mount the configuration file on.
+- `name` (String) Name is the name of the configuration file.
+
 
 <a id="nestedblock--spec--override--env"></a>
 ### Nested Schema for `spec.override.env`
@@ -615,3 +626,14 @@ Required:
 
 - `key` (String) Key is the key of the secret to select.
 - `name` (String) Name is the name of the configuration file.
+
+
+
+
+<a id="nestedblock--spec--override--secrets"></a>
+### Nested Schema for `spec.override.secrets`
+
+Required:
+
+- `mount_path` (String) MountPath is the path to mount the secret on.
+- `name` (String) Name is the name of the secret.

@@ -529,7 +529,18 @@ Optional:
 
 - `args` (List of String) Args are arguments to the entrypoint.
 - `command` (List of String) Command is the entrypoint array. This is not executed within a shell.
+- `config_files` (Block List) ConfigFiles is a list of configuration files to mount into the containers filesystem. (see [below for nested schema](#nestedblock--spec--vessels--override--containers--config_files))
 - `env` (Block List) Env is a list of environment variables to set on containers. (see [below for nested schema](#nestedblock--spec--vessels--override--containers--env))
+- `secrets` (Block List) Secrets is a list of secrets to mount into the containers' filesystem. (see [below for nested schema](#nestedblock--spec--vessels--override--containers--secrets))
+
+<a id="nestedblock--spec--vessels--override--containers--config_files"></a>
+### Nested Schema for `spec.vessels.override.containers.config_files`
+
+Required:
+
+- `mount_path` (String) MountPath is the path to mount the configuration file on.
+- `name` (String) Name is the name of the configuration file.
+
 
 <a id="nestedblock--spec--vessels--override--containers--env"></a>
 ### Nested Schema for `spec.vessels.override.containers.env`
@@ -582,6 +593,15 @@ Required:
 - `name` (String) Name is the name of the configuration file.
 
 
+
+
+<a id="nestedblock--spec--vessels--override--containers--secrets"></a>
+### Nested Schema for `spec.vessels.override.containers.secrets`
+
+Required:
+
+- `mount_path` (String) MountPath is the path to mount the secret on.
+- `name` (String) Name is the name of the secret.
 
 
 

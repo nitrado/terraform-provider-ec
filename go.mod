@@ -13,7 +13,7 @@ require (
 	github.com/ettle/strcase v0.2.0
 	github.com/gamefabric/gf-apiclient v0.2.1
 	github.com/gamefabric/gf-apicore v1.9.1
-	github.com/gamefabric/gf-core v0.33.0
+	github.com/gamefabric/gf-core v0.34.0
 	github.com/hashicorp/go-cty v1.5.0
 	github.com/hashicorp/terraform-plugin-sdk/v2 v2.38.1
 	github.com/nitrado/tfconv v1.3.0
