@@ -20,11 +20,22 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
 
-      - name: Install Go
-        id: install-go
-        uses: actions/setup-go@v6
+      - name: Setup Proxy Credentials
+        uses: extractions/netrc@v2
         with:
-          go-version-file: go.mod
+          machine: ${{ secrets.GOPROXY }}
+          username: ${{ secrets.GOPROXY_USERNAME }}
+          password: ${{ secrets.GOPROXY_TOKEN }}
+
+      - name: Install Go
+        if: success()
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+
+      - name: Download dependencies
+        run: go mod download
+        if: steps.install-go.outputs.cache-hit != 'true'
 
       - name: Run govalncheck
         run: |
