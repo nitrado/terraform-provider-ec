@@ -63,8 +63,7 @@ Required:
 Optional:
 
 - `locations` (List of String) Locations defines the locations for a type.
-- `template` (Block List, Max: 1) Template is the optional configuration to apply to all fleets
-in this region. (see [below for nested schema](#nestedblock--spec--types--template))
+- `template` (Block List, Max: 1) Template is the optional configuration to apply to all game servers in this region type. (see [below for nested schema](#nestedblock--spec--types--template))
 
 <a id="nestedblock--spec--types--template"></a>
 ### Nested Schema for `spec.types.template`
@@ -72,7 +71,7 @@ in this region. (see [below for nested schema](#nestedblock--spec--types--templa
 Optional:
 
 - `env` (Block List) Env is a list of environment variables to set on all containers in this region. (see [below for nested schema](#nestedblock--spec--types--template--env))
-- `scheduling` (String) Scheduling strategy. Defaults to "Packed"
+- `scheduling` (String) Scheduling strategy determines how game servers are scheduled on a Site. Defaults to "Packed".
 
 <a id="nestedblock--spec--types--template--env"></a>
 ### Nested Schema for `spec.types.template.env`

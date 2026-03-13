@@ -78,6 +78,24 @@ Required:
 - `min_replicas` (Number) MinReplicas is the minimum number of replicas in the region type.
 - `name` (String) Name is the name of the region type.
 
+Optional:
+
+- `dynamic_buffer` (Block List, Max: 1) DynamicBuffer is the configuration for the dynamic buffer. (see [below for nested schema](#nestedblock--spec--armadas--distribution--dynamic_buffer))
+
+<a id="nestedblock--spec--armadas--distribution--dynamic_buffer"></a>
+### Nested Schema for `spec.armadas.distribution.dynamic_buffer`
+
+Optional:
+
+- `dynamic_max_buffer_threshold` (Number) DynamicMaxBufferThreshold is the max threshold for the dynamic buffer size. This is the absolute maximum percentage,
+in integer form, the system may dynamically increase the calculated buffer size when allocation increases are observed.
+- `dynamic_min_buffer_threshold` (Number) DynamicMinBufferThreshold is the min threshold for the dynamic buffer size. This is the absolute maximum percentage,
+in integer form, the system may dynamically decrease the calculated buffer size when allocation decreases are observed.
+- `max_buffer_utilization` (Number) MaxBufferUtilization is the maximum buffer utilization percentage, in integer form. This is the
+target percentage of utilized buffer to optimize for. If the buffer utilization regularly exceeds this
+percentage, the buffer will be increased, and if it is below this percentage, the buffer will be decreased.
+
+
 
 
 <a id="nestedblock--spec--template"></a>
@@ -562,9 +580,20 @@ Required:
 
 Optional:
 
+- `config_files` (Block List) ConfigFiles is a list of configuration files to mount into the containers filesystem. (see [below for nested schema](#nestedblock--spec--override--config_files))
 - `env` (Block List) Env is a list of environment variables to set on containers. (see [below for nested schema](#nestedblock--spec--override--env))
 - `labels` (Map of String) Labels is a map of keys and values that can be used to organize and categorize
 objects.
+- `secrets` (Block List) Secrets is a list of secrets to mount into the containers' filesystem. (see [below for nested schema](#nestedblock--spec--override--secrets))
+
+<a id="nestedblock--spec--override--config_files"></a>
+### Nested Schema for `spec.override.config_files`
+
+Required:
+
+- `mount_path` (String) MountPath is the path to mount the configuration file on.
+- `name` (String) Name is the name of the configuration file.
+
 
 <a id="nestedblock--spec--override--env"></a>
 ### Nested Schema for `spec.override.env`
@@ -615,3 +644,14 @@ Required:
 
 - `key` (String) Key is the key of the secret to select.
 - `name` (String) Name is the name of the configuration file.
+
+
+
+
+<a id="nestedblock--spec--override--secrets"></a>
+### Nested Schema for `spec.override.secrets`
+
+Required:
+
+- `mount_path` (String) MountPath is the path to mount the secret on.
+- `name` (String) Name is the name of the secret.
