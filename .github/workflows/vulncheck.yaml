@@ -16,6 +16,9 @@ jobs:
   govulncheck:
 
     runs-on: ubuntu-latest
+    env:
+      GOPROXY: https://${{ secrets.GOPROXY }},direct
+      GONOSUMDB: ${{ secrets.GONOSUMDB }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v6
