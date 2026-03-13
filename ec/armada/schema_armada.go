@@ -69,6 +69,31 @@ func armadaSchema() map[string]*schema.Schema {
 									Description: "BufferSize is the number of replicas to have ready all the time.",
 									Required:    true,
 								},
+								"dynamic_buffer": {
+									Type:        schema.TypeList,
+									Description: "DynamicBuffer is the configuration for the dynamic buffer.",
+									Optional:    true,
+									MaxItems:    1,
+									Elem: &schema.Resource{
+										Schema: map[string]*schema.Schema{
+											"dynamic_max_buffer_threshold": {
+												Type:        schema.TypeInt,
+												Description: "DynamicMaxBufferThreshold is the max threshold for the dynamic buffer size. This is the absolute maximum percentage,\nin integer form, the system may dynamically increase the calculated buffer size when allocation increases are observed.",
+												Optional:    true,
+											},
+											"dynamic_min_buffer_threshold": {
+												Type:        schema.TypeInt,
+												Description: "DynamicMinBufferThreshold is the min threshold for the dynamic buffer size. This is the absolute maximum percentage,\nin integer form, the system may dynamically decrease the calculated buffer size when allocation decreases are observed.",
+												Optional:    true,
+											},
+											"max_buffer_utilization": {
+												Type:        schema.TypeInt,
+												Description: "MaxBufferUtilization is the maximum buffer utilization percentage, in integer form. This is the\ntarget percentage of utilized buffer to optimize for. If the buffer utilization regularly exceeds this\npercentage, the buffer will be increased, and if it is below this percentage, the buffer will be decreased.",
+												Optional:    true,
+											},
+										},
+									},
+								},
 								"max_replicas": {
 									Type:        schema.TypeInt,
 									Description: "MaxReplicas is the maximum number of replicas in the region type.",

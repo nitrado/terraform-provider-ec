@@ -66,6 +66,24 @@ Required:
 - `min_replicas` (Number) MinReplicas is the minimum number of replicas in the region type.
 - `name` (String) Name is the name of the region type.
 
+Optional:
+
+- `dynamic_buffer` (Block List, Max: 1) DynamicBuffer is the configuration for the dynamic buffer. (see [below for nested schema](#nestedblock--spec--distribution--dynamic_buffer))
+
+<a id="nestedblock--spec--distribution--dynamic_buffer"></a>
+### Nested Schema for `spec.distribution.dynamic_buffer`
+
+Optional:
+
+- `dynamic_max_buffer_threshold` (Number) DynamicMaxBufferThreshold is the max threshold for the dynamic buffer size. This is the absolute maximum percentage,
+in integer form, the system may dynamically increase the calculated buffer size when allocation increases are observed.
+- `dynamic_min_buffer_threshold` (Number) DynamicMinBufferThreshold is the min threshold for the dynamic buffer size. This is the absolute maximum percentage,
+in integer form, the system may dynamically decrease the calculated buffer size when allocation decreases are observed.
+- `max_buffer_utilization` (Number) MaxBufferUtilization is the maximum buffer utilization percentage, in integer form. This is the
+target percentage of utilized buffer to optimize for. If the buffer utilization regularly exceeds this
+percentage, the buffer will be increased, and if it is below this percentage, the buffer will be decreased.
+
+
 
 <a id="nestedblock--spec--template"></a>
 ### Nested Schema for `spec.template`
