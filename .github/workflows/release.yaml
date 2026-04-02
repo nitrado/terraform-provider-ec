@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Proxy Credentials
-        uses: extractions/netrc@v2
+        uses: extractions/netrc@v3
         with:
           machine: ${{ secrets.GOPROXY }}
           username: ${{ secrets.GOPROXY_USERNAME }}
@@ -31,19 +31,19 @@ jobs:
 
       - name: Install Go
         if: success()
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version-file: 'go.mod'
 
       - name: Import GPG key
         id: import_gpg
-        uses: crazy-max/ghaction-import-gpg@v6
+        uses: crazy-max/ghaction-import-gpg@v7
         with:
           gpg_private_key: ${{ secrets.GPG_PRIVATE_KEY }}
           passphrase: ${{ secrets.GPG_PASSWORD }}
 
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v6
+        uses: goreleaser/goreleaser-action@v7
         env:
           GORELEASER_CURRENT_TAG: ${{ github.ref_name }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
